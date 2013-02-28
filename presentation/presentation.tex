@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[14pt]{beamer}
 
 \usepackage[dutch]{babel}
 
@@ -9,11 +9,14 @@
 \usepackage{listings}
 
 \newcommand{\id}{\text{id}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\cat}[1]{\mathbf{#1}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\I}{\,\mid\,}
 \newcommand{\then}{\Rightarrow}
 \newcommand{\inject}{\hookrightarrow}
+\newcommand{\del}{\partial}
 
 \title{Dold-Kan correspondentie}
 \author{Joshua Moerman}
@@ -26,23 +29,32 @@
   \titlepage
 \end{frame}
 
-
+\begin{frame}
+\frametitle{Dold-Kan Correspondentie}
+\huge $$ \cat{Ch(Ab)} \simeq \cat{sAb} $$
+\end{frame}
 
 \section{Ketencomplex}
 \begin{frame}
 \frametitle{Ketencomplex}
 \begin{definition}
-	$C_n \in \cat{Ab}$
+	Een \emph{ketencomplex} $C$ bestaat uit abelse groepen $C_n$ en homomorfismes $\del_n : C_{n+1} \to C_n$, zodat $\del_n \circ \del_{n+1} = 0$ voor alle $n \in \N$.
 \end{definition}
 \pause
-Enzoverder
+\bigskip
+Met andere woorden:
+$$ \cdots \to C_4 \to C_3 \to C_2 \to C_1 \to C_0 $$
 \end{frame}
 
-
+\begin{frame}
+Uit $\del_n \circ \del_{n+1} = 0$ volgt $im(\del_{n+1}) \trianglelefteq ker(\del_n)$
+\pause
+Definieer: $H_n(C) = ker(\del_n) / im(\del_{n+1})$
+\end{frame}
 
 \begin{frame}
 \begin{center}
-\Huge Questions?
+\Huge Vragen?
 \end{center}
 \end{frame}
 
