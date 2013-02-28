@@ -1,3 +1,5 @@
+*.sublime-workspace
+.DS_Store
 *.acn
 *.acr
 *.alg
