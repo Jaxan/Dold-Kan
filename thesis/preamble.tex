@@ -1,0 +1,26 @@
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{listings}
+
+\newcommand{\id}{\text{id}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\I}{\,\mid\,}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\inject}{\hookrightarrow}
+\newcommand{\del}{\partial}
+
+\newcommand{\todo}[1]{
+	\addcontentsline{tdo}{todo}{\protect{#1}}
+	$\ast$ \marginpar{\tiny $\ast$ #1}
+}
+\makeatletter
+	\newcommand \listoftodos{\section*{Todo list} \@starttoc{tdo}}
+	\newcommand\l@todo[2]{
+		\par\noindent \textit{#2}, \parbox{10cm}{#1}\par
+	}
+\makeatother
