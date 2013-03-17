@@ -2,7 +2,12 @@
 	"folders":
 	[
 		{
-			"path": "/Users/joshua/Documents/uni/2012-2013/Bachelor Thesis"
+			"path": "/Users/joshua/Documents/uni/2012-2013/Bachelor Thesis",
+			"folder_exclude_patterns": ["build", "reading"]
+		},
+		{
+			"name": "Documents",
+			"path": "/Users/joshua/Documents/uni/2012-2013/Bachelor Thesis/reading"
 		}
 	]
 }
