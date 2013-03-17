@@ -1,47 +1,87 @@
 \documentclass[14pt]{beamer}
 
+% beamer definieert 'definition' al, maar dan engels :(
+% fix van:
+% http://tex.stackexchange.com/questions/38392/how-to-rename-theorem-or-lemma-in-beamer-to-another-language
 \usepackage[dutch]{babel}
+\uselanguage{dutch}
+\languagepath{dutch}
+\deftranslation[to=dutch]{Definition}{Definitie}
 
 \input{../thesis/preamble}
 
-\title{Dold-Kan correspondentie}
+\title{Dold-Kan correspondentie
+	\huge $$ \Ch{\cat{Ab}} \simeq \cat{sAb} $$}
 \author{Joshua Moerman}
 \institute[Radboud Universiteit Nijmegen]{Begeleid door Moritz Groth}
 \date{}
 
 \begin{document}
 
-\begin{frame}
-  \titlepage
-\end{frame}
 
 \begin{frame}
-\frametitle{Dold-Kan Correspondentie}
-\huge $$ \cat{Ch(Ab)} \simeq \cat{sAb} $$
+	\titlepage
 \end{frame}
 
-\section{Ketencomplex}
-\begin{frame}
-\frametitle{Ketencomplex}
-\begin{definition}
-	Een \emph{ketencomplex} $C$ bestaat uit abelse groepen $C_n$ en homomorfismes $\del_n : C_{n+1} \to C_n$, zodat $\del_n \circ \del_{n+1} = 0$ voor alle $n \in \N$.
-\end{definition}
-\pause
-\bigskip
-Met andere woorden:
-$$ \cdots \to C_4 \to C_3 \to C_2 \to C_1 \to C_0 $$
-\end{frame}
 
 \begin{frame}
-Uit $\del_n \circ \del_{n+1} = 0$ volgt $im(\del_{n+1}) \trianglelefteq ker(\del_n)$
-\pause
-Definieer: $H_n(C) = ker(\del_n) / im(\del_{n+1})$
+	\frametitle{Wat is $\Ch{\cat{Ab}}$?}
+	\begin{definition}
+	Een \emph{ketencomplex} $C$ bestaat uit abelse groepen met groepshomomorfisme:
+	$$ \cdots \to C_4 \to^{\del_3} C_3 \to^{\del_2} C_2 \to^{\del_1} C_1 \to^{\del_0} C_0 $$
+
+	zodat $\del_n \circ \del_{n+1} = 0$ voor alle $n \geq 1$.
+	\end{definition}
 \end{frame}
 
+
 \begin{frame}
-\begin{center}
-\Huge Vragen?
-\end{center}
+	\frametitle{Voorbeeld}
+	Bekijk $\Delta^n \to X$, dwz...
 \end{frame}
+
+
+\begin{frame}
+	\frametitle{Is $\Ch{\cat{Ab}}$ interessant?}
+	Gegeven een ketencomplex $C$:
+	$$ \cdots \to C_4 \to^{\del_3} C_3 \to^{\del_2} C_2 \to^{\del_1} C_1 \to^{\del_0} C_0 $$
+	met $\del_n \circ \del_{n+1} = 0$
+	\bigskip
+	
+	Dan geldt $im(\del_{n+1}) \trianglelefteq ker(\del_n)$
+
+	Definieer: $H_n(C) = ker(\del_n) / im(\del_{n+1})$
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Voorbeeld}
+	$ \cdots \to C_1 \to^{\del_0} C_0 $, wat is $H_1 = ker(\del_0) / im(\del_1)$?
+
+	\begin{enumerate}
+		\item Triviaal
+		\item Niet triviaal
+	\end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Dold-Kan Correspondentie}
+	\begin{center}
+	{\Large $ \Ch{\cat{Ab}} \simeq \cat{sAb} $}
+
+	verder:
+	{\Large $$ H_n(N(X)) \iso \pi_n(X) $$}
+	waarbij $N : \cat{sAb} \to \Ch{\cat{Ab}}$.
+	\end{center}
+\end{frame}
+
+
+\begin{frame}
+	\begin{center}
+	\Huge Vragen?
+	\end{center}
+\end{frame}
+
 
 \end{document}
