@@ -1,0 +1,29 @@
+\documentclass[14pt]{beamer}
+
+% beamer definieert 'definition' al, maar dan engels :(
+% fix van:
+% http://tex.stackexchange.com/questions/38392/how-to-rename-theorem-or-lemma-in-beamer-to-another-language
+\usepackage[dutch]{babel}
+\uselanguage{dutch}
+\languagepath{dutch}
+\deftranslation[to=dutch]{Definition}{Definitie}
+
+\input{../thesis/preamble}
+
+\begin{document}
+
+
+\begin{frame}
+	% Symbols used in drawings
+	Bekijk $\Delta^n \tot{f} X$, dwz...
+
+	\Large $\cdots \tot{\del_2} \{\} \tot{\del_1} \{\} \tot{\del_0} \{\}$
+
+	$ \sigma_1 + \sigma_2 + \sigma_3 = \del(\tau) $
+
+	$ \mapsto $
+
+	$ X \subseteq \mathbb{R}^2 $
+\end{frame}
+
+\end{document}

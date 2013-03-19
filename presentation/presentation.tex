@@ -28,40 +28,52 @@
 	\frametitle{Wat is $\Ch{\cat{Ab}}$?}
 	\begin{definition}
 	Een \emph{ketencomplex} $C$ bestaat uit abelse groepen met groepshomomorfisme:
-	$$ \cdots \to C_4 \to^{\del_3} C_3 \to^{\del_2} C_2 \to^{\del_1} C_1 \to^{\del_0} C_0 $$
+	$$ \cdots \to C_4 \tot{\del_3} C_3 \tot{\del_2} C_2 \tot{\del_1} C_1 \tot{\del_0} C_0 $$
 
-	zodat $\del_n \circ \del_{n+1} = 0$ voor alle $n \geq 1$.
+	zodat $\del_n \circ \del_{n+1} = 0$ voor alle $n \in \N$.
 	\end{definition}
 \end{frame}
 
 
 \begin{frame}
 	\frametitle{Voorbeeld}
-	Bekijk $\Delta^n \to X$, dwz...
+	Bekijk $\Delta^n \tot{f} X$, dwz... \raisebox{-.2\height}{\includegraphics{simplex_in_X}}
+	\bigskip
+
+	\Large $\cdots \tot{\del_2} \{\} \tot{\del_1} \{\} \tot{\del_0} \{\}$
 \end{frame}
 
 
 \begin{frame}
 	\frametitle{Is $\Ch{\cat{Ab}}$ interessant?}
 	Gegeven een ketencomplex $C$:
-	$$ \cdots \to C_4 \to^{\del_3} C_3 \to^{\del_2} C_2 \to^{\del_1} C_1 \to^{\del_0} C_0 $$
+	$$ \cdots \to C_4 \tot{\del_3} C_3 \tot{\del_2} C_2 \tot{\del_1} C_1 \tot{\del_0} C_0 $$
 	met $\del_n \circ \del_{n+1} = 0$
 	\bigskip
 	
 	Dan geldt $im(\del_{n+1}) \trianglelefteq ker(\del_n)$
 
 	Definieer: $H_n(C) = ker(\del_n) / im(\del_{n+1})$
+
+	(met $ker(\del_0) = C_0$ per conventie)
 \end{frame}
 
 
 \begin{frame}
 	\frametitle{Voorbeeld}
-	$ \cdots \to C_1 \to^{\del_0} C_0 $, wat is $H_1 = ker(\del_0) / im(\del_1)$?
+	$ \cdots \to C_1 \tot{\del_0} C_0 $, wat is $ H_1 = \frac{ker(\del_0)}{im(\del_1)} $?
 
-	\begin{enumerate}
-		\item Triviaal
-		\item Niet triviaal
-	\end{enumerate}
+	\begin{itemize}
+		\item $ \sigma_1 + \sigma_2 + \sigma_3 \in ker (\del_0) $ \\
+			\visible<2->{
+			$ \del_1(\tau) = \sigma_1 + \sigma_2 + \sigma_3 $ \\
+			Dus $ \sigma_1 + \sigma_2 + \sigma_3 \in im (\del_1) $ \\
+			Dus $ 0 = [\sigma_1 + \sigma_2 + \sigma_3] \in H_1 $}
+		\item \visible<3->{
+			$ \sigma_1 + \sigma_2 + \sigma_3 \in ker (\del_0) $ \\
+			Maar $ \sigma_1 + \sigma_2 + \sigma_3 \not \in im (\del_1) $ \\
+			Dus $ 0 \neq [\sigma_1 + \sigma_2 + \sigma_3] \in H_1 $}
+	\end{itemize}
 \end{frame}
 
 
@@ -72,7 +84,7 @@
 
 	verder:
 	{\Large $$ H_n(N(X)) \iso \pi_n(X) $$}
-	waarbij $N : \cat{sAb} \to \Ch{\cat{Ab}}$.
+	waarbij $N : \cat{sAb} \tot{\simeq} \Ch{\cat{Ab}}$.
 	\end{center}
 \end{frame}
 
