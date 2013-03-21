@@ -8,6 +8,8 @@
 \languagepath{dutch}
 \deftranslation[to=dutch]{Definition}{Definitie}
 
+\usepackage{array}
+
 \input{../thesis/preamble}
 
 \title{Dold-Kan correspondentie
@@ -49,7 +51,7 @@
 
 
 \begin{frame}
-	\frametitle{Is $\Ch{\cat{Ab}}$ interessant?}
+	\frametitle{Interessant?}
 	Gegeven een ketencomplex $C$:
 	$$ \cdots \to C_4 \tot{\del_3} C_3 \tot{\del_2} C_2 \tot{\del_1} C_1 \tot{\del_0} C_0 $$
 	met $\del_n \circ \del_{n+1} = 0$
@@ -57,7 +59,7 @@
 	
 	Dan geldt $im(\del_{n+1}) \trianglelefteq ker(\del_n)$
 
-	Definieer: $H_n(C) = ker(\del_n) / im(\del_{n+1})$
+	Definieer: $H_n(C) = ker(\del_{n-1}) / im(\del_n)$
 
 	(met $ker(\del_0) = C_0$ per conventie)
 \end{frame}
@@ -66,18 +68,30 @@
 \begin{frame}
 	\frametitle{Voorbeeld}
 	$ \cdots \to C_1 \tot{\del_0} C_0 $, wat is $ H_1 = \frac{ker(\del_0)}{im(\del_1)} $?
+	\bigskip
 
-	\begin{itemize}
-		\item $ \sigma_1 + \sigma_2 + \sigma_3 \in ker (\del_0) $ \\
-			\visible<2->{
-			$ \del_1(\tau) = \sigma_1 + \sigma_2 + \sigma_3 $ \\
-			Dus $ \sigma_1 + \sigma_2 + \sigma_3 \in im (\del_1) $ \\
-			Dus $ 0 = [\sigma_1 + \sigma_2 + \sigma_3] \in H_1 $}
-		\item \visible<3->{
-			$ \sigma_1 + \sigma_2 + \sigma_3 \in ker (\del_0) $ \\
-			Maar $ \sigma_1 + \sigma_2 + \sigma_3 \not \in im (\del_1) $ \\
-			Dus $ 0 \neq [\sigma_1 + \sigma_2 + \sigma_3] \in H_1 $}
-	\end{itemize}
+	\begin{tabular}{m{0.3\textwidth} m{0.7\textwidth}}
+		\includegraphics<1>{singular_homology1}
+		\includegraphics<2->{singular_homology2}
+		&
+		$ \sigma_1 - \sigma_2 + \sigma_3 \in ker (\del_0) $ \newline
+		\visible<2->{
+		$ \del_1(\tau) = \sigma_1 - \sigma_2 + \sigma_3 $ \newline
+		Dus $ \sigma_1 + \sigma_2 - \sigma_3 \in im (\del_1) $ \newline
+		Dus $ 0 = [\sigma_1 - \sigma_2 + \sigma_3] \in H_1 $}
+	\end{tabular}
+	\bigskip
+
+	\visible<3->{
+	\begin{tabular}{m{0.3\textwidth} m{0.7\textwidth}}
+		\includegraphics{singular_homology3}
+		&
+		$ \sigma_1 - \sigma_2 + \sigma_3 \in ker (\del_0) $ \newline
+		Maar $ \sigma_1 - \sigma_2 + \sigma_3 \not \in im (\del_1) $ \newline
+		Dus $ 0 \neq [\sigma_1 - \sigma_2 + \sigma_3] \in H_1 $
+	\end{tabular}
+	}
+
 \end{frame}
 
 
