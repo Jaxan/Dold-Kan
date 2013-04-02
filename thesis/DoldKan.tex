@@ -12,6 +12,9 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exlemma}[theorem]{Example/Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
 
 \input{../thesis/preamble}
 
@@ -28,11 +31,16 @@ It is interesting because objects on the left hand side are considered to be alg
 $$ \pi_n(A) \iso H_n(N(A)) \text{ for all } n \in \N $$
 where $N: \sAb \to \Ch{\Ab}$ is one half of the equivalence.
 
+In the first section some definitions from category theory are given, because we will need them later on. Then in the second section we will discuss the first category involved in the correspondence, $\Ch{\Ab}$, the category of chain complexes. The third section then continues with the second category involved, $\sAb$, especially for this section we will need category theory. Then we will look at the coorespondence itself.
+
 \newpage
 \input{../thesis/1_CategoryTheory}
 
 \newpage
 \input{../thesis/2_ChainComplexes}
+
+\newpage
+\input{../thesis/3_SimplicialAbelianGroups}
 
 \newpage
 \listoftodos

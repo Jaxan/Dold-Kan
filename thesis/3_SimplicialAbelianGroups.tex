@@ -1,0 +1,47 @@
+\section{Simplicial Abelian Groups}
+\label{sec:Simplicial Abelian Groups}
+
+\begin{definition}
+	We define a category $\DELTA$, where the objects are the finite ordinals $[n] = \{0, \dots, n\}$ and maps are monotone increasing functions.
+\end{definition}
+
+There are two special kinds of maps in $\DELTA$, the so called \emph{face} and \emph{degeneracy} maps, defined as (resp.):
+
+$$\delta_i: [n] \to [n+1], k \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n+1$$
+$$\sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n$$
+
+for each $n \in \N$. The nice things about these maps is that every map in $\DELTA$ can be decomposed to a composition of these maps. So in a certain sense, these are all the maps we need to consider. We can now picture the category $\DELTA$ as follows.
+
+\begin{figure}[h!]
+	\label{fig:delta_cat}
+	\includegraphics{delta_cat}
+	\caption{The category $\DELTA$ with the face and degeneracy maps.}
+\end{figure}
+
+\todo{sAb: Epi-mono factorization}
+
+Now the category $\sAb$ is defined as the category $\Ab^{\DELTA^{op}}$. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $F: \DELTA^{op} \to Ab$. And hence we can picture a simplicial abelian group as follows.
+
+\begin{figure}
+	\label{fig:simplicial_abelian_group}
+	\includegraphics{simplicial_abelian_group}
+	\caption{A simplicial abelian group.}
+\end{figure}
+
+Of course the maps $\delta_i$ and $\sigma_i$ satisfy certain equations, these are the so called \emph{simplicial equations}.
+\todo{sAb: Is \emph{simplicial equations} really a thing?}
+
+\begin{lemma}
+	The face and degeneracy maps in $\DELTA$ satisfy the simplicial equations, ie.:
+	\begin{align}
+		\delta_j\delta_i &= \delta_i\delta_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
+		\sigma_j\delta_i &= \delta_i\sigma_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
+		\sigma_j\delta_j &= \sigma_j\delta_{j+1} = \text{id},\\
+		\sigma_j\delta_i &= \delta_{i-1}\sigma_j  \hspace{0.5cm} \text{ if } i > j+1,\\
+		\sigma_j\sigma_i &= \sigma_i\sigma_{j+1}  \hspace{0.5cm} \text{ if } i \leq j.
+	\end{align}
+\end{lemma}
+\begin{proof}
+	By writing out the definitions given above.
+\end{proof}
+\todo{sAb: Say a bit more (because Mueger will not like this)}

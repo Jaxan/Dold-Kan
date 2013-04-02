@@ -21,12 +21,12 @@ Note that the collection of objects may be a proper class instead of a set, howe
 
 As the notation suggests maps can be thought of as functions, which is also the case in many examples.
 
-\begin{lemma}
+\begin{example}
 	The category $\Set$ has a objects sets, and as maps ordinary functions. Of course we then have the identity function $\id_X(x) = x$ and composition as usual.
-\end{lemma}
-\begin{lemma}
+\end{example}
+\begin{example}
 	The category $\Ab$ has a objects abelian groups, and the maps between two objects are exactly the grouphomomorphisms. We know that the identity function is indeed a grouphomomorphism, and composing two grouphomomorpisms, gives indeed a new grouphomomorphism.
-\end{lemma}
+\end{example}
 
 In fact almost any mathematical structure can be described as a category, we have: $\cat{Ring}$ for rings, $\cat{Vect}$ for $\R$-vectorspaces, $\cat{Set_{fin}}$ for finite sets, $\cat{Poset}$ for posets, etc. Of course we would also like to express relations between categories, for example every abelian group is also a set. This idea can be formulated by the notion of a functor.
 
@@ -40,9 +40,9 @@ In fact almost any mathematical structure can be described as a category, we hav
 	We normally do not write the index of $F_0$ or $F_1$, instead we wrtie $F$ for both functions.
 \end{definition}
 
-\begin{lemma}
+\begin{exlemma}
 	There is a category $\cat{Cat}$ with categories as objects, and functors as maps.
-\end{lemma}
+\end{exlemma}
 \begin{proof}
 	First we define the identity functor. Let $\cat{C}$ be a category, define $\id_\cat{C}(A) = A$ for any object $A \in \cat{C}$ and $\id_\cat{C}(f) = f$ for any map $f: A \to B$ in $\cat{C}$. Cleary we have $\id_\cat{C}(f) : \id_\cat{C}(A) \to \id_\cat{C}(B)$. Also $\id_\cat{C}(\id_A) = \id_A = \id_{\id_\cat{C}(A)}$ and $\id_\cat{C}(f \circ g) = f \circ g$. So indeed $\id_\cat{C}$ is a functor.
 
