@@ -38,7 +38,7 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain equatio
 	\begin{align}
 		\delta_j\delta_i &= \delta_i\delta_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
 		\sigma_j\delta_i &= \delta_i\sigma_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
-		\sigma_j\delta_j &= \sigma_j\delta_{j+1} = \text{id},\\
+		\sigma_j\delta_j &= \sigma_j\delta_{j+1} = \id,\\
 		\sigma_j\delta_i &= \delta_{i-1}\sigma_j  \hspace{0.5cm} \text{ if } i > j+1,\\
 		\sigma_j\sigma_i &= \sigma_i\sigma_{j+1}  \hspace{0.5cm} \text{ if } i \leq j.
 	\end{align}
@@ -48,9 +48,11 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain equatio
 \end{proof}
 
 Because a simplicial abelien group $A$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ A(\delta_i)A(\delta_j) = A(\delta_{j-1})A(\delta_i) $ for $ i < j$ (again note that $A$ is contravariant, and hence composition is reversed). This can be used for a explicit definition of simplicial abelien groups. In this definition a simplicial abelian group $A$ consists of a family abelian groups $(A_n)_{n}$ together with face and degeneracy maps (which are grouphomomorphisms) such that the simplicial equations hold.
+\todo{sAb: Write this out, and define notation for it (eg. $\delta^i, \sigma^i$)}
+
+\todo{sAb: Note that $\sigma^i$ is a monomorphism because of (3)}
 
 \subsection{Other simplicial objects}
 Of course the abstract definition of simplicial abelian group can easilty be generalized to other categories. For example $\Set^{\DELTA^{op}} = \sSet$ is the category of simplicial sets.
 \todo{sAb: as example do the free abelian group pointwise}
 
-\todo{sAb: Say a bit more (because Mueger will not like this)}

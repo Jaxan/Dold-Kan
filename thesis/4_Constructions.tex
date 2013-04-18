@@ -19,3 +19,7 @@ $$\del_{n-1} = A(\delta_0) - A(\delta_1) + \ldots + (-1)^n A(\delta_n) \text{ fo
 
 This construction gives a functor $C : \sAb \to \Ch{\Ab}$. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}$ (on generators). The terms $\sigma \circ \delta^i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
 \todo{C: is this a nice thing to add?}
+
+\todo{C: Note that we cannot do $\Ch{\Ab}\to\sAb$ this simple, as we need monomorphisms}
+
+\todo{C: Note that hence $C$ will not work as an equivalence}
