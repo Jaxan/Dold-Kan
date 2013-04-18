@@ -1,0 +1,21 @@
+\section{Constructions}
+\label{sec:Constructions}
+
+Comparing chain complexes and simplicial abelian groups, we see a similar structure. Both objects consists of a sequence of abelian groups, with maps in between. At first sight simplicial abelian groups have more structure, because there are maps in both directions. It is not clear how to make degeneracy maps given a chain complex, in fact it is already unclear how to define more maps (the face maps) out of one (the boundary one). Constructing a chain complex from a simplicial abelian group on the other hand seems doable.
+
+\subsection{Unnormalized chain complex}
+Given a simplicial abelian group $A$, we have a family of abelian groups $A([n])_n$. We define a grouphomomorphism $\del_{n-1} : A([n]) \to A([n-1])$ as:
+$$\del_{n-1} = A(\delta_0) - A(\delta_1) + \ldots + (-1)^n A(\delta_n) \text{ for every } n > 0.$$
+\begin{lemma}
+	Using $A([n])_n$ as the family of abelian groups and the maps $(\del_n)_n$ as boundary maps gives a chain complex.
+\end{lemma}
+\begin{proof}
+	We already have a collection of abelian groups together with maps, so the only thing to proof is $\del_n \circ \del_{n+1} = 0$.
+
+	\todo{C: insert calculation with sums}
+
+	So indeed this is a chain complex.
+\end{proof}
+
+This construction gives a functor $C : \sAb \to \Ch{\Ab}$. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}$ (on generators). The terms $\sigma \circ \delta^i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
+\todo{C: is this a nice thing to add?}
