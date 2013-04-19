@@ -21,8 +21,9 @@ for each $n \in \N$. The nice things about these maps is that every map in $\DEL
 \end{figure}
 
 \begin{definition}
-	An simplicial abelian group $A$ is a contravariant functor:
+	An simplicial abelian group $A$ is a covariant functor:
 	$$A: \DELTA^{op} \to \Ab.$$
+	(Or equivalently a contravariant functor $A: \DELTA \to \Ab.$)
 \end{definition}
 
 So the category of all simplicial abelian groups, $\sAb$, is the functor category $\Ab^{\DELTA^{op}}$, where morphisms are natural transformations. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $A: \DELTA^{op} \to Ab$. And hence we can picture a simplicial abelian group as done in figure~\ref{fig:simplicial_abelian_group}. Comparing this to figure~\ref{fig:delta_cat} we see that the arrows are reversed, because $A$ is a contravariant functor.
@@ -75,8 +76,11 @@ When using a simplicial abelian group to construct another object, it is often h
 Of course the abstract definition of simplicial abelian group can easilty be generalized to other categories. For example $\Set^{\DELTA^{op}} = \sSet$ is the category of simplicial sets. There are very important simplicial sets:
 
 \begin{definition}
-	$\Delta[n]$
+	The standard $n$-simplex is given by:
+	$$\Delta[n] = \Hom{\DELTA}{-}{[n]} : \DELTA^{op} \to \Set.$$
 \end{definition}
+
+Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morphisms in a category is per definition a set. We do not need to specify the face or degeneracy maps, as we already know that $\mathbf{Hom}$ is a functor (in both arguments).
 
 \todo{sAb: as example do $\Delta[n]$}
 \todo{sAb: as example do the free abelian group pointwise}
