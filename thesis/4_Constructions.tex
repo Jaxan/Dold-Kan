@@ -17,9 +17,27 @@ $$\del_{n-1} = A(\delta_0) - A(\delta_1) + \ldots + (-1)^n A(\delta_n) \text{ fo
 	So indeed this is a chain complex.
 \end{proof}
 
-This construction gives a functor $C : \sAb \to \Ch{\Ab}$. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}$ (on generators). The terms $\sigma \circ \delta^i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
+This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it a adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}$ (on generators). The terms $\sigma \circ \delta^i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
 \todo{C: is this a nice thing to add?}
 
-\todo{C: Note that we cannot do $\Ch{\Ab}\to\sAb$ this simple, as we need monomorphisms}
+Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degenracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
 
-\todo{C: Note that hence $C$ will not work as an equivalence}
+But for chain complexes it \emph{is} possible to have trivial abelian groups $C_m$, while there is a $n < m$ with $C_n$ non-trivial. Take for example the chain complex $ C = \ldots \to 0 \to 0 \to \Z $. Now if we would construct a (non-trivial) simplicial abelian group $K(C)$ from this chain complex, we now know that $K(C)_n$ is non-trivial for all $n \in \N$. This means that $C(K(C))_n$ is non-trivial for all $n \in \N$. For an equivalence we require a (natural) isomorphism: $C(K(C)) \tot{\iso} C$, this in particular means an isomorphism in each degree $n > 0$: $ 0 \neq C(K(C))_n \tot{\iso} C_n = 0 $, which is not possible. So the functor $C$, as defined as above, will not give us the equivalence we wanted, although it is a very nice functor.
+
+\subsection{Normalized chain complex}
+To repair this defect we should be more careful. Given a simplicial abelian group, simply taking the same collection for our chain complex will not work (as shown above). Instead we are after some ``smaller'' abelian groups, and in some cases the abelian groups should completely vanish (as in the example above).
+
+Given a simplicial abelian group $A$, we define abelian groups $N(A)_n$ as:
+$$ N(A)_n = \bigcap_{i=1}^{n} \ker(\delta^i : A_n \to A_{n-1}). $$
+Now define grouphomomorphisms $\del : N(A)_n \to N(A)_{n-1}$ as:
+$$ \del = \delta^0|_{N(A)_n}. $$
+\begin{lemma}
+	The function $ \del $ is well-defined. Furthermore $ \del \circ \del = 0 $, hence $N(A)$ is a chain complex.
+\end{lemma}
+\begin{proof}
+	\todo{C: This is easy}
+\end{proof}
+
+\todo{C: As an example calculate $N(\Z[\Delta[0]])$}
+
+\todo{C: The exciting part: $\Ch{\Ab} \to \sAb$}
