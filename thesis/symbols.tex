@@ -15,20 +15,15 @@
 
 \input{../thesis/preamble}
 
-\title{Dold-Kan Correspondence}
-\author{Joshua Moerman}
-
 \begin{document}
-\maketitle
 
-\begin{definition}
-	We define a category $\DELTA$, where the objects are the finite ordinals $[n] = \{0, \dots, n\}$ and maps are monotone increasing functions.
-\end{definition}
+% For basic categorical picture of simplicial objects
+% $$ [0] \to [1] \to [2] \to [3] \to \ldots $$
+% $$\delta_i: [n] \to [n+1], k \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n+1$$
+% $$\sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n$$
+% $$ A_0 \to A_1 \to A_2 \to A_3 $$
 
-$$ [0] \to [1] \to [2] \to [3] \to \ldots $$
-$$\delta_i: [n] \to [n+1], k \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n+1$$
-$$\sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n$$
-
-$$ A_0 \to A_1 \to A_2 \to A_3 $$
+% For geometric picture of simplicial objects
+$$ 0 \tot{\delta_0} 1 \tot{\delta_1} 2 \tot{\delta_2} 3 \tot{\delta_3} \cdots $$
 
 \end{document}
