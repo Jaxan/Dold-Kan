@@ -11,9 +11,9 @@ Presentation)	pdflatex "../presentation/presentation.tex" || exit 1
 		;;
 Symbols)	pdflatex "../thesis/symbols.tex" || exit 1
 		pdflatex "../thesis/symbols.tex" || exit 1
-		scp symbols.pdf moerman@stitch.science.ru.nl:~/thesissymbols.pdf
-		ssh moerman@stitch.science.ru.nl 'pdf2svg thesissymbols.pdf thesissymbols.svg'
-		scp moerman@stitch.science.ru.nl:~/thesissymbols.svg ../
+		scp symbols.pdf moerman@stitch.science.ru.nl:~/symbols.pdf
+		ssh moerman@stitch.science.ru.nl 'pdf2svg symbols.pdf symbols.svg'
+		scp moerman@stitch.science.ru.nl:~/symbols.svg ../
 		;;
 Thesis)		pdflatex "../thesis/DoldKan.tex" || exit 1
 		pdflatex "../thesis/DoldKan.tex" || exit 1
