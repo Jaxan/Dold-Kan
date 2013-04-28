@@ -40,4 +40,16 @@ $$ \del = \delta^0|_{N(A)_n}. $$
 
 \todo{C: As an example calculate $N(\Z[\Delta[0]])$}
 
-\todo{C: The exciting part: $\Ch{\Ab} \to \sAb$}
+
+\subsection{From $\Ch{\Ab}$ to $\sAb$}
+For the other way around we actually get a functor for free, via abstract nonsense. Let $F : \sAb \to A$ be any functor, where $A$ is an abelian category. We are after a functor $G : A \to \sAb$, this means that if we are given $C \in A$, we are looking for a functor $G(C) : \DELTA^{op} \to \Ab$. Fixing $C$ in the second argument of the $\mathbf{Hom}$-functor gives: $\Hom{A}{-}{C} : A^{op} \to \Ab$, because $A$ is an abelian category. We see that the codomain of this functor already looks good, now if we have some functor from $\DELTA^{op}$ to $A^{op}$, we can precompose, to obtain a functor from $\DELTA^{op}$ to $\Ab$.
+
+Now recall that we have a family of protoype simplicial sets $\Delta[n]$, which are given by the functor $\Delta : \DELTA \to \sSet$. We can apply the free abelian group pointwise, which gives a functor $\Z^{\ast} : \sSet \to \sAb$. And finally we have our functor $F : \sAb \to A$. Composing these gives:
+$$ F \Z^{\ast} \Delta : \DELTA \to A. $$
+We can formally regard this functor as a functor from $\DELTA^{op}$ to $A^{op}$. Now combining this with the $\mathbf{Hom}$-functor gives:
+$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{C} : \DELTA^{op} \to \Ab. $$
+Now this is a functor, because it is a composition of functors. Furthermore it is also functorial in the second argument, giving a functor
+$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{-} : A \to \sAb $$
+where we are supposed to fill in the second argument first, leaving us with a simplicial abelian group.
+
+Now we know that $\Ch{\Ab}$ is an abelian group and we have actually two functors $C, N : \sAb \to \Ch{\Ab}$, so we now have functors from $\Ch{\Ab} \to \sAb$.
