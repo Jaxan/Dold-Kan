@@ -91,8 +91,60 @@ Of course the abstract definition of simplicial abelian group can easilty be gen
 	$$\Delta[n] = \Hom{\DELTA}{-}{[n]} : \DELTA^{op} \to \Set.$$
 \end{definition}
 
-Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morphisms in a category is per definition a set. We do not need to specify the face or degeneracy maps, as we already know that $\mathbf{Hom}$ is a functor (in both arguments).
+Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morphisms in a category is per definition a set. We do not need to specify the face or degeneracy maps, as we already know that $\mathbf{Hom}$ is a functor (in both arguments). Still it is useful to write out some cases.
 
-\todo{sAb: as example do $\Delta[n]$}
-\todo{sAb: as example do the free abelian group pointwise}
+\begin{example}
+	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $X$, there is only one function $\ast : X \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$. The face and degeneracy maps are now functions from $\{\ast\}$ to $\{\ast\}$. Again there is only one, namely $\id : \{\ast\} \to \{\ast\}$. This gives:
+	\todo{sAb: insert picture}
+\end{example}
 
+\begin{example}
+	$\Delta[1]$ is a bit more interesting, but still not too hard. We will compute the first three abelian groups $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone increasing map $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, ie.: $f: [n] \tot{\sigma^{i_0} \cdots \sigma^{i_M}} [k] \tot{\delta^{j_0} \cdots \delta^{j_N}} [m]$, where $k \leq m, n$.
+
+	For $\Delta[1]_0$ we have to consider maps from $[0]$ to $[1]$, we cannot first apply degeneracy maps (there is no object $[-1]$). So this leaves us with the face maps: $\Delta[1]_0 = \{\delta_0, \delta_1\}$. For $\Delta[1]_1$ we of course have the identity function and two functions $\delta_0\sigma_0, \delta_1\sigma_0$. Now $\Delta[1]_2$ are the maps from $[2]$ to $[1]$.
+
+	We will compute the two face maps $\delta^0$ and $\delta^1$ from $\Delta[1]_1$ to $\Delta[1]_0$. Recall that the $\mathbf{Hom}$-functor in the first argument (the contravariant argument) works with precomposition. So this gives:
+	\begin{align*}
+		\delta^0(id) &= \id \delta_0 = \delta_0 \\
+		\delta^0(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_0 = \delta_0 \\
+		\delta^0(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_0 = \delta_1.
+	\end{align*}
+	Where we in the first calculation used the identity law. In the second and third line we used the third simplicial equation, asserting that $\sigma_0 \delta_0 = \id$. Similarly we can calculate the face map $\delta^1$:
+	\begin{align*}
+		\delta^1(id) &= \id \delta_1 = \delta_1 \\
+		\delta^1(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_0 \\
+		\delta^1(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_1.
+	\end{align*}
+\end{example}
+
+As we are interested in simplicial abelian group, it would be nice to make these $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the diagram~\ref{fig:diagram_Z}.
+\begin{figure}
+	\begin{tikzpicture}
+		\matrix (m) [matrix of math nodes]{
+			\DELTA^{op} & \Set \\
+			            & \Ab  \\
+		};
+		\path[->]
+		(m-1-1) edge node[auto] {$ X $} (m-1-2)
+		(m-1-2) edge node[auto] {$ \Z[-] $} (m-2-2)
+		(m-1-1) edge node[auto] {$ X' $} (m-2-2);
+	\end{tikzpicture}
+	\caption{The simplicial set $X$ can be made into a simplicial abelian group $X'$ by postcomposing with $\Z[-]$}
+	\label{fig:diagram_Z}
+\end{figure}
+
+\begin{example}
+	We can apply this to the standard $n$-simplex $\Delta[1]$. This gives $\Delta[1]_0 \iso \Z^2$, since $\Delta[1]_0$ had two elements, and $\Delta[1]_1 \iso \Z^3$, where the isomorphisms are taken such that:
+	\begin{align*}
+		\delta_0         &\mapstot{\iso} (1, 0) \\
+		\delta_1         &\mapstot{\iso} (0, 1) \\
+		\delta_0\sigma_0 &\mapstot{\iso} (1, 0, 0) \\
+		\id              &\mapstot{\iso} (0, 1, 0) \\
+		\delta_1\sigma_0 &\mapstot{\iso} (0, 0, 1)
+	\end{align*}
+	The face maps from $\Delta[1]_1$ to $\Delta[1]_0$ under these isomorphisms are then given by:
+	\begin{align*}
+		\delta^0(x, y, z) &= (x+y, z) \\
+		\delta^1(x, y, z) &= (x, y+z)
+	\end{align*}
+\end{example}
