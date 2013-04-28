@@ -10,26 +10,26 @@ $$ \cdots \to C_4 \to C_3 \to C_2 \to C_1 \to C_0 $$
 Of course we can make this more general by taking for example $R$-modules instead of abelian groups. We will later see which kind of algebraic objects make sense to use in this definition. The boundary operators give rise to certain subgroups, because all groups are abelian, subgroups are normal subgroups.
 
 \begin{definition}
-	Given a chaincomplex $C$ we define the following subgroups:
+	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
 		\item $Z_n(C) = ker(\del: C_n \to C_{n-1}) \nsubgrp C_n$, and
 		\item $B_n(C) = im(\del: C_{n+1} \to C_n) \nsubgrp C_n$.
 	\end{itemize}
 \end{definition}
 \begin{lemma}
-	Given a chaincomplex $C$ we have for all $n \in \N$:
+	Given a chain complex $C$ we have for all $n \in \N$:
 	$$ B_n(C) \nsubgrp Z_n(C).$$
 \end{lemma}
 \begin{proof}
 	It follows from $\del_n \circ \del_{n+1} = 0$ that $im(\del: C_{n+1} \to C_n)$ is a subset of $ker(\del: C_n \to C_{n-1})$. Those are exactly the abelian groups $B_n(C)$ and $Z_n(C)$, so $ B_n(C) \nsubgrp Z_n(C) $.
 \end{proof}
 \begin{definition}
-	Given a chaincomplex $C$ we define the \emph{$n$-th homology group} $H_n(C)$:
+	Given a chain complex $C$ we define the \emph{$n$-th homology group} $H_n(C)$:
 	$$ H_n(C) = Z_n(C) / B_n(C).$$
 \end{definition}
 
-\subsection{The singular chaincomplex}
-In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. So we will form a chaincomplex from a topological space $X$. In order to do so, we first need some more notions.
+\subsection{The singular chain complex}
+In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. So we will form a chain complex from a topological space $X$. In order to do so, we first need some more notions.
 \begin{definition}
 	The topological space $\Delta^n$ is called the \emph{topological $n$-simplex} and is defined as:
 	$$ \Delta^n = \{x \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \}.$$
@@ -48,7 +48,7 @@ Note that if we have any continuous map $\sigma : \Delta^{n+1} \to X$ we can pre
 
 \todo{Ch: Define free abelian group}
 
-We now have enough tools to define the singular chaincomplex of a space $X$.
+We now have enough tools to define the singular chain complex of a space $X$.
 
 \begin{definition}
 	For a topological space $X$ we define an abelian group $C_n(X)$ as follows.
@@ -57,7 +57,7 @@ We now have enough tools to define the singular chaincomplex of a space $X$.
 	$$ \del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}.$$
 \end{definition}
 
-This might seem a bit complicated, but we can pictures this in an intuitive way, as in figure~\ref{fig:singular_chaincomplex3}. And we see that the boundary operators really give the boundary of an $n$-simplex. To see that this indeed is a chaincomplex we have to proof that the composition of two such operators is the zero map.
+This might seem a bit complicated, but we can pictures this in an intuitive way, as in figure~\ref{fig:singular_chaincomplex3}. And we see that the boundary operators really give the boundary of an $n$-simplex. To see that this indeed is a chain complex we have to proof that the composition of two such operators is the zero map.
 \begin{figure}
 	\includegraphics{singular_chaincomplex3}
 	\caption{The boundary of a 2-simplex}
@@ -65,3 +65,7 @@ This might seem a bit complicated, but we can pictures this in an intuitive way,
 \end{figure}
 
 \todo{Ch: Proposition: $C(X) \in \Ch{\cat{Ab}}$}
+
+\todo{Ch: Example homology of some space}
+
+\todo{Ch: Show that $\Ch{\Ab}$ is an ab. cat. At least show functoriality $\Hom{\Ch{\Ab}}{-}{-}$}
