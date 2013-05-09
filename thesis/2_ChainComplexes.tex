@@ -12,8 +12,8 @@ Of course we can make this more general by taking for example $R$-modules instea
 \begin{definition}
 	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
-		\item $Z_n(C) = ker(\del: C_n \to C_{n-1}) \nsubgrp C_n$, and
-		\item $B_n(C) = im(\del: C_{n+1} \to C_n) \nsubgrp C_n$.
+		\item $Z_n(C) = \ker(\del: C_n \to C_{n-1}) \nsubgrp C_n$, and
+		\item $B_n(C) = \im(\del: C_{n+1} \to C_n) \nsubgrp C_n$.
 	\end{itemize}
 \end{definition}
 \begin{lemma}
@@ -21,7 +21,7 @@ Of course we can make this more general by taking for example $R$-modules instea
 	$$ B_n(C) \nsubgrp Z_n(C).$$
 \end{lemma}
 \begin{proof}
-	It follows from $\del_n \circ \del_{n+1} = 0$ that $im(\del: C_{n+1} \to C_n)$ is a subset of $ker(\del: C_n \to C_{n-1})$. Those are exactly the abelian groups $B_n(C)$ and $Z_n(C)$, so $ B_n(C) \nsubgrp Z_n(C) $.
+	It follows from $\del_n \circ \del_{n+1} = 0$ that $\im(\del: C_{n+1} \to C_n)$ is a subset of $\ker(\del: C_n \to C_{n-1})$. Those are exactly the abelian groups $B_n(C)$ and $Z_n(C)$, so $ B_n(C) \nsubgrp Z_n(C) $.
 \end{proof}
 \begin{definition}
 	Given a chain complex $C$ we define the \emph{$n$-th homology group} $H_n(C)$:

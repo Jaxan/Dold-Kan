@@ -1,0 +1,60 @@
+\section{Homotopy}
+\label{sec:Homotopy}
+
+We've already seen homology in chain complexes. We can of course now translate this notion to simplicial abelian groups, by assigning a simplicial abelian group $X$ to $H_n(N(X))$. But there is a more general notion of homotopy for simplicial sets, which is also similar to the notion of homotopy in topology. We will define the notion of homotopy groups for simplicial sets.
+
+When dealing with homotopy in a topological space $X$ we always need a base-point $\ast \in X$. This is also the case for homotopy in simplicial sets. We will notate the chosen base-point of a simplicial set $X$ with $\ast \in X_0$. Note that it is a $0$-simplex, but in fact the base-point is present in all sets $X_n$, because we can consider its degenerate simplices $s_0(\ldots(s_0(\ast))\ldots) \in X_n$, we will also denote these elements as $\ast$. Of course in our situation we are concerned about simplicial abelien groups, where there is an obvious choice for the base-point, namely $0$.
+
+\begin{definition}
+	Given a simplicial set $X$ with base-point $\ast$, we define $Z_n(X)$ to be the set of $n$-simplices with the base-point as boundary, i.e.:
+	$$ Z_n(X) = \{ x \in X_n | d_i(x) = \ast \text{ for all } i < n \}. $$
+	For two $n$-simplices $x, x' \in Z_n(X)$, we define $x \sim x'$ if there exists $y \in X_{n+1}$ such that:
+	\begin{align}
+		d_{n+1}(y) &= x' \\
+		d_n(y) &= x \\
+		d_i(y) &= \ast \text{ for all } i < n.
+	\end{align}
+\end{definition}
+
+Of course we would like $\sim$ to be an equivalence relation, however this is not true for all simplicial sets. For example there is in general no reason for symmetry, existence of a $1$-simplex $y$ from $x$ to $x'$ does not give us a $1$-simplex $y'$ from $x'$ to $x$. One can give an precise condition on when it is a equivalence relation, the so called Kan-condition. In our case of abelien groups, however, we can prove this directly.
+
+\todo{Htp: Insert prove $\sim$ is eq. rel. for $\sAb$.}
+
+\todo{Htp: Discuss/picturize Kan-condition?}
+
+\begin{definition}
+	Given a simplicial abelian group $X$, we define the $n$-th homotopy group as:
+	$$ \pi_n(X) = Z_n(X) / \sim. $$
+\end{definition}
+
+Note that this is an abelian group, because $Z_n(X)$ is a subgroup of $X_n$, and $\sim$ also defines a subgroup. It is relatively straight forward to prove that this definition coincides with the $n$-th homology group of the associated normalized chain complex.
+
+\begin{lemma}
+	For any simplicial abelian group $X$:
+	$$ \pi_n(X) = H_n(N(X)). $$
+\end{lemma}
+\begin{proof}
+	By writing out the definitions of the $n$-cycles and $n$-boundaries of the normalized chain complex, we see:
+	\begin{align*}
+		\ker(\del) &= \{ x \in N(X)_n \I \del(x) = 0 \} \\
+			&= \{ x \in X_n \I d_i(x) = 0 \text{ forall } i < n \text{ and } d_n(x) = 0 \} \\
+			&= \{ x \in X_n \I d_i(x) = 0 \text{ forall } i \leq n \} \\
+			&= Z_n(X)
+	\end{align*}
+	\begin{align*}
+		\im(\del) &= \{ \del(y) \I y \in N(X)_{n+1} \} \\
+			&= \{ d_{n+1} \I y \in X_{n+1}, d_i(y) = 0 \text{ for all } i \leq n \} \\
+			&= \{ x \in N(X)_n \I x \sim 0 \}
+	\end{align*}
+	So we see that $\pi_n(X) = Z_n(X) / \sim = \ker(\del) / \im(\del) = H_n(N(X))$.
+\end{proof}
+
+\begin{corollary}
+	For a chain complex $C$ we have $H_n(C) \iso \pi_n(K(C))$
+\end{corollary}
+\begin{proof}
+	By the established equivalence we have:
+	$$ \pi_n(K(C)) \iso H_n(N(K(C))) \iso H_n(C). $$
+\end{proof}
+
+
