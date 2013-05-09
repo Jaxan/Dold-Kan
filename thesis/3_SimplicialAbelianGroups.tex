@@ -95,7 +95,7 @@ Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morp
 
 \begin{example}
 	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $X$, there is only one function $\ast : X \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$. The face and degeneracy maps are now functions from $\{\ast\}$ to $\{\ast\}$. Again there is only one, namely $\id : \{\ast\} \to \{\ast\}$. This gives:
-	\todo{sAb: insert picture}
+	$$ \Delta[0] = \{\ast\} \to \{\ast\} \to \{\ast\} \to \cdots. $$
 \end{example}
 
 \begin{example}
@@ -115,6 +115,20 @@ Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morp
 		\delta^1(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_0 \\
 		\delta^1(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_1.
 	\end{align*}
+	\begin{tikzpicture}
+	\matrix (m) [matrix of math nodes] { 
+		\Delta[1] =  & \{x_0, x_1\} & \{\sigma^0 x_0, \id, \sigma^0 x_1\} & \{ \} & \cdots \\
+	}; 
+
+	\foreach \r in {-5, 5} \draw [raise line=\r, <-] (m-1-2) -> (m-1-3);
+	\foreach \r in {0} \draw [raise line=\r, ->] (m-1-2) -> (m-1-3);
+
+	\foreach \r in {-10, 0, 10} \draw [raise line=\r, <-] (m-1-3) -> (m-1-4);
+	\foreach \r in {-5, 5} \draw [raise line=\r, ->] (m-1-3) -> (m-1-4);
+
+	\foreach \r in {-15, -5, 5, 15} \draw [raise line=\r, <-] (m-1-4) -> (m-1-5);
+	\foreach \r in {-10, 0, 10} \draw [raise line=\r, ->] (m-1-4) -> (m-1-5);
+	\end{tikzpicture}
 \end{example}
 
 As we are interested in simplicial abelian group, it would be nice to make these $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the diagram~\ref{fig:diagram_Z}.

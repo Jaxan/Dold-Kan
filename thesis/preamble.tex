@@ -6,8 +6,19 @@
 \usepackage{mathtools}
 
 \usepackage{tikz} % http://pdp7.org/blog/?p=133
-\usetikzlibrary{matrix,arrows}
+\usetikzlibrary{matrix, arrows, decorations}
 \tikzset{node distance=3em, row sep=3em, column sep=3em, auto}
+
+\pgfdeclaredecoration{single line}{initial}{ 
+        \state{initial}[width=\pgfdecoratedpathlength-1sp]{\pgfpathmoveto{\pgfpointorigin}} 
+        \state{final}{\pgfpathlineto{\pgfpointorigin}} 
+} 
+
+\tikzset{ 
+        raise line/.style={ 
+                decoration={single line, raise=#1}, decorate 
+        } 
+}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
