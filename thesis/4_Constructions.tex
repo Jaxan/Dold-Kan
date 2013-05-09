@@ -52,4 +52,41 @@ Now this is a functor, because it is a composition of functors. Furthermore it i
 $$ \Hom{A}{F \Z^{\ast} \Delta (-)}{-} : A \to \sAb $$
 where we are supposed to fill in the second argument first, leaving us with a simplicial abelian group.
 
-Now we know that $\Ch{\Ab}$ is an abelian group and we have actually two functors $C, N : \sAb \to \Ch{\Ab}$, so we now have functors from $\Ch{\Ab} \to \sAb$.
+Now we know that $\Ch{\Ab}$ is an abelian group and we have actually two functors $C, N : \sAb \to \Ch{\Ab}$, so we now have functors from $\Ch{\Ab} \to \sAb$. Of course we will be interested in the one using $N$. So we define the functor:
+$$ K(C) = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[-]}{C} \in \sAb. $$
+This definitions is very abstract, but luckily we can also give a more explicit definition. By writing it out for low dimensions we see:
+
+$$ K(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
+\begin{tikzpicture}[baseline=-0.5ex]
+	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
+		\cdots  & 0 & 0 & \Z  \\
+		\cdots  & C_2 & C_1 & C_0 \\
+	}; 
+
+	\foreach \x in {1, 2}
+		\foreach \i/\j in {1/2, 2/3, 3/4} \draw[->] (m-\x-\i) -- (m-\x-\j);
+	
+	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
+\end{tikzpicture}
+\Bigg\} \iso C_0, $$
+because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0 : \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see:
+
+$$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
+\begin{tikzpicture}[baseline=-0.5ex]
+	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
+		\cdots  & 0 & \Z & \Z^2  \\
+		\cdots  & C_2 & C_1 & C_0 \\
+	}; 
+
+	\foreach \x in {1, 2}
+		\foreach \i/\j in {1/2, 2/3, 3/4} \draw[->] (m-\x-\i) -- (m-\x-\j);
+	
+	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
+\end{tikzpicture}
+\Bigg\} \iso C_1 \oplus C_0, $$
+
+because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then we are forced to choose $f_0(x, x) = \del(f_1(x))$ for all $x \in \Z$, so we are left with choosing an element $c \in C_0$ for defining $f(1,-1) = c$. Adding this gives $C_1 \oplus C_0$. This pattern can be continued and gives the following result:
+
+\begin{proposition}
+	For any chain complex $C$ we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$.
+\end{proposition}
