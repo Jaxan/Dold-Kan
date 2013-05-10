@@ -5,7 +5,7 @@ Comparing chain complexes and simplicial abelian groups, we see a similar struct
 
 \subsection{Unnormalized chain complex}
 Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. We define a grouphomomorphism $\del_{n-1} : A_n \to A_{n-1}$ as:
-$$\del_{n-1} = \delta^0 - \delta^1 + \ldots + (-1)^n \delta^n \text{ for every } n > 0.$$
+$$\del_{n-1} = d_0 - d_1 + \ldots + (-1)^n d_n \text{ for every } n > 0.$$
 \begin{lemma}
 	Using $A_n$ as the family of abelian groups and the maps $\del_n$ as boundary maps gives a chain complex.
 \end{lemma}
@@ -17,7 +17,7 @@ $$\del_{n-1} = \delta^0 - \delta^1 + \ldots + (-1)^n \delta^n \text{ for every }
 	So indeed this is a chain complex.
 \end{proof}
 
-This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it a adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}$ (on generators). The terms $\sigma \circ \delta^i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
+This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it a adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
 \todo{C: is this a nice thing to add?}
 
 Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degenracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
@@ -28,9 +28,9 @@ But for chain complexes it \emph{is} possible to have trivial abelian groups $C_
 To repair this defect we should be more careful. Given a simplicial abelian group, simply taking the same collection for our chain complex will not work (as shown above). Instead we are after some ``smaller'' abelian groups, and in some cases the abelian groups should completely vanish (as in the example above).
 
 Given a simplicial abelian group $A$, we define abelian groups $N(A)_n$ as:
-$$ N(A)_n = \bigcap_{i=1}^{n} \ker(\delta^i : A_n \to A_{n-1}). $$
+$$ N(A)_n = \bigcap_{i=1}^{n} \ker(d_i : A_n \to A_{n-1}). $$
 Now define grouphomomorphisms $\del : N(A)_n \to N(A)_{n-1}$ as:
-$$ \del = \delta^0|_{N(A)_n}. $$
+$$ \del = d_0|_{N(A)_n}. $$
 \begin{lemma}
 	The function $ \del $ is well-defined. Furthermore $ \del \circ \del = 0 $, hence $N(A)$ is a chain complex.
 \end{lemma}

@@ -67,21 +67,21 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain equatio
 Because a simplicial abelien group $A$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ A(\delta_i)A(\delta_j) = A(\delta_{j-1})A(\delta_i) $ for $ i < j$ (again note that $A$ is contravariant, and hence composition is reversed). This can be used for an explicit definition of simplicial abelien groups. In this definition a simplicial abelian group $A$ consists of a collection abelian groups $(A_n)_{n}$ together with face and degeneracy maps (which are grouphomomorphisms) such that the simplicial equations hold. More precisely:
 
 \begin{definition}
-	\emph{(Explicitly)} An simplicial abelian group $A$ consists of a collection abelian groups $A_n$ together with face maps $\delta^i : A_n \to A_{n-1}$ and degenracy maps $\sigma^i : A_n \to A_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that:
+	\emph{(Explicitly)} An simplicial abelian group $A$ consists of a collection abelian groups $A_n$ together with face maps $d_i : A_n \to A_{n-1}$ and degenracy maps $s_i : A_n \to A_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that:
 	\begin{align}
-		\delta^i\delta^j &= \delta^{j-1}\delta^i  \hspace{0.5cm} \text{ if } i < j,\\
-		\delta^i\sigma^j &= \sigma^{j-1}\delta^i  \hspace{0.5cm} \text{ if } i < j,\\
-		\delta^j\sigma^j &= \delta^{j+1}\sigma^j = \id,\\
-		\delta^i\sigma^j &= \sigma^j\delta^{i-1}  \hspace{0.5cm} \text{ if } i > j+1,\\
-		\sigma^i\sigma^j &= \sigma^{j+1}\sigma^i  \hspace{0.5cm} \text{ if } i \leq j.
+		d_i d_j &= d_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
+		d_i s_j &= s_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
+		d_j s_j &= d_{j+1} s_j = \id,\\
+		d_i s_j &= s_j d_{i-1}  \hspace{0.5cm} \text{ if } i > j+1,\\
+		s_i s_j &= s_{j+1} s_i  \hspace{0.5cm} \text{ if } i \leq j.
 	\end{align}
 \end{definition}
 
-It is already indicated that a functor from $\DELTA^{op}$ to $\Ab$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So gives this a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same \todo{sAb: is it ok not to prove this?}. So from now on we will denote $A([n])$ by $A_n$, $A(\sigma_i)$ by $\sigma^i$ and $A(\delta_i)$ by $\delta^i$, whenever we have a simplicial abelien group $A$.
+It is already indicated that a functor from $\DELTA^{op}$ to $\Ab$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So gives this a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same \todo{sAb: is it ok not to prove this?}. So from now on we will denote $A([n])$ by $A_n$, $A(\sigma_i)$ by $s_i$ and $A(\delta_i)$ by $d_i$, whenever we have a simplicial abelien group $A$.
 
 When using a simplicial abelian group to construct another object, it is often handy to use this second definition, as it gives you a very concrete objects to work with. On the other hand, constructing this might be hard (as you would need to provide a lot of details), in this case we will often use the more abstract definition.
 
-\todo{sAb: Note that $\sigma^i$ is a monomorphism because of (3)}
+\todo{sAb: Note that $s_i$ is a monomorphism because of (3)}
 
 \subsection{Other simplicial objects}
 Of course the abstract definition of simplicial abelian group can easilty be generalized to other categories. For example $\Set^{\DELTA^{op}} = \sSet$ is the category of simplicial sets. There are very important simplicial sets:
@@ -99,27 +99,27 @@ Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morp
 \end{example}
 
 \begin{example}
-	$\Delta[1]$ is a bit more interesting, but still not too hard. We will compute the first three abelian groups $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone increasing map $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, ie.: $f: [n] \tot{\sigma^{i_0} \cdots \sigma^{i_M}} [k] \tot{\delta^{j_0} \cdots \delta^{j_N}} [m]$, where $k \leq m, n$.
+	$\Delta[1]$ is a bit more interesting, but still not too hard. We will compute the first three abelian groups $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone increasing map $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, ie.: $f: [n] \tot{\sigma_{i_0} \cdots \sigma_{i_M}} [k] \tot{\delta_{j_0} \cdots \delta_{j_N}} [m]$, where $k \leq m, n$.
 
 	For $\Delta[1]_0$ we have to consider maps from $[0]$ to $[1]$, we cannot first apply degeneracy maps (there is no object $[-1]$). So this leaves us with the face maps: $\Delta[1]_0 = \{\delta_0, \delta_1\}$. For $\Delta[1]_1$ we of course have the identity function and two functions $\delta_0\sigma_0, \delta_1\sigma_0$. Now $\Delta[1]_2$ are the maps from $[2]$ to $[1]$.
 
-	We will compute the two face maps $\delta^0$ and $\delta^1$ from $\Delta[1]_1$ to $\Delta[1]_0$. Recall that the $\mathbf{Hom}$-functor in the first argument (the contravariant argument) works with precomposition. So this gives:
+	We will compute the two face maps $d_0$ and $d_1$ from $\Delta[1]_1$ to $\Delta[1]_0$. Recall that the $\mathbf{Hom}$-functor in the first argument (the contravariant argument) works with precomposition. So this gives:
 	\begin{align*}
-		\delta^0(id) &= \id \delta_0 = \delta_0 \\
-		\delta^0(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_0 = \delta_0 \\
-		\delta^0(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_0 = \delta_1.
+		d_0(id) &= \id \delta_0 = \delta_0 \\
+		d_0(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_0 = \delta_0 \\
+		d_0(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_0 = \delta_1.
 	\end{align*}
-	Where we in the first calculation used the identity law. In the second and third line we used the third simplicial equation, asserting that $\sigma_0 \delta_0 = \id$. Similarly we can calculate the face map $\delta^1$:
+	Where we in the first calculation used the identity law. In the second and third line we used the third simplicial equation, asserting that $\sigma_0 \delta_0 = \id$. Similarly we can calculate the face map $d_1$:
 	\begin{align*}
-		\delta^1(id) &= \id \delta_1 = \delta_1 \\
-		\delta^1(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_0 \\
-		\delta^1(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_1.
+		d_1(id) &= \id \delta_1 = \delta_1 \\
+		d_1(\delta_0\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_0 \\
+		d_1(\delta_1\sigma_0) &= \delta_0 \sigma_0 \delta_1 = \delta_1.
 	\end{align*}
 
 	$$ \Delta[1] =
 	\begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes] { 
-		\{x_0, x_1\} & \{\sigma^0 x_0, \id, \sigma^0 x_1\} & \{ \} & \cdots \\
+		\{\delta_0, \delta_1\} & \{\sigma_0 \delta_0, \id, \sigma_0 \delta_1\} & \{ \} & \cdots \\
 	}; 
 
 	\foreach \r in {-5, 5} \draw [raise line=\r, <-] (m-1-1) -> (m-1-2);
@@ -154,13 +154,13 @@ As we are interested in simplicial abelian group, it would be nice to make these
 	\begin{align*}
 		\delta_0         &\mapstot{\iso} (1, 0) \\
 		\delta_1         &\mapstot{\iso} (0, 1) \\
-		\delta_0\sigma_0 &\mapstot{\iso} (1, 0, 0) \\
+		\sigma_0\delta_0 &\mapstot{\iso} (1, 0, 0) \\
 		\id              &\mapstot{\iso} (0, 1, 0) \\
-		\delta_1\sigma_0 &\mapstot{\iso} (0, 0, 1)
+		\sigma_0\delta_1 &\mapstot{\iso} (0, 0, 1)
 	\end{align*}
 	The face maps from $\Delta[1]_1$ to $\Delta[1]_0$ under these isomorphisms are then given by:
 	\begin{align*}
-		\delta^0(x, y, z) &= (x+y, z) \\
-		\delta^1(x, y, z) &= (x, y+z)
+		d_0(x, y, z) &= (x+y, z) \\
+		d_1(x, y, z) &= (x, y+z)
 	\end{align*}
 \end{example}
