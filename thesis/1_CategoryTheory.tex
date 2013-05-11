@@ -1,10 +1,10 @@
 \section{Category Theory}
 \label{sec:Category Theory}
-Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, we will first look at some basic category theory. If one is already familier with these concepts, he or she can skip this section. We will introduce the notions of categories, functors, isomorphims, natural transformations, equivalences (between categories) and adjunctions.
+Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, we will first look at some basic category theory. If one is already familier with these concepts, he or she can skip this section. We will introduce the notions of categories, functors, isomorphims, natural transformations, equivalences and adjunctions.
 
 \subsection{Categories}
 \begin{definition}
-	A \emph{category} $\cat{C}$ consists of a collection \emph{objects}, and for each two objects $A$ and $B$ in $\cat{C}$ there is a (possibly empty) \emph{set of maps} (or arrows) from $A$ to $B$, notated as $\Hom{\cat{C}}{A}{B}$, such that:
+	A \emph{category} $\cat{C}$ consists of a collection \emph{objects}, and for each two objects $A$ and $B$ in $\cat{C}$ there is a set of \emph{maps}  from $A$ to $B$, notated as $\Hom{\cat{C}}{A}{B}$, such that:
 	\begin{itemize}
 		\item \emph{(Identity)}
 			$\id_A \in \Hom{\cat{C}}{A}{A}$ for all $A$ in $\cat{C}$,
@@ -22,10 +22,10 @@ Note that the collection of objects may be a proper class instead of a set, howe
 As the notation suggests maps can be thought of as functions, which is also the case in many examples.
 
 \begin{example}
-	The category $\Set$ has a objects sets, and as maps ordinary functions. Of course we then have the identity function $\id_X(x) = x$ and composition as usual.
+	The category $\Set$ has as its objects sets, and as maps it has ordinary functions. Of course we then have the identity function $\id_X(x) = x$ and composition as usual.
 \end{example}
 \begin{example}
-	The category $\Ab$ has a objects abelian groups, and the maps between two objects are exactly the grouphomomorphisms. We know that the identity function is indeed a grouphomomorphism, and composing two grouphomomorpisms, gives indeed a new grouphomomorphism.
+	The category $\Ab$ has as objects abelian groups, and the maps between two objects are exactly the grouphomomorphisms. We know that the identity function is indeed a grouphomomorphism, and composing two grouphomomorpisms, gives indeed a new grouphomomorphism.
 \end{example}
 
 In fact almost any mathematical structure can be described as a category, we have: $\cat{Ring}$ for rings, $\cat{Vect}$ for $\R$-vectorspaces, $\cat{Set_{fin}}$ for finite sets, $\cat{Poset}$ for posets, etc. Of course we would also like to express relations between categories, for example every abelian group is also a set. This idea can be formulated by the notion of a functor.
@@ -57,7 +57,7 @@ Given a category $\cat{C}$ and two objects $A, B \in \cat{C}$ we would like to k
 
 \begin{definition}
 	A map $f: A \to B$ in a category $\cat{C}$ is an isomorphism if there is a map $g: B \to A$ such that:
-	$$ f \circ g = \id_B \text{ and } g \circ f = id_A.$$
+	$$ f \circ g = \id_B \text{ and } g \circ f = \id_A.$$
 \end{definition}
 
 Isomorphisms in $\Ab$ are exactly the isomorphisms which we know, ie. the grouphomomorphisms which are both injective and surjective.
@@ -65,4 +65,6 @@ For example the cyclic group $\Z_4$ and the klein four-group $V_4$ are not isomo
 
 \todo{CT: Equivalence / natro}
 \todo{CT: Adjunction}
+\todo{CT: Define free abelian group}
 \todo{CT: Yoneda?}
+\todo{CT: Hom-functor}

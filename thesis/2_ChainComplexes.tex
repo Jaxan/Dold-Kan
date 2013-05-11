@@ -39,14 +39,27 @@ In order to see why we are interested in the construction of homology groups, we
 In particular $\Delta^0$ is simply a point, $\Delta^1$ a line and $\Delta^2$ a triangle. There are nice inclusions $\Delta^n \mono \Delta^{n+1}$ which we need later on. For any $n \in \N$ we define:
 \begin{definition}
 	For $i \in \{0, \ldots, n+1\}$ the $i$-th face map $\delta^i : \Delta^n \mono \Delta^{n+1}$ is defined as:
-	$$ \delta^i (x_0, \ldots, x_n) = (x_0, \ldots, x_{i-1}, 0, x_{i+1}, \ldots, x_n) \text{ for all } x \in \Delta^n.$$
+	$$ \delta^i (x_0, \ldots, x_n) = (x_0, \ldots, x_{i}, 0, x_{i+1}, \ldots, x_n) \text{ for all } x \in \Delta^n.$$
 \end{definition}
 
-Note that if we have any continuous map $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get $\sigma \circ \delta^i : \Delta^n \to X$. This will be used for defining the boundary operator. We can make pictures of this, and when concerning continuous maps $\sigma : \Delta^{n+1} \to X$ we will draw the images in the space $X$, instead of functions.
+For any space $X$, we will be interested in continuous maps $\sigma : \Delta^n \to X$, such a map is called a $n$-simplex. Note that if we have any continuous map $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get $\sigma \circ \delta^i : \Delta^n \to X$, as shown in figure~\ref{fig:diagram_d}. This will be used for defining the boundary operator. We can make pictures of this, and when concerning continuous maps $\sigma : \Delta^{n+1} \to X$ we will draw the images in the space $X$, instead of functions.
+
+\begin{figure}
+	\begin{tikzpicture}
+		\matrix (m) [matrix of math nodes]{
+			\Delta^{n+1} & X \\
+			\Delta^n & \\
+		};
+		\path[->]
+		(m-1-1) edge node[auto] {$ \sigma $} (m-1-2)
+		(m-2-1) edge node[auto] {$ \delta^i $} (m-1-1)
+		(m-2-1) edge node[auto] {$ $} (m-1-2);
+	\end{tikzpicture}
+	\caption{The $n$-simplex $\sigma$ can be made into a $n+1$-simplex $\sigma \circ \delta^i$}
+	\label{fig:diagram_d}
+\end{figure}
 
 \todo{Ch: Make some pictures here}
-
-\todo{Ch: Define free abelian group}
 
 We now have enough tools to define the singular chain complex of a space $X$.
 
@@ -65,7 +78,5 @@ This might seem a bit complicated, but we can pictures this in an intuitive way,
 \end{figure}
 
 \todo{Ch: Proposition: $C(X) \in \Ch{\cat{Ab}}$}
-
 \todo{Ch: Example homology of some space}
-
 \todo{Ch: Show that $\Ch{\Ab}$ is an ab. cat. At least show functoriality $\Hom{\Ch{\Ab}}{-}{-}$}
