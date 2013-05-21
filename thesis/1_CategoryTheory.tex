@@ -1,6 +1,6 @@
 \section{Category Theory}
 \label{sec:Category Theory}
-Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, we will first look at some basic category theory. If one is already familier with these concepts, he or she can skip this section. We will introduce the notions of categories, functors, isomorphims, natural transformations, equivalences and adjunctions.
+Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, we will first look at some basic category theory. If one is already familier with these concepts, he or she can skip this section. We will introduce the notions of categories, functors, isomorphims, natural transformations, equivalences, adjunctions and the Yoneda lemma.
 
 \subsection{Categories}
 \begin{definition}
@@ -31,40 +31,112 @@ As the notation suggests maps can be thought of as functions, which is also the 
 In fact almost any mathematical structure can be described as a category, we have: $\cat{Ring}$ for rings, $\cat{Vect}$ for $\R$-vectorspaces, $\cat{Set_{fin}}$ for finite sets, $\cat{Poset}$ for posets, etc. Of course we would also like to express relations between categories, for example every abelian group is also a set. This idea can be formulated by the notion of a functor.
 
 \begin{definition}
-	A \emph{functor} $F$ between a category $\cat{C}$ and $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that:
+	A \emph{functor} $F$ from a category $\cat{C}$ and to a category $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that:
 	\begin{itemize}
 		\item for $f: A \to B$, we have $F_1(f): F_0(A) \to F_0(B)$,
 		\item $F_1(\id_A) = \id_{F_0(A)}$ and
 		\item $F_1(f \circ g) = F_1(f) \circ F_1(g)$.
 	\end{itemize}
-	We normally do not write the index of $F_0$ or $F_1$, instead we wrtie $F$ for both functions.
+	We normally do not write the index of $F_0$ or $F_1$, instead we write $F$ for both functions.
 \end{definition}
 \todo{CT: contravariant functor}
 
-\begin{exlemma}
-	There is a category $\cat{Cat}$ with categories as objects, and functors as maps.
-\end{exlemma}
-\begin{proof}
-	First we define the identity functor. Let $\cat{C}$ be a category, define $\id_\cat{C}(A) = A$ for any object $A \in \cat{C}$ and $\id_\cat{C}(f) = f$ for any map $f: A \to B$ in $\cat{C}$. Cleary we have $\id_\cat{C}(f) : \id_\cat{C}(A) \to \id_\cat{C}(B)$. Also $\id_\cat{C}(\id_A) = \id_A = \id_{\id_\cat{C}(A)}$ and $\id_\cat{C}(f \circ g) = f \circ g$. So indeed $\id_\cat{C}$ is a functor.
-
-	Given a functors $F: \cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{E}$, we can define the composition $G \circ F$ on objects as $G \circ F(A) = G(F(A))$ and on maps as $G \circ F(f) = G(F(f))$. This again is a functor $G \circ F$, we will not spell out the details.
-
-	The remaining requirements are the associativity and identity law. We also leave these to the reader.
-\end{proof}
+Note that the composition of two functors is again a functor, and that we always have an identity functor, sending each object to itself and each map to itself. This gives rise to a category $\cat{Cat}$ of \emph{small} categories. Note that we need some kind of \emph{smallness} to avoid set-theoretical issues, because we require the collection of maps between objects to be a set, whereas the collection of objects is not necessarily a set. However we will not be interested in these set-theoretic issues, and hence skip the definition of small.
 
 \subsection{Isomorphisms}
 Given a category $\cat{C}$ and two objects $A, B \in \cat{C}$ we would like to know when those objects are regarded as the same, according to the category. This will be the case when there is an isomorphism between the two.
 
 \begin{definition}
-	A map $f: A \to B$ in a category $\cat{C}$ is an isomorphism if there is a map $g: B \to A$ such that:
+	A map $f: A \to B$ in a category $\cat{C}$ is an \emph{isomorphism} if there is a map $g: B \to A$ such that:
 	$$ f \circ g = \id_B \text{ and } g \circ f = \id_A.$$
 \end{definition}
 
 Isomorphisms in $\Ab$ are exactly the isomorphisms which we know, ie. the grouphomomorphisms which are both injective and surjective.
 For example the cyclic group $\Z_4$ and the klein four-group $V_4$ are not isomorphic in $\Ab$, but if we regard only the sets $\Z_4$ and $V_4$, then they are (because there is a bijection). So it is good to note that whether two objects are isomorphic  really depends on the category we are working in.
 
-\todo{CT: Equivalence / natro}
-\todo{CT: Adjunction}
-\todo{CT: Define free abelian group}
-\todo{CT: Yoneda?}
+Note that an isomorphism between to categories is now also defined. Two categories $\cat{C}$ and $\cat{D}$ are isomorphic if there are functors $F$ and $G$ such that $ FG = \id_\cat{D}$ and $GF = \id_\cat{C}$.
+
+\subsection{Natural transformations}
+
+\begin{definition}
+	Given two functors $F, G: \cat{C} \to \cat{D}$, a \emph{natural transformation} $\phi$ from $F$ to $G$, is a family of maps $\phi_c : F(c) \to G(c)$ for $c \in \cat{C}$, such that
+	\begin{center}
+	\begin{tikzpicture}
+		\matrix (m) [matrix of math nodes]{
+			F(c)  & G(c)  \\
+			F(c') & G(c')  \\
+		};
+		\path[->]
+		(m-1-1) edge node[auto] {$ \phi_c $} (m-1-2)
+		(m-2-1) edge node[auto] {$ \phi_c' $} (m-2-2)
+		(m-1-1) edge node[auto] {$ F(f) $} (m-2-1)
+		(m-1-2) edge node[auto] {$ G(f) $} (m-2-2);
+	\end{tikzpicture}
+	\end{center}
+	commutes for any map $f: c \to c'$ and any objects $c, c' \in \cat{C}$.
+\end{definition}
+
+\begin{lemma}
+	For any two categories $\cat{C}$ and $\cat{D}$ we can form a category with functors $F: \cat{C} \to \cat{D}$ as objects and natural transformations as maps. This category is called the \emph{functor category} and is denoted by $\cat{D}^\cat{C}$.
+\end{lemma}
+\begin{proof}
+	We refer to MacLane or Awodey.
+\end{proof}
+
+This now also gives a notion of isomorphisms between functors. It can be easily seen that a isomorphism between two functors is a natural transformation which is an isomorphism pointwise. Such a natural transformation is called a natural isomorphism.
+
+\subsection{Equivalence}
+Recall that an isomorphism between categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that:
+$$ FG = \id_\cat{D} \text{ and } \id_\cat{C} = GF. $$
+With the notion of isomorphisms between functors we can weaken this, and only require a natural isomorphism instead of equality.
+
+\begin{definition}
+	An \emph{equivalence} between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that there are natural isomorphisms:
+	$$ FG \iso \id_\cat{D} \text{ and } \id_\cat{C} \iso GF. $$
+	This is denoted by $\cat{C} \simeq \cat{D}$.
+\end{definition}
+
+\begin{example}
+	The category $\cat{Set_{fin}}$ of finite sets is equivalent to the category $\cat{Ord_{fin}}$ of finite ordinals. Although the former is uncountable and the latter is countable, the categories are still very alike.
+\end{example}
+
+\subsection{Adjunctions}
+\begin{definition}
+	An \emph{adjunction} between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that there are natural transformations:
+	$$ FG \to \id_\cat{D} \text{ and } \id_\cat{C} \to GF. $$
+	$F$ is called the left-adjoint and $G$ the right-adjoint.
+\end{definition}
+
+Note that the roles of $F$ and $G$ in the above definition are not symmetric. Clearly any equivalence $F: \cat{C} \simeq \cat{D}$ gives an adjunction, where $F$ is both a left and right-adjoint.
+
+Now there are different definitions of adjunctions, which are all equivalent. We will not prove that these are equivalent. A particular nice one is the following:
+
+\begin{definition}
+	An adjunction between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that there is a natural bijection:
+	$$ \Hom{\cat{D}}{FX}{Y} \iso \Hom{\cat{C}}{X}{GY} $$
+	for any $X \in \cat{D}$ and $Y \in \cat{C}$.
+\end{definition}
+
+In this definition we clearly see why $F$ is called the left-adjoint and $G$ the right-adjoint.
+
+\begin{example}
+	The free ab. group. \todo{CT: Define free abelian group}
+\end{example}
+
+\subsection{Yoneda}
 \todo{CT: Hom-functor}
+So far we have only encountered definitions from category theory. However there is a very important lemma by Yoneda. This lemma gives a nice way to construct certain natural transformations.
+
+\begin{definition}
+	For any category $\cat{C}$, we define a functor $y:\cat{C} \to \Set^{\cat{C}^{op}}$ as follows:
+	$$ y(X) = \Hom{\cat{C}}{-}{X}. $$
+	The functor $y$ is called the \emph{Yoneda embedding}.
+\end{definition}
+
+\begin{lemma}\emph{(The Yoneda lemma)}
+	Given a functor $F: \cat{C} \to \Set$ and any object $C \in \cat{C}$ there is a bijection:
+	$$ \mathbf{Nat}(y(C), F) \iso F(C), $$
+	which is natural in both $F$ and $C$, where $\mathbf{Nat}(G, G')$ denotes the set of natural transformation between $G$ and $G'$, in other words $\mathbf{Nat} = \mathbf{Hom}_{\Set^{\cat{C}^{op}}}$.
+\end{lemma}
+
+We will use this lemma when we discuss simplicial abelian groups.
