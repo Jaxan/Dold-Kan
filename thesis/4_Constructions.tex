@@ -39,7 +39,86 @@ $$ \del = d_0|_{N(A)_n}. $$
 \end{proof}
 
 \todo{C: As an example calculate $N(\Z[\Delta[0]])$}
+\todo{C: define $D(X)_n$}
+\todo{C: work out following lemmas}
 
+To see what $N$ does exactly there are some lemmas. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$.
+
+\begin{lemma}
+	\label{le:decomp1}
+	For all $x \in X_n$ we have:
+	$$ x = b + c,$$
+	where $b \in N(X)_n$ and $c \in D(X)_n$.
+\end{lemma}
+\begin{proof}
+	define $P^k = \{ x \in X_n \I d_i x = 0, i > k\}$, then do induction (from $k$ to 0).
+	gives $x = b+c$ with $b \in P^0$, $c \in D(X)_n$.
+\end{proof}
+\begin{lemma}
+	\label{le:decomp2}
+	For all $x \in X_n$, if $s_i x \in N(X)_{n+1}$, then $x = 0$.
+\end{lemma}
+\begin{proof}
+	Simply calculate using the simplicial equations: $0 = d_{i+1} s_i x = x$.
+\end{proof}
+
+The first lemma tells us that every $n$-simplex in $X$ can be written as something in $N(X)$ plus a degenerate $n$-simplex. The latter lemma asures that there are no degenerate $n$-simplices in $N(X)$. So this gives us:
+
+\begin{corollary}
+	$X_n = N(X)_n \oplus D(X)_n$
+\end{corollary}
+
+We can extend the above lemmas to a more general statement. \todo{C: figure out what $\ast$ exactly is.}
+
+\begin{lemma}
+	\label{le:decomp3}
+	For all $x \in X_n$ we can write $x$ as:
+	$$ x = \sum_\beta \beta^\ast (x_\beta), $$
+	for certain $x_\beta \in N(X)_n$ and $\beta : [n] \epi [p]$.
+\end{lemma}
+\begin{proof}
+	induction using the first lemma
+\end{proof}
+\begin{lemma}
+	\label{le:decomp4}
+	For $\beta \neq \gamma$ we have $\beta^\ast(N(X))_p \cap \gamma^\ast(N(X))_q = 0$.
+\end{lemma}
+\begin{proof}
+	?
+\end{proof}
+
+Again the former lemma of these two lemmas proofs the existence of a decomposition and the latter proofs the uniqueness. So combining this gives:
+
+\begin{corollary}
+	\label{cor:decomp}
+	For all $x \in X_n$ we can write $x = \sum_\beta \beta^\ast (x_\beta)$ in a unique way.
+\end{corollary}
+
+And by considering $X_n$ as a whole we get:
+
+\begin{corollary}
+	$X_n = \bigoplus_{[n] \epi [p]} N(X)_p$.
+\end{corollary}
+
+Using corollary~\ref{cor:decomp} we can proof a nice categorical fact about $N$, which we will use later on. \todo{C: $N$ is add.}
+\begin{lemma}
+	The functor $N$ is fully faithful, i.e.:
+	$$ N : \Hom{\sAb}{A}{B} \iso \Hom{\Ch{\Ab}}{N(A)}{N(B)}. $$
+\end{lemma}
+\begin{proof}
+	First we proof $N$ is injective on maps. Let $f: A \to B$ and assume $N(f) = 0$, for $x \in A_n$ we know $x = \sum_\beta \beta^\ast x_\beta$, so
+	\begin{align*}
+		f(x) &= \textstyle f(\sum_\beta N(\beta) (x_\beta)) \\
+			&= \textstyle \sum_\beta f(N(\beta) (x_\beta)) \\ 
+			&= \textstyle \sum_\beta N(f) (N(\beta) (x_\beta)) \\ 
+			&= \textstyle \sum_\beta N(\beta) (N(f) (x_\beta)) = 0,	
+	\end{align*}
+	where we used naturality of $f$ in the last step. We now see that $f(x) = 0$ for all $x$, hence $f = 0$. So indeed $N$ is injective on maps.
+
+	Secondly we have to proof $N$ is surjective on maps. Let $g : N(A) \to N(B)$, define $f : A \to B$ as:
+	$$ f(x) = \sum_\beta \beta^\ast g(x_\beta), $$
+	again we have written $x$ as $x = \sum_\beta \beta^\ast x_\beta$. Clearly $N(f) = g$. \todo{C: is this clear?}
+\end{proof}
 
 \subsection{From $\Ch{\Ab}$ to $\sAb$}
 For the other way around we actually get a functor for free, via abstract nonsense. Let $F : \sAb \to A$ be any functor, where $A$ is an abelian category. We are after a functor $G : A \to \sAb$, this means that if we are given $C \in A$, we are looking for a functor $G(C) : \DELTA^{op} \to \Ab$. Fixing $C$ in the second argument of the $\mathbf{Hom}$-functor gives: $\Hom{A}{-}{C} : A^{op} \to \Ab$, because $A$ is an abelian category. We see that the codomain of this functor already looks good, now if we have some functor from $\DELTA^{op}$ to $A^{op}$, we can precompose, to obtain a functor from $\DELTA^{op}$ to $\Ab$.
