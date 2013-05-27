@@ -1,18 +1,20 @@
 \section{Chain Complexes}
 \label{sec:Chain Complexes}
 \begin{definition}
-	A chain complex $C$ is a collection of abelian groups $C_n$ together with boundary operators $\del_n: C_{n+1} \to C_n$, such that $\del_n \circ \del_{n+1} = 0$. The collections of all such objects will be denoted by $\Ch{\cat{Ab}}$.
+	A \emph{(non-negative) chain complex} $C$ is a collection of abelian groups $C_n$ together with group homomorphisms $\del_n: C_{n+1} \to C_n$, which we call \emph{boundary homomorphisms}, such that $\del_n \circ \del_{n+1} = 0$.
 \end{definition}
 
-In other words a chain complex is the following diagram.
-$$ \cdots \to C_4 \to C_3 \to C_2 \to C_1 \to C_0 $$
+Thus graphically a chain complex $C$ can be depicted by the following diagram:
+$$ \cdots \to C_4 \to C_3 \to C_2 \to C_1 \to C_0. $$
 
+There are many variants to thie notion. For example, there are also unbounded chain complexes with an abelian group for each $n \in \Z$ instead of $\N$. In this thesis we will only need chain complexes in the sense of the definition above. Hence we will simply call them chain complexes, instead of non-negative chain complexes.
 Of course we can make this more general by taking for example $R$-modules instead of abelian groups. We will later see which kind of algebraic objects make sense to use in this definition \todo{Ch: Will I discuss ab. cat. ?}. The boundary operators give rise to certain subgroups, because all groups are abelian, subgroups are normal subgroups.
 
 \begin{definition}
 	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
 		\item $Z_n(C) = \ker(\del: C_n \to C_{n-1}) \nsubgrp C_n$, and
+		\item $Z_0(C) = C_0$, and
 		\item $B_n(C) = \im(\del: C_{n+1} \to C_n) \nsubgrp C_n$.
 	\end{itemize}
 \end{definition}
@@ -24,15 +26,18 @@ Of course we can make this more general by taking for example $R$-modules instea
 	It follows from $\del_n \circ \del_{n+1} = 0$ that $\im(\del: C_{n+1} \to C_n)$ is a subset of $\ker(\del: C_n \to C_{n-1})$. Those are exactly the abelian groups $B_n(C)$ and $Z_n(C)$, so $ B_n(C) \nsubgrp Z_n(C) $.
 \end{proof}
 \begin{definition}
-	Given a chain complex $C$ we define the \emph{$n$-th homology group} $H_n(C)$:
+	Given a chain complex $C$ we define the \emph{$n$-th homology group} $H_n(C)$ for each $n \in \N$ as:
 	$$ H_n(C) = Z_n(C) / B_n(C).$$
 \end{definition}
+
+\todo{CC: Chain maps}
+\todo{CC: $H_n$ as a functor} 
 
 \subsection{The singular chain complex}
 In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. So we will form a chain complex from a topological space $X$. In order to do so, we first need some more notions.
 \begin{definition}
 	The topological space $\Delta^n$ is called the \emph{topological $n$-simplex} and is defined as:
-	$$ \Delta^n = \{x \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \}.$$
+	$$ \Delta^n = \{(x_0, x_1, \ldots, x_n) \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \}.$$
 	The topology on $\Delta^n$ is the subspace topology.
 \end{definition}
 
@@ -55,7 +60,7 @@ For any space $X$, we will be interested in continuous maps $\sigma : \Delta^n \
 		(m-2-1) edge node[auto] {$ \delta^i $} (m-1-1)
 		(m-2-1) edge node[auto] {$ $} (m-1-2);
 	\end{tikzpicture}
-	\caption{The $n$-simplex $\sigma$ can be made into a $n+1$-simplex $\sigma \circ \delta^i$}
+	\caption{The $(n+1)$-simplex $\sigma$ can be made into a $n$-simplex $\sigma \circ \delta^i$}
 	\label{fig:diagram_d}
 \end{figure}
 
@@ -64,7 +69,7 @@ For any space $X$, we will be interested in continuous maps $\sigma : \Delta^n \
 We now have enough tools to define the singular chain complex of a space $X$.
 
 \begin{definition}
-	For a topological space $X$ we define an abelian group $C_n(X)$ as follows.
+	For a topological space $X$ we define the \emph{$n$-th singular chain group} $C_n(X)$ as follows.
 	$$ C_n(X) = \Z[\Hom{\cat{Top}}{\Delta^n}{X}] $$
 	The boundary operator $\del : C_{n+1}(X) \to C_n(X)$ is defined on generators as:
 	$$ \del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}.$$
