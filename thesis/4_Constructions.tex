@@ -4,20 +4,29 @@
 Comparing chain complexes and simplicial abelian groups, we see a similar structure. Both objects consists of a sequence of abelian groups, with maps in between. At first sight simplicial abelian groups have more structure, because there are maps in both directions. It is not clear how to make degeneracy maps given a chain complex, in fact it is already unclear how to define more maps (the face maps) out of one (the boundary one). Constructing a chain complex from a simplicial abelian group on the other hand seems doable.
 
 \subsection{Unnormalized chain complex}
-Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. We define a grouphomomorphism $\del_{n-1} : A_n \to A_{n-1}$ as:
+Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. We define a group homomorphism $\del_{n-1} : A_n \to A_{n-1}$ as:
 $$\del_{n-1} = d_0 - d_1 + \ldots + (-1)^n d_n \text{ for every } n > 0.$$
 \begin{lemma}
 	Using $A_n$ as the family of abelian groups and the maps $\del_n$ as boundary maps gives a chain complex.
 \end{lemma}
 \begin{proof}
-	We already have a collection of abelian groups together with maps, so the only thing to proof is $\del_n \circ \del_{n+1} = 0$.
+	We already have a collection of abelian groups together with maps, so the only thing to proof is $\del_n \circ \del_{n+1} = 0$. This can be done with a calculation:
 
-	\todo{C: insert calculation with sums}
+	\begin{align*}
+		\del_n \circ \del_{n+1} &= \textstyle (\sum_{i=0}^{n+1} (-1)^i d_i) \circ (\sum_{j=0}^{n+2} (-1)^j d_j) \\
+			&= \textstyle \sum_{i=0}^{n+1}  \sum_{j=0}^{n+2} (-1)^{i+j} (d_i \circ d_j) \\
+			&= \textstyle \sum_{i=0}^{n+1} (\sum_{j=0}^{i} (-1)^{i+j} (d_i \circ d_j) + \sum_{j=i+1}^{n+2} (-1)^{i+j} (d_i \circ d_j)) \\
+			&= \textstyle \sum_{i=0}^{n+1} (\sum_{j=0}^{i} (-1)^{i+j} (d_i \circ d_j) + \sum_{j=i+1}^{n+2} (-1)^{i+j} (d_{j-1} \circ d_i)) \\
+			&= \textstyle \sum_{i=0}^{n+1}  \sum_{j=0}^{i} (-1)^{i+j} (d_i \circ d_j) - \sum_{i=0}^{n+1} \sum_{j=i}^{n+1} (-1)^{i+j} (d_j \circ d_i) \\
+			&= \textstyle \sum_{i=0}^{n+1}  \sum_{j=0}^{i} (-1)^{i+j} (d_i \circ d_j) - \sum_{i=0}^{n+1} \sum_{j=i}^{n+1} (-1)^{i+j} (d_j \circ d_i) \\
+			&= \textstyle \sum_{i=0}^{n+1}  \sum_{j=0}^{i} (-1)^{i+j} (d_i \circ d_j) - \sum_{j=0}^{n+1} \sum_{i=j}^{n+1} (-1)^{i+j} (d_i \circ d_j) \\
+			&= 0.
+	\end{align*}
 
-	So indeed this is a chain complex.
+	We split the inner sum in two halves and we use the simplicial equations on the second sum. Then we do a shift of indices and change the roles of $i$ and $j$ in the second sum, so that the sums have an equal range and cancel out. So indeed this is a chain complex.
 \end{proof}
 
-This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it a adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
+This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it an adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
 \todo{C: is this a nice thing to add?}
 
 Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degenracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
@@ -28,21 +37,32 @@ But for chain complexes it \emph{is} possible to have trivial abelian groups $C_
 To repair this defect we should be more careful. Given a simplicial abelian group, simply taking the same collection for our chain complex will not work (as shown above). Instead we are after some ``smaller'' abelian groups, and in some cases the abelian groups should completely vanish (as in the example above).
 
 Given a simplicial abelian group $A$, we define abelian groups $N(A)_n$ as:
-$$ N(A)_n = \bigcap_{i=1}^{n} \ker(d_i : A_n \to A_{n-1}). $$
-Now define grouphomomorphisms $\del : N(A)_n \to N(A)_{n-1}$ as:
+\begin{align*}
+	N(A)_n &= \bigcap_{i=1}^{n} \ker(d_i : A_n \to A_{n-1}), \\
+	N(A)_0 &= A_0.
+\end{align*}
+Now define group homomorphisms $\del : N(A)_n \to N(A)_{n-1}$ as:
 $$ \del = d_0|_{N(A)_n}. $$
 \begin{lemma}
-	The function $ \del $ is well-defined. Furthermore $ \del \circ \del = 0 $, hence $N(A)$ is a chain complex.
+	The function $ \del $ is well-defined. Furthermore $ \del \circ \del = 0 $.
 \end{lemma}
 \begin{proof}
-	\todo{C: This is easy}
+	Let $x \in N(A)_n$, then $d_i \del(x) = d_i d_0(x) = d_0 d_{i+1}(x) = d_0 (0) = 0$ for all $i < n$. So indeed $\del(x) \in N(A)_{n-1}$, because in particular it holds for $i > 0$. Using this calculation for $i = 0$ shows that $\del \circ \del = 0$. This shows that $N(A)$ is a chain complex.
 \end{proof}
 
-\todo{C: As an example calculate $N(\Z[\Delta[0]])$}
-\todo{C: define $D(X)_n$}
-\todo{C: work out following lemmas}
+We will call this chain complex $N(A)$ the \emph{normalized chain complex} of $A$.
+\todo{C: functoriality}
 
-To see what $N$ does exactly there are some lemmas. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$.
+\begin{example}
+	We will look at the normalized chain complex of $\Z[\Delta[0]]$. Recall that it looked like:
+	$$ \Z[\Delta[0]] = \Z \to \Z \to \Z \to \cdots, $$
+	where all face and degeneracy maps are identity maps. Clearly the kernel of $\id$ is the trivial group. So $N(\Z[\Delta[0]])_i = 0$ for all $i > 0$. In degree zero we are left with $N(\Z[\Delta[0]])_0 = \Z$. So we can depict the normalized chain complex by:
+	$$ N(\Z[\Delta[0]]) = \cdots \to 0 \to 0 \to \Z. $$
+	So in this example we see that the normalized chain complex is really better behaved than the unnormalized chain complex, given by $C$.
+\end{example}
+
+To see what $N$ does exactly there are some lemmas. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$. For these lemmas we will need the subgroups $D(X)_n \subset X_n$ of degenerate simplices, defined as:
+$$ D(X)_n = \sum_{i=0}^n s_i(X_{n-1}). $$
 
 \begin{lemma}
 	\label{le:decomp1}
@@ -51,40 +71,53 @@ To see what $N$ does exactly there are some lemmas. For the following lemmas let
 	where $b \in N(X)_n$ and $c \in D(X)_n$.
 \end{lemma}
 \begin{proof}
-	define $P^k = \{ x \in X_n \I d_i x = 0, i > k\}$, then do induction (from $k$ to 0).
-	gives $x = b+c$ with $b \in P^0$, $c \in D(X)_n$.
+	Define the subgroup $P^k = \{ x \in X_n \I d_i x = 0 \text{ for all } i > k\}$. Note that $P^0 = N(X)_n$ and $P^n = X_n$. We will prove with induction that for any $k \leq n$ we can write $x \in X_n$ as $x = b + c$, with $b \in P^k$ and $c \in D(X)_n$.
+
+	For $k = n$ the statement is clear, because we can simply write $x = x$, knowing that $x \in P^n = X_n$.
+
+	Assume the statement holds for $k > 0$, we will prove it for $k-1$. So for any $x \in X_n$ we have $x = b + c$, with $b \in P^k$ and $c \in D(X)_n$. Now consider $b' = b - s_{k-1} d_k b$. Now clearly for all $i > k$ we have $d_i b' = 0$. For $k$ itself we can calculate:
+	$$ d_k(b') = d_k(b - s_{k-1} d_k b) = d_k b - d_k s_{k+1} d_k b = d_k b - d_k b = 0, $$
+	where we used the equality $d_k s_{k-1} = \id$. So $b' \in P^{k-1}$. Furthermore we can define $c' = s_{k-1} d_k b + c$, for which it is clear that $c' \in D(X)_n$. Finally conclude that
+	$$ x = b + c = b - s_{k-1} d_k b + s_{k-1} d_k b + c = b' + c',$$
+	with $b' \in P^{k-1}$ and $c' \in D(X)_n$.
+
+	Doing this inductively gives us $x = b + c$, with $b \in P^0 = N(X)_n$ and $c \in D(X)_n$, which is what we had to prove.
 \end{proof}
 \begin{lemma}
 	\label{le:decomp2}
 	For all $x \in X_n$, if $s_i x \in N(X)_{n+1}$, then $x = 0$.
 \end{lemma}
 \begin{proof}
-	Simply calculate using the simplicial equations: $0 = d_{i+1} s_i x = x$.
+	Using that $s_i x \in N(X)_{n+1}$ means $0 = d_{k+1} s_i x$ for any $k > 0$ and by using using the simplicial equations: $d_{i+1} s_i = \id$, we can conclude $x = d_{i+1} s_i x = 0$.
 \end{proof}
 
-The first lemma tells us that every $n$-simplex in $X$ can be written as something in $N(X)$ plus a degenerate $n$-simplex. The latter lemma asures that there are no degenerate $n$-simplices in $N(X)$. So this gives us:
+The first lemma tells us that every $n$-simplex in $X$ can be decomposed as a sum of something in $N(X)$ and a degenerate $n$-simplex. The latter lemma asures that there are no degenerate $n$-simplices in $N(X)$. So this gives us:
 
 \begin{corollary}
+	\label{cor:NandD}
 	$X_n = N(X)_n \oplus D(X)_n$
 \end{corollary}
 
-We can extend the above lemmas to a more general statement. \todo{C: figure out what $\ast$ exactly is.}
+We can extend the above lemmas to a more general statement.
+\todo{C: define somewhere what $\beta^\ast$ exactly is.}
 
 \begin{lemma}
 	\label{le:decomp3}
 	For all $x \in X_n$ we can write $x$ as:
 	$$ x = \sum_\beta \beta^\ast (x_\beta), $$
-	for certain $x_\beta \in N(X)_n$ and $\beta : [n] \epi [p]$.
+	for certain $x_\beta \in N(X)_p$ and $\beta : [n] \epi [p]$.
 \end{lemma}
 \begin{proof}
-	induction using the first lemma
+	We will proof this using induction on $n$. For $n=0$ the statement is clear because $N(X)_0 = X_0$.
+
+	Assume the statement is proven for $n$. Let $x \in X_{n+1}$, then from lemma~\ref{le:decomp1} we see $x = b + c$. Note that $c \in D(X)_n$, in other words $c = \sum_{i=0}^{n-1} s_i c_i$, with $c_i \in X_n$. So with the induction hypothesis, we can write these as $c_i = \sum_\beta \beta^\ast c_{i, \beta}$, where the sum quantifies over $\beta: [n] \epi [p]$. Now $b$ is already in $N(X)_{n+1}$, so we can set $x_\id = b$, to obtain the conclusion.
 \end{proof}
 \begin{lemma}
 	\label{le:decomp4}
 	For $\beta \neq \gamma$ we have $\beta^\ast(N(X))_p \cap \gamma^\ast(N(X))_q = 0$.
 \end{lemma}
 \begin{proof}
-	?
+	Follows from $x = \beta^\ast y$ uniquely for a non-degenerate $y$. \todo{C: proof this in chapter about sAb}
 \end{proof}
 
 Again the former lemma of these two lemmas proofs the existence of a decomposition and the latter proofs the uniqueness. So combining this gives:
@@ -108,17 +141,19 @@ Using corollary~\ref{cor:decomp} we can proof a nice categorical fact about $N$,
 \begin{proof}
 	First we proof $N$ is injective on maps. Let $f: A \to B$ and assume $N(f) = 0$, for $x \in A_n$ we know $x = \sum_\beta \beta^\ast x_\beta$, so
 	\begin{align*}
-		f(x) &= \textstyle f(\sum_\beta N(\beta) (x_\beta)) \\
-			&= \textstyle \sum_\beta f(N(\beta) (x_\beta)) \\ 
-			&= \textstyle \sum_\beta N(f) (N(\beta) (x_\beta)) \\ 
-			&= \textstyle \sum_\beta N(\beta) (N(f) (x_\beta)) = 0,	
+		f(x) &= \textstyle f(\sum_\beta \beta^\ast (x_\beta)) \\
+			&= \textstyle \sum_\beta f(\beta^\ast (x_\beta)) \\ 
+			&= \textstyle \sum_\beta \beta^\ast (f (x_\beta)) \\ 
+			&= \textstyle \sum_\beta \beta^\ast (N(f) (x_\beta)) = 0,	
 	\end{align*}
-	where we used naturality of $f$ in the last step. We now see that $f(x) = 0$ for all $x$, hence $f = 0$. So indeed $N$ is injective on maps.
+	where we used naturality of $f$ in the second step, and the fact that $x_\beta \in N(X)_n$ in the last step. We now see that $f(x) = 0$ for all $x$, hence $f = 0$. So indeed $N$ is injective on maps.
 
 	Secondly we have to proof $N$ is surjective on maps. Let $g : N(A) \to N(B)$, define $f : A \to B$ as:
 	$$ f(x) = \sum_\beta \beta^\ast g(x_\beta), $$
 	again we have written $x$ as $x = \sum_\beta \beta^\ast x_\beta$. Clearly $N(f) = g$. \todo{C: is this clear?}
 \end{proof}
+
+If we reflect a bit on why the previous functor $C$ was not a candidate for an equivalence, we see that $N$ does a better job. We see that $N$ leaves out all degenerate simplices, so it is more carefull than $C$, which included everything. In fact, corollary~\ref{cor:NandD} exactly tells us $C(X)_n = N(X)_n \oplus D(X)_n$.
 
 \subsection{From $\Ch{\Ab}$ to $\sAb$}
 For the other way around we actually get a functor for free, via abstract nonsense. Let $F : \sAb \to A$ be any functor, where $A$ is an abelian category. We are after a functor $G : A \to \sAb$, this means that if we are given $C \in A$, we are looking for a functor $G(C) : \DELTA^{op} \to \Ab$. Fixing $C$ in the second argument of the $\mathbf{Hom}$-functor gives: $\Hom{A}{-}{C} : A^{op} \to \Ab$, because $A$ is an abelian category. We see that the codomain of this functor already looks good, now if we have some functor from $\DELTA^{op}$ to $A^{op}$, we can precompose, to obtain a functor from $\DELTA^{op}$ to $\Ab$.
