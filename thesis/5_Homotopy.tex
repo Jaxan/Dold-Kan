@@ -26,7 +26,7 @@ Of course we would like $\sim$ to be an equivalence relation, however this is no
 	The relation $\sim$ as defined above is an equivalence relation on $Z_n(X)$.
 \end{lemma}
 \begin{proof}
-	\todo{Htp: Make this a bit nicer?}
+	\todo{Htp: Make this a bit nicer}
 	\emph{Reflexivity}. Let $x \in Z_n(X)$, define $y = s_0 x$. Now calculate $d_0 y = d_1 y = x$, because of the simplicial equations. And $d_i y = 0$ for all $i > 1$, because $x \in Z_n(X)$.
 
 	\emph{Symmetry}. Let $x, x' \in Z_n(X)$ with $x \sim x'$. Let $y \in X_{n+1}$ such that $d_0 y = x$, $d_1 y = x'$ and $d_i y = 0$ for all $i > 1$. Define $y' = s_0 x + s_0 x' - y$, then by using linearity: $d_0 y' = x + x' - x = x'$ and $d_1 y' = x + x' - x' = x$. Again we get $d_i y' = 0$, because $x \in Z_n(X)$.

@@ -27,7 +27,7 @@ $$\del_{n-1} = d_0 - d_1 + \ldots + (-1)^n d_n \text{ for every } n > 0.$$
 \end{proof}
 
 This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it an adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
-\todo{C: is this a nice thing to add?}
+\todo{C: Make this more readable...}
 
 Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degenracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
 
@@ -61,7 +61,7 @@ We will call this chain complex $N(A)$ the \emph{normalized chain complex} of $A
 	So in this example we see that the normalized chain complex is really better behaved than the unnormalized chain complex, given by $C$.
 \end{example}
 
-To see what $N$ does exactly there are some lemmas. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$. For these lemmas we will need the subgroups $D(X)_n \subset X_n$ of degenerate simplices, defined as:
+To see what $N$ exactly does there are some useful lemmas. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$. For these lemmas we will need the subgroups $D(X)_n \subset X_n$ of degenerate simplices, defined as:
 $$ D(X)_n = \sum_{i=0}^n s_i(X_{n-1}). $$
 
 \begin{lemma}
@@ -99,7 +99,6 @@ The first lemma tells us that every $n$-simplex in $X$ can be decomposed as a su
 \end{corollary}
 
 We can extend the above lemmas to a more general statement.
-\todo{C: define somewhere what $\beta^\ast$ exactly is.}
 
 \begin{lemma}
 	\label{le:decomp3}
@@ -204,3 +203,18 @@ because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then
 \begin{proposition}
 	For any chain complex $C$ we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$.
 \end{proposition}
+\begin{proof}
+	\todo{C: proposition about $K$}
+\end{proof}
+
+\todo{C: work out the following in more detail (especially the naturalities)}
+\begin{theorem}
+	$N$ and $K$ form an equivalence.
+\end{theorem}
+\begin{proof}
+	Let $X$ be a simplicial abelian group. Consider $X_n$, by the abelian Yoneda lemma this is naturally isomorphic to $\Z^\ast[\Delta[n]] \to X$, which is by the fully faithfulness and additivity of $N$ naturally isomorphic to $N\Z^\ast[\Delta[n]] \to NX$. The latter is exactly the definition of $KNX$. So, by naturality in $n$, we have established $X \iso KNX$. Hence, by naturality in $X$, we have $\id \iso KN$.
+
+	By the previous proposition we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$. For the summands $C_p$ with $p < n$, we clearly see that $C_p \subset D_n(K(C))$, so $N$ gets rid of these. Then the only summand left is $C_n$ (with the surjection $\id : [n] \epi [n]$). So we see $NKC_n \iso C_n$, furthermore the boundary map is preserved. Hence $NKC \iso C$. And this was natural in $C$, so we get $NK \iso \id$.
+
+	We now have established two natural isomorphisms $\id_\sAb \iso KN$ and $NK \iso \id_\Ch{\Ab}$. Hence we have an equivalence $\Ch{\Ab} \simeq \sAb$.
+\end{proof}
