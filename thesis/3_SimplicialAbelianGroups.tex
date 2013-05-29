@@ -1,7 +1,7 @@
 \section{Simplicial Abelian Groups}
 \label{sec:Simplicial Abelian Groups}
 
-There are generally two definitions of a \emph{simplicial abelian group}, an abstract one and a very explicit one. We will start with the abstract one, luckily it can still be visualised in pictures, then we will derive the explicit definition.
+Before defining \emph{simplicial abelian groups}, we will first discuss the more general notion of \emph{simplicial sets}. There are generally two definitions of simplicial sets, an abstract one and a very explicit one. We will start with the abstract one, luckily it can still be visualised in pictures, then we will derive the explicit definition.
 
 \subsection{Abstract definition}
 \begin{definition}
@@ -34,12 +34,12 @@ Althoug this is a very abstract definition, a more geometric intuition can be gi
 This category $\DELTA$ will act as a protoype for these kind of geometric structures in other categories. This leads to the following definition.
 
 \begin{definition}
-	An \emph{simplicial abelian group} $A$ is a contravariant functor:
-	$$A: \DELTA \to \Ab.$$
-	(Or equivalently a covariant functor $A: \DELTA^{op} \to \Ab.$)
+	An \emph{simplicial set} $X$ is a contravariant functor:
+	$$X: \DELTA \to \Set.$$
+	(Or equivalently a covariant functor $X: \DELTA^{op} \to \Set.$)
 \end{definition}
 
-So the category of all simplicial abelian groups, $\sAb$, is the functor category $\Ab^{\DELTA^{op}}$, where morphisms are natural transformations. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $A: \DELTA^{op} \to \Ab$. And hence we can picture a simplicial abelian group as done in figure~\ref{fig:simplicial_abelian_group}. Comparing this to figure~\ref{fig:delta_cat} we see that the arrows are reversed, because $A$ is a contravariant functor.
+So the category of all simplicial sets, $\sSet$, is the functor category $\Set^{\DELTA^{op}}$, where morphisms are natural transformations. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $X: \DELTA^{op} \to \Set$. And hence we can picture a simplicial set as done in figure~\ref{fig:simplicial_abelian_group}. Comparing this to figure~\ref{fig:delta_cat} we see that the arrows are reversed, because $X$ is a contravariant functor.
 
 \begin{figure}
 	\includegraphics{simplicial_abelian_group}
@@ -66,10 +66,10 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain equatio
 	By writing out the definitions given above. \todo{sAb: this is a bit rude, maybe write out some of it...}
 \end{proof}
 
-Because a simplicial abelien group $A$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ A(\delta_i)A(\delta_j) = A(\delta_{j-1})A(\delta_i) $ for $ i < j$. This can be used for an explicit definition of simplicial abelien groups. In this definition a simplicial abelian group $A$ consists of a collection abelian groups $A_n$ together with the face and degeneracy maps. More precisely:
+Because a simplicial set $X$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ X(\delta_i)X(\delta_j) = X(\delta_{j-1})X(\delta_i) $ for $ i < j$. This can be used for an explicit definition of simplicial sets. In this definition a simplicial set $X$ consists of a collection sets $X_n$ together with the face and degeneracy maps. More precisely:
 
 \begin{definition}
-	\emph{(Explicitly)} An simplicial abelian group $A$ consists of a collection abelian groups $A_n$ together with grouphomomorphisms $d_i : A_n \to A_{n-1}$ and $s_i : A_n \to A_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that:
+	\emph{(Explicitly)} An simplicial set $X$ consists of a collection sets $A_n$ together with functions $d_i : X_n \to X_{n-1}$ and $s_i : X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that:
 	\begin{align}
 		d_i d_j &= d_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
 		d_i s_j &= s_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
@@ -79,14 +79,14 @@ Because a simplicial abelien group $A$ is a contravariant functor, these equatio
 	\end{align}
 \end{definition}
 
-It is already indicated that a functor from $\DELTA^{op}$ to $\Ab$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same \todo{sAb: is it ok not to prove this?}. So from now on we will denote $A([n])$ by $A_n$, $A(\sigma_i)$ by $s_i$ and $A(\delta_i)$ by $d_i$, whenever we have a simplicial abelien group $A$.
+It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same \todo{sAb: is it ok not to prove this?}. From now on we will denote $X([n])$ by $X_n$, $X(\sigma_i)$ by $s_i$ and $X(\delta_i)$ by $d_i$, whenever we have a simplicial set $X$. For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast : X_p \to X_n$.
 
-When using a simplicial abelian group to construct another object, it is often handy to use this second definition, as it gives you a very concrete objects to work with. On the other hand, constructing this might be hard (as you would need to provide a lot of details), in this case we will often use the more abstract definition.
+When using a simplicial set to construct another object, it is often handy to use this second definition, as it gives you a very concrete objects to work with. On the other hand, constructing this might be hard (as you would need to provide a lot of details), in this case we will often use the more abstract definition.
 
 \todo{sAb: Note that $s_i$ is a monomorphism because of (3)}
 
-\subsection{Other simplicial objects}
-Of course the abstract definition of simplicial abelian group can easilty be generalized to other categories. For example $\Set^{\DELTA^{op}} = \sSet$ is the category of simplicial sets. There are very important simplicial sets:
+\subsection{The standard $n$-simplex}
+There are very important simplicial sets:
 
 \begin{definition}
 	The standard $n$-simplex is given by:
@@ -135,8 +135,11 @@ Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morp
 	\end{tikzpicture}.$$
 \end{example}
 
-As we are interested in simplicial abelian group, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the diagram~\ref{fig:diagram_Z}.
-\begin{figure}
+\subsection{Other simplicial objects}
+Of course the abstract definition of simplicial abelian group can easily be generalized to other categories. For any category $\cat{C}$ we can consider the functor category $\cat{sC} = \cat{C}^{\DELTA^{op}}$. In this thesis we are interested in the category $\sAb = \Ab^{\DELTA^{op}}$ of simplicial abelian groups. So a simplicial abelian group $A$ is a collection of abelian groups $A_n$, together with face and degeneracy maps, which in this case means group homomorphisms $d_i$ and $s_i$ such that the simplicial equations hold.
+
+As we are interested in simplicial abelian group, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the following diagram.
+\begin{figure}[h!]
 	\begin{tikzpicture}
 		\matrix (m) [matrix of math nodes]{
 			\DELTA^{op} & \Set \\
