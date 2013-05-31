@@ -10,6 +10,8 @@ Before defining \emph{simplicial abelian groups}, we will first discuss the more
 
 There are two special kinds of maps in $\DELTA$, the so called \emph{face} and \emph{degeneracy} maps, defined as (resp.):
 
+\todo{sAb: Consider changing $i$ to be a superscript}
+\todo{sAb: Introduce face/degen maps with text, ``unique monotone such that...''}
 \begin{align*}
 	\delta_i: [n] \to [n+1], k & \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n+1, \text{ and} \\
 	\sigma_i: [n+1] \to [n], k & \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n
@@ -23,7 +25,7 @@ for each $n \in \N$. The nice things about these maps is that every map in $\DEL
 	\label{fig:delta_cat}
 \end{figure}
 
-Althoug this is a very abstract definition, a more geometric intuition can be given. In $\DELTA$ we can regard $[n]$ as an abstract version of the $n$-simplex $\Delta^n$. The face maps $\delta_i$ are then exactly maps which point out how we can embed $\Delta^n$ in $\Delta^{n+1}$. This is shown in figure~\ref{fig:delta_cat_geom}. This picutre shows the images of the face maps, for example the image of $\delta_3$ from $[2]$ to $[3]$ is the set $\{0,1,2\}$, which is the bottom face of the tetrahedron. The degeneracy maps are harder to visualize, one can think of them as collapsing maps, where two points are identified with eachother. \todo{sAb: how to draw $\sigma_i$?}
+Althoug this is a very abstract definition, a more geometric intuition can be given. In $\DELTA$ we can regard $[n]$ as an abstract version of the $n$-simplex $\Delta^n$. The face maps $\delta_i$ are then exactly maps which point out how we can embed $\Delta^n$ in $\Delta^{n+1}$. This is shown in figure~\ref{fig:delta_cat_geom}. This picutre shows the images of the face maps, for example the image of $\delta_3$ from $[2]$ to $[3]$ is the set $\{0,1,2\}$, which is the bottom face of the tetrahedron. The degeneracy maps are harder to visualize, one can think of them as collapsing maps, where two points are identified with each other. \todo{sAb: how to draw $\sigma_i$?}
 
 \begin{figure}
 	\includegraphics{delta_cat_geom}
@@ -34,9 +36,9 @@ Althoug this is a very abstract definition, a more geometric intuition can be gi
 This category $\DELTA$ will act as a protoype for these kind of geometric structures in other categories. This leads to the following definition.
 
 \begin{definition}
-	An \emph{simplicial set} $X$ is a contravariant functor:
-	$$X: \DELTA \to \Set.$$
-	(Or equivalently a covariant functor $X: \DELTA^{op} \to \Set.$)
+	A \emph{simplicial set} $X$ is a functor:
+	$$X: \DELTA^{op} \to \Set.$$
+	(Or equivalently a contravariant functor $X: \DELTA \to \Set.$)
 \end{definition}
 
 So the category of all simplicial sets, $\sSet$, is the functor category $\Set^{\DELTA^{op}}$, where morphisms are natural transformations. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $X: \DELTA^{op} \to \Set$. And hence we can picture a simplicial set as done in figure~\ref{fig:simplicial_set}. Comparing this to figure~\ref{fig:delta_cat} we see that the arrows are reversed, because $X$ is a contravariant functor.
@@ -49,11 +51,10 @@ So the category of all simplicial sets, $\sSet$, is the functor category $\Set^{
 
 
 \subsection{Explicit definition}
-Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain equations, these are the so called \emph{simplicial equations}.
-\todo{sAb: Is \emph{simplicial equations} really a thing?}
+Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain relations, these are the so called \emph{cosimplicial identities}.
 
 \begin{lemma}
-	The face and degeneracy maps in $\DELTA$ satisfy the simplicial equations, ie.:
+	The face and degeneracy maps in $\DELTA$ satisfy the cosimplicial identities, i.e.:
 	\begin{align}
 		\delta_j\delta_i &= \delta_i\delta_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
 		\sigma_j\delta_i &= \delta_i\sigma_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
@@ -69,7 +70,7 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain equatio
 Because a simplicial set $X$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ X(\delta_i)X(\delta_j) = X(\delta_{j-1})X(\delta_i) $ for $ i < j$. This can be used for an explicit definition of simplicial sets. In this definition a simplicial set $X$ consists of a collection sets $X_n$ together with the face and degeneracy maps. More precisely:
 
 \begin{definition}
-	\emph{(Explicitly)} An simplicial set $X$ consists of a collection sets $A_n$ together with functions $d_i : X_n \to X_{n-1}$ and $s_i : X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that:
+	\emph{(Explicitly)} An simplicial set $X$ consists of a collection sets $X_n$ together with functions $d_i : X_n \to X_{n-1}$ and $s_i : X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that the simplicial identities hold:
 	\begin{align}
 		d_i d_j &= d_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
 		d_i s_j &= s_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
@@ -79,11 +80,12 @@ Because a simplicial set $X$ is a contravariant functor, these equations (which 
 	\end{align}
 \end{definition}
 
-It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same \todo{sAb: is it ok not to prove this?}. From now on we will denote $X([n])$ by $X_n$, $X(\sigma_i)$ by $s_i$ and $X(\delta_i)$ by $d_i$, whenever we have a simplicial set $X$. For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast : X_p \to X_n$.
+It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same. From now on we will denote $X([n])$ by $X_n$, $X(\sigma_i)$ by $s_i$ and $X(\delta_i)$ by $d_i$, whenever we have a simplicial set $X$. For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast : X_p \to X_n$.
 
 When using a simplicial set to construct another object, it is often handy to use this second definition, as it gives you a very concrete objects to work with. On the other hand, constructing this might be hard (as you would need to provide a lot of details), in this case we will often use the more abstract definition.
 
 \todo{sAb: Note that $s_i$ is a monomorphism because of (3)}
+\todo{sAb: Degenerate simpl. lemma about non-deg simpl.}
 
 \subsection{The standard $n$-simplex}
 There are very important simplicial sets:
@@ -93,8 +95,10 @@ There are very important simplicial sets:
 	$$\Delta[n] = \Hom{\DELTA}{-}{[n]} : \DELTA^{op} \to \Set.$$
 \end{definition}
 
-Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morphisms in a category is per definition a set. We do not need to specify the face or degeneracy maps, as we already know that $\mathbf{Hom}$ is a functor (in both arguments). Still it is useful to write out some cases.
+\todo{sAb: Note about yoneda}
+Note that indeed $\Hom{\DELTA}{[k]}{[n]} \in \Set$, because the collection of morphisms in a category is per definition a set. We do not need to specify the face or degeneracy maps, as we already know that $\mathbf{Hom}$ is a functor (in both arguments). Still it is useful to write out some cases.
 
+\todo{sAb: In the examples note the non-deg simpl.}
 \begin{example}
 	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $X$, there is only one function $\ast : X \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$. The face and degeneracy maps are now functions from $\{\ast\}$ to $\{\ast\}$. Again there is only one, namely $\id : \{\ast\} \to \{\ast\}$. This gives:
 	$$ \Delta[0] = \{\ast\} \to \{\ast\} \to \{\ast\} \to \cdots. $$
@@ -138,7 +142,7 @@ Note that indeed $\Hom{\DELTA}{X}{[n]} \in \Set$, because the collection of morp
 \subsection{Other simplicial objects}
 Of course the abstract definition of simplicial abelian group can easily be generalized to other categories. For any category $\cat{C}$ we can consider the functor category $\cat{sC} = \cat{C}^{\DELTA^{op}}$. In this thesis we are interested in the category $\sAb = \Ab^{\DELTA^{op}}$ of simplicial abelian groups. So a simplicial abelian group $A$ is a collection of abelian groups $A_n$, together with face and degeneracy maps, which in this case means group homomorphisms $d_i$ and $s_i$ such that the simplicial equations hold.
 
-As we are interested in simplicial abelian group, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the following diagram.
+As we are interested in simplicial abelian groups, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the following diagram.
 \begin{figure}[h!]
 	\begin{tikzpicture}
 		\matrix (m) [matrix of math nodes]{
