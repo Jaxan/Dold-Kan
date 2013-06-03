@@ -21,7 +21,7 @@
 % $$ [0] \to [1] \to [2] \to [3] \to \ldots $$
 % $$\delta_i: [n] \to [n+1], k \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n+1$$
 % $$\sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n$$
-$$ X_0 \to X_1 \to X_2 \to X_3 $$
+% $$ X_0 \to X_1 \to X_2 \to X_3 $$
 
 % For geometric picture of simplicial objects
 % $$ 0 \tot{\delta_0} 1 \tot{\delta_1} 2 \tot{\delta_2} 3 \tot{\delta_3} \cdots $$
@@ -31,5 +31,11 @@ $$ X_0 \to X_1 \to X_2 \to X_3 $$
 % \reflectbox{\rotatebox[origin=c]{90}{\large $=$}}
 % $$ + - \mapsto $$
 % $$ \{ \} $$
+
+% For singular chain complex, face maps
+$$ C_n(X) = \Z[\Hom{\cat{Top}}{\Delta^n}{X}] $$
+$$ \Delta^2 \to X \sigma \circ d^1$$
+$$ \Delta^1 \mono $$
+$$ d^0 - d^1 + d^2 $$
 
 \end{document}
