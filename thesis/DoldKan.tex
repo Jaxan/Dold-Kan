@@ -1,4 +1,4 @@
-\documentclass[12pt]{amsproc}
+\documentclass[11pt]{amsproc}
 
 % a la fullpage
 \usepackage{geometry}
@@ -29,13 +29,13 @@
 \maketitle
 
 \section*{Introduction}
-In this thesis we will look at a correspondence which was discovered by A. Dold and D. Kan independently, hence it is called the \emph{Dold-Kan correspondence}. Abstractly it is the following equivalence of categories:
+In this thesis we will look at a correspondence which was discovered by A. Dold \cite{dold} and D. Kan \cite{kan} independently, hence it is called the \emph{Dold-Kan correspondence}. Abstractly it is the following equivalence of categories:
 $$ \Ch{\Ab} \simeq \sAb $$
 It is interesting because objects on the left hand side are considered to be algebraic of nature, whereas objects on the right are more topological. Objects of either of these categories have important invariants. A more refined statement of this equivalence tells us that there is an isomorphism between homology groups (on the left hand side) and homotopy groups (on the right hand side). A bit more precise:
 $$ \pi_n(A) \iso H_n(N(A)) \text{ for all } n \in \N $$
 where $N: \sAb \to \Ch{\Ab}$ is one half of the equivalence.
 
-In the first section some definitions from category theory are given, because we will need them later on. Then in the second section we will discuss the first category involved in the correspondence, $\Ch{\Ab}$, the category of chain complexes. The third section then continues with the second category involved, $\sAb$, especially for this section we will need category theory. Then we will look at the coorespondence itself.
+In the first section some definitions from category theory are given, because we will need them later on. Then in the second section we will discuss the first category involved in the correspondence, $\Ch{\Ab}$, the category of chain complexes. The third section then continues with the second category involved, $\sAb$, especially for this section we will need category theory. Then we will look at the correspondence itself.
 
 \newpage
 \input{../thesis/1_CategoryTheory}
@@ -57,7 +57,8 @@ In the first section some definitions from category theory are given, because we
 
 \newpage
 \listoftodos
-% \nocite{*}
-% \bibliographystyle{alpha}
-% \bibliography{references}	
+
+\nocite{*}
+\bibliographystyle{alpha}
+\bibliography{references}	
 \end{document}

@@ -16,6 +16,9 @@ Symbols)	pdflatex "../thesis/symbols.tex" || exit 1
 		scp moerman@stitch.science.ru.nl:~/symbols.svg ../
 		;;
 Thesis)		pdflatex "../thesis/DoldKan.tex" || exit 1
+		cp "../thesis/references.bib" ./ || exit 1
+		bibtex DoldKan                   || exit 1
+		pdflatex "../thesis/DoldKan.tex" || exit 1
 		pdflatex "../thesis/DoldKan.tex" || exit 1
 		mv DoldKan.pdf ../
 		;;
