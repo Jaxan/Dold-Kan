@@ -1,7 +1,7 @@
 \section{Simplicial Abelian Groups}
 \label{sec:Simplicial Abelian Groups}
 
-Before defining \emph{simplicial abelian groups}, we will first discuss the more general notion of \emph{simplicial sets}. There are generally two definitions of simplicial sets, an abstract one and a very explicit one. We will start with the abstract one, luckily it can still be visualised in pictures, then we will derive the explicit definition.
+Before defining \emph{simplicial abelian groups}, we will first discuss the more general notion of \emph{simplicial sets}. There are generally two definitions of simplicial sets, an abstract one and a very explicit one. We will start with the abstract one, luckily it can still be visualised in pictures, then we will derive the explicit definition. The reader who is interested in how these notions developed, should consider reading the introduction by Friedman \cite{friedman}, which also gives nice illustrations.
 
 \subsection{Abstract definition}
 \begin{definition}
@@ -166,7 +166,7 @@ Note that this is also the definition of the Yoneda embedding $\Delta[n] = y[n]$
 \subsection{Other simplicial objects}
 Of course the abstract definition of simplicial abelian group can easily be generalized to other categories. For any category $\cat{C}$ we can consider the functor category $\cat{sC} = \cat{C}^{\DELTA^{op}}$. In this thesis we are interested in the category $\sAb = \Ab^{\DELTA^{op}}$ of simplicial abelian groups. So a simplicial abelian group $A$ is a collection of abelian groups $A_n$, together with face and degeneracy maps, which in this case means group homomorphisms $d_i$ and $s_i$ such that the simplicial equations hold.
 
-As we are interested in simplicial abelian groups, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the following diagram.
+As we are interested in simplicial abelian groups, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the following diagram. \todo{sAb: Adjunction}
 \begin{figure}[h!]
 	\begin{tikzpicture}
 		\matrix (m) [matrix of math nodes]{
