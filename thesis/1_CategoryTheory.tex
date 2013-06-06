@@ -25,10 +25,10 @@ As the notation suggests maps should be thought of as functions. Which is also t
 	The category $\Set$ has as its objects sets, and as maps it has ordinary functions. Of course we then have the identity function $\id_X(x) = x$ and composition as usual.
 \end{example}
 \begin{example}
-	The category $\Ab$ has as objects abelian groups, and the maps between two objects are exactly the group homomorphisms. We know that the identity function is indeed a group homomorphism, and composing two grouphomomorpisms, gives indeed a new group homomorphism.
+	The category $\Ab$ has as objects abelian groups, and the maps between two objects are exactly the group homomorphisms. We know that the identity function is indeed a group homomorphism, and composing two group homomorpisms, gives indeed a new group homomorphism.
 \end{example}
 
-In fact many mathematical structures can be organized in a category, there is a category $\cat{Ring}$ of rings and ringhomomorphisms, $\cat{Vect}$ for $\R$-vectorspaces and $\R$-linear maps, $\cat{Set_{fin}}$ of finite sets, $\Top$ of topological spaces and continuous functions, etc. Of course we would also like to express relations between categories. For example every abelian group is also a set, and a group homomorphism is also a function. This idea can be formalized by the notion of a functor.
+In fact many mathematical structures can be organized in a category, there is a category $\cat{Ring}$ of rings and ring homomorphisms, $\cat{Vect}$ for $\R$-vector spaces and $\R$-linear maps, $\cat{Set_{fin}}$ of finite sets, $\Top$ of topological spaces and continuous functions, etc. Of course we would also like to express relations between categories. For example every abelian group is also a set, and a group homomorphism is also a function. This idea can be formalized by the notion of a functor.
 
 \begin{definition}
 	A \emph{functor} $F$ from a category $\cat{C}$ and to a category $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that:
@@ -52,7 +52,7 @@ Given a category $\cat{C}$ and two objects $A, B \in \cat{C}$ we would like to k
 \end{definition}
 
 Isomorphisms in $\Ab$ are exactly the isomorphisms which we know, ie. the group homomorphisms which are both injective and surjective.
-For example the cyclic group $\Z_4$ and the klein four-group $V_4$ are not isomorphic in $\Ab$, but if we regard only the sets $\Z_4$ and $V_4$, then they are (because there is a bijection). So it is good to note that whether two objects are isomorphic  really depends on the category we are working in.
+For example the cyclic group $\Z_4$ and the Klein four-group $V_4$ are not isomorphic in $\Ab$, but if we regard only the sets $\Z_4$ and $V_4$, then they are (because there is a bijection). So it is good to note that whether two objects are isomorphic  really depends on the category we are working in.
 
 Note that an isomorphism between to categories is now also defined. Two categories $\cat{C}$ and $\cat{D}$ are isomorphic if there are functors $F$ and $G$ such that $ FG = \id_\cat{D}$ and $GF = \id_\cat{C}$.
 
@@ -80,7 +80,7 @@ Note that an isomorphism between to categories is now also defined. Two categori
 	For any two categories $\cat{C}$ and $\cat{D}$ we can form a category with functors $F: \cat{C} \to \cat{D}$ as objects and natural transformations as maps. This category is called the \emph{functor category} and is denoted by $\cat{D}^\cat{C}$.
 \end{lemma}
 \begin{proof}
-	We refer to MacLane or Awodey.
+	We refer to MacLane \cite{maclane} or Awodey \cite{awodey}.
 \end{proof}
 
 This now also gives a notion of isomorphisms between functors. It can be easily seen that a isomorphism between two functors is a natural transformation which is an isomorphism pointwise. Such a natural transformation is called a natural isomorphism.
