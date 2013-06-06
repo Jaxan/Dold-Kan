@@ -85,12 +85,12 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 \end{proof}
 
 \subsection{A note on abelian categories}
-The category $\Ch{\Ab}$ in fact is an \emph{abelian category}. We will only need a very specific property of this fact later on, and hence we will only prove this single fact. For the precise definition of an abelian category we refer to the book of Rotman about homological algebra \cite[Chapter~5.5]{rotman}. The notion of an abelian category is interesting if one wants to consider chain complexes over other objects than abelian groups, because $\Ch{\cat{C}}$ will be an abelian category whenever $\cat{C}$ is abelian.\footnote{However, this generality might not be so interesting from a categorical standpoint, as there is a fully faithful (exact) functor $F: \cat{C} \to \Ab$ for any abelian category $\cat{C}$, called the \emph{Mitchell embedding} \cite{rotman}. This gives a way to proof categorical statements in $\cat{C}$ by proving the statement for $\Ab$.} The property we want to use later on is the following.
+The category $\Ch{\Ab}$ in fact is an \emph{abelian category}. We will only need a very specific property of this fact later on, and hence we will only prove this single fact. For the precise definition of an abelian category we refer to the book of Rotman about homological algebra \cite[Chapter~5.5]{rotman}. The notion of an abelian category is interesting if one wants to consider chain complexes over other objects than abelian groups, because $\Ch{\cat{C}}$ will be an abelian category whenever $\cat{C}$ is abelian.\footnote{However, this generality might not be so interesting from a categorical standpoint, as there is a fully faithful (exact) functor $F: \cat{C} \to \Ab$ for any (small) abelian category $\cat{C}$, called the \emph{Mitchell embedding} \cite{rotman}. This gives a way to proof categorical statements in $\cat{C}$ by proving the statement in $\Ab$.} The property we want to use later on is the following.
 \begin{definition}
 	A category $\cat{C}$ is \emph{preadditive} if the set of maps between two objects is an abelian group, such that composition is bilinear. In other words: the $\mathbf{Hom}$-functor has as its codomain $\Ab$:
 	$$ \Hom{\cat{C}}{-}{-} : \cat{C}^{op} \times \cat{C} \to \Ab. $$
 \end{definition}
-To see why functoriality is the same as bilinear composition, recall that the $\mathbf{Hom}$-functor in the first variable uses precomposition on maps, and postcomposition in the second variable. This should be by functoriality a group homomorphism, written out this means: $h \circ (g + f) = h \circ g + h \circ f$ for postcomposition, in other words postcomposition is linear. Similar for precomposition. Together this gives bilinearity of $- \circ -$.
+To see why functoriality is the same as bilinear composition, recall that the $\mathbf{Hom}$-functor in the first variable uses precomposition on maps, and postcomposition in the second variable. By functoriality this should be a group homomorphism, written out this means: $h \circ (g + f) = h \circ g + h \circ f$ for postcomposition, in other words postcomposition is linear. Similar for precomposition. Together this gives bilinearity of $- \circ -$.
 
 Clearly the category $\Ab$ is preadditive, since we can add group homomorphisms pointwise. Furthermore, postcomposition is linear $h \circ (g + f) (x) = h(g(x)+f(x)) = h(g(x)) + h(f(x)) = (h \circ g + h \circ f) (x)$, and similarly precomposition is linear. Using this we can proof the following.
 \begin{lemma}
@@ -111,7 +111,8 @@ Of course given two preadditive categories $\cat{C}$ and $\cat{D}$, not every fu
 
 \todo{CC: What to do with the example...}
 \subsection{The singular chain complex}
-In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. So we will form a chain complex from a topological space $X$. In order to do so, we first need some more notions.
+In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. So we will form a chain complex from a topological space $X$. In this section we will not be very precise, as it will only act as an motivation. However the intuition might be very useful later on, and so pictures are provided to give meaning to this construction.
+
 \begin{definition}
 	The topological space $\Delta^n$ is called the \emph{topological $n$-simplex} and is defined as:
 	$$ \Delta^n = \{(x_0, x_1, \ldots, x_n) \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \}.$$
@@ -124,26 +125,13 @@ In particular $\Delta^0$ is simply a point, $\Delta^1$ a line and $\Delta^2$ a t
 	$$ \delta^i (x_0, \ldots, x_n) = (x_0, \ldots, x_{i}, 0, x_{i+1}, \ldots, x_n) \text{ for all } x \in \Delta^n.$$
 \end{definition}
 
-For any space $X$, we will be interested in continuous maps $\sigma : \Delta^n \to X$, such a map is called a $n$-simplex. Note that if we have any continuous map $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get $\sigma \circ \delta^i : \Delta^n \to X$, as shown in figure~\ref{fig:diagram_d}. This will be used for defining the boundary operator. We can make pictures of this, and when concerning continuous maps $\sigma : \Delta^{n+1} \to X$ we will draw the images in the space $X$, instead of functions.
+For any space $X$, we will be interested in continuous maps $\sigma : \Delta^n \to X$, such a map is called a $n$-simplex. Note that if we have any continuous map $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get $\sigma \circ \delta^i : \Delta^n \to X$, as shown in figure~\ref{fig:diagram_d} for $n=2$. From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$, gives one of the boundaries of $\sigma$. If we were able to add these different boundaries ($\sigma \circ \delta^i$, for every $i$), then we could assign to $\sigma$ its complete boundary at once. The free abelian group will enable us to do so. This gives the following definition.
 
 \begin{figure}
-	\begin{tikzpicture}
-		\matrix (m) [matrix of math nodes]{
-			\Delta^{n+1} & X \\
-			\Delta^n & \\
-		};
-		\path[->]
-		(m-1-1) edge node[auto] {$ \sigma $} (m-1-2)
-		(m-2-1) edge node[auto] {$ \delta^i $} (m-1-1)
-		(m-2-1) edge node[auto] {$ $} (m-1-2);
-	\end{tikzpicture}
-	\caption{The $(n+1)$-simplex $\sigma$ can be made into a $n$-simplex $\sigma \circ \delta^i$}
+	\includegraphics[scale=1.2]{singular_set}
+	\caption{The $2$-simplex $\sigma$ can be made into a $1$-simplex $\sigma \circ \delta^1$}
 	\label{fig:diagram_d}
 \end{figure}
-
-\todo{Ch: Make some pictures here}
-
-We now have enough tools to define the singular chain complex of a space $X$.
 
 \begin{definition}
 	For a topological space $X$ we define the \emph{$n$-th singular chain group} $C_n(X)$ as follows.
@@ -152,12 +140,32 @@ We now have enough tools to define the singular chain complex of a space $X$.
 	$$ \del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}.$$
 \end{definition}
 
-This might seem a bit complicated, but we can pictures this in an intuitive way, as in figure~\ref{fig:singular_chaincomplex}. And we see that the boundary operators really give the boundary of an $n$-simplex. To see that this indeed is a chain complex we have to proof that the composition of two such operators is the zero map.
+This might seem a bit complicated, but we can picture this in an intuitive way, as in figure~\ref{fig:singular_chaincomplex}. And we see that the boundary operators really give the boundary of an $n$-simplex. To see that this indeed is a chain complex we have to proof that the composition of two such operators is the zero map.
 \begin{figure}[h!]
 	\includegraphics[scale=1.2]{singular_chaincomplex}
 	\caption{The boundary of a 2-simplex, and a boundary of a 1-simple}
 	\label{fig:singular_chaincomplex}
 \end{figure}
 
-\todo{Ch: Proposition: $C(X) \in \Ch{\cat{Ab}}$?}
-\todo{Ch: Example homology of some space}
+The above construction gives us a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this). Composing with the functor $H_n: \Ch{\Ab} \to \Ab$, we get a functor:
+$$ H^{sing}_n : \Top \to \Ab, $$
+which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^{sing}_n(X)$. A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopic equivalent spaces have isomorphic homology groups. So from a homotopy perspective this construction is nice. In the remainder of this section we will give the homology groups of some basic spaces. It is hard to calculate these results from the definition above, so generally one gets these results by using theorem from algebraic topology. To calculate these examples one generally needs theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. So we simply give these results.
+
+\begin{example}
+\begin{itemize}
+	\item Let $\ast$ be the one-point space, its homology is given by:
+	$$ H^{sing}_n(\ast) \iso
+	\begin{cases}
+		\Z \text{ if } n = 0 \\
+		0 \text { otherwise}
+	\end{cases}. $$
+	\item Let $S^k$ denote the $k$-sphere (for example $S^1$ is the circle). Its homology, for $n \in \Np$ is:
+	$$ H^{sing}_n(S^k) \iso
+	\begin{cases}
+		\Z \text{ if } n = 0 \text { or } n = k \\
+		0 \text { otherwise}
+	\end{cases}. $$
+	For $S^0$ (which consists of only two points) the first homology group is isomorphic to $\Z \oplus \Z$, and all other homology groups are trivial.
+	\item Note that $\R^n - \{0\}$ is homotopic equivalent to $S^n$, so their homology groups are the same. As a consequence $\R^n - \{0\}$ has the same homology groups as $\R^m - \{0\}$, only if $n=m$. Now if $\R^n$ is homeomorphic to $\R^m$, then also $\R^n - \{0\} \iso \R^m - \{0\}$, so this only happens if $n=m$.
+\end{itemize}
+\end{example}
