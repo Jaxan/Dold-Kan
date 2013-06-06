@@ -32,7 +32,7 @@ In order to organize these chain complexes in a category, we should define what 
 	\end{center}
 \end{definition}
 
-Note that if we have two such chain maps $f:C \to D$ and $g:D \to E$, then the levelwise composition will give us a chain map $g \circ f: C \to D$. Also taking the identity function in each degree, gives us a chain map $\id : C \to C$. In fact, this will form a category, we will leave the details (the identity law and associativity) to the reader.
+Note that if we have two such chain maps $f:C \to D$ and $g:D \to E$, then the level-wise composition will give us a chain map $g \circ f: C \to D$. Also taking the identity function in each degree, gives us a chain map $\id : C \to C$. In fact, this will form a category, we will leave the details (the identity law and associativity) to the reader.
 
 \begin{definition}
 	$\Ch{\Ab}$ is the category of chain complexes with chain maps.
@@ -84,7 +84,31 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 	$$ H_n(f \circ g)([x]) = [f_n(g_n(x))] = H_n(f)([g_n(x)]) = H_n(f) \circ H_n(g) ([x]). $$
 \end{proof}
 
-\todo{Ch: Note that $\Ch{\Ab}$ is an ab. cat. At least show functoriality $\Hom{\Ch{\Ab}}{-}{-}$}
+\subsection{A note on abelian categories}
+The category $\Ch{\Ab}$ in fact is an \emph{abelian category}. We will only need a very specific property of this fact later on, and hence we will only prove this single fact. For the precise definition of an abelian category we refer to the book of Rotman about homological algebra \cite[Chapter~5.5]{rotman}. The notion of an abelian category is interesting if one wants to consider chain complexes over other objects than abelian groups, because $\Ch{\cat{C}}$ will be an abelian category whenever $\cat{C}$ is abelian.\footnote{However, this generality might not be so interesting from a categorical standpoint, as there is a fully faithful (exact) functor $F: \cat{C} \to \Ab$ for any abelian category $\cat{C}$, called the \emph{Mitchell embedding} \cite{rotman}. This gives a way to proof categorical statements in $\cat{C}$ by proving the statement for $\Ab$.} The property we want to use later on is the following.
+\begin{definition}
+	A category $\cat{C}$ is \emph{preadditive} if the set of maps between two objects is an abelian group, such that composition is bilinear. In other words: the $\mathbf{Hom}$-functor has as its codomain $\Ab$:
+	$$ \Hom{\cat{C}}{-}{-} : \cat{C}^{op} \times \cat{C} \to \Ab. $$
+\end{definition}
+To see why functoriality is the same as bilinear composition, recall that the $\mathbf{Hom}$-functor in the first variable uses precomposition on maps, and postcomposition in the second variable. This should be by functoriality a group homomorphism, written out this means: $h \circ (g + f) = h \circ g + h \circ f$ for postcomposition, in other words postcomposition is linear. Similar for precomposition. Together this gives bilinearity of $- \circ -$.
+
+Clearly the category $\Ab$ is preadditive, since we can add group homomorphisms pointwise. Furthermore, postcomposition is linear $h \circ (g + f) (x) = h(g(x)+f(x)) = h(g(x)) + h(f(x)) = (h \circ g + h \circ f) (x)$, and similarly precomposition is linear. Using this we can proof the following.
+\begin{lemma}
+	The category $\Ch{\Ab}$ is a preadditive category.
+\end{lemma}
+\begin{proof}
+	We can add chain maps level-wise. Given two chain maps $f, g: C \to D$, we define $f+g$ as:
+	$$ (f+g)_n = f_n + g_n, $$
+	where we use the fact that $\Ab$ is preadditive. Note that $f+g$ is also a chain map, since it commutes with the boundary operator. The bilinearity of composition follows level-wise from the fact that $\Ab$ is preadditive.
+\end{proof}
+
+Of course given two preadditive categories $\cat{C}$ and $\cat{D}$, not every functor will preserve this extra structure.
+\begin{definition}
+	Let $\cat{C}$ and $\cat{D}$ be two preadditive categories. A functor $F: \cat{C} \to \cat{D}$ is said to be \emph{additive} if it preserves addition of maps, i.e.:
+	$$ F(f + g) = F(f) + F(g). $$
+	In other words the functor $F$ induces a group homomorphism: $F : \Hom{\cat{C}}{A}{B} \to \Hom{\cat{D}}{FA}{FB}$.
+\end{definition}
+
 \todo{CC: What to do with the example...}
 \subsection{The singular chain complex}
 In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. So we will form a chain complex from a topological space $X$. In order to do so, we first need some more notions.
