@@ -166,6 +166,8 @@ Note that this is also the definition of the Yoneda embedding $\Delta[n] = y[n]$
 \subsection{Other simplicial objects}
 Of course the abstract definition of simplicial abelian group can easily be generalized to other categories. For any category $\cat{C}$ we can consider the functor category $\cat{sC} = \cat{C}^{\DELTA^{op}}$. In this thesis we are interested in the category $\sAb = \Ab^{\DELTA^{op}}$ of simplicial abelian groups. So a simplicial abelian group $A$ is a collection of abelian groups $A_n$, together with face and degeneracy maps, which in this case means group homomorphisms $d_i$ and $s_i$ such that the simplicial equations hold.
 
+Note that the set of natural transformations between two simplicial abelian groups $A$ and $B$ is also an abelian group. The proof that $\sAb$ is a preadditive category is very similar to the proof we saw in section~\ref{sec:ChainComplexes}. For two natural transformations $f,g: A \to B$ we simply define $f+g$ pointwise: $(f+g)_n = f_n + g_n$.
+
 As we are interested in simplicial abelian groups, it would be nice to make these standard $n$-simplices into simplicial abelian groups. We have seen how to make an abelian group out of any set using the free abelian group. We can use this functor $\Z[-] : \Set \to \Ab$ to induce a functor $\Z^\ast[-] : \sSet \to \sAb$ as shown in the following diagram.
 \begin{figure}[h!]
 	\begin{tikzpicture}
@@ -221,9 +223,18 @@ As we are interested in simplicial abelian groups, it would be nice to make thes
 
 \subsection{The Yoneda lemma}
 Recall that the Yoneda lemma stated: $\mathbf{Nat}(y(C), F) \iso F(C)$, where $F:\cat{C}^{op} \to \Set$ is a functor and $C$ an object. In our case we consider functors $X: \DELTA^{op} \to \Set$ and objects $[n]$. So this gives us the natural bijection:
-$$ X_n \iso \Hom{\sSet}{\Delta[n], X}. $$
+$$ X_n \iso \Hom{\sSet}{\Delta[n]}{X}. $$
 So we can regard $n$-simplices in $X$ as maps from $\Delta[n]$ to $X$. This also extends to the abelian case, where we get an natural isomorphism (of abelian groups):
-$$ A_n \iso \Hom{\sAb}{\Z^\ast[\Delta[n]], A}, $$
-which is natural in $A$ and $[n]$.
+\begin{lemma}\emph{(The abelian Yoneda lemma)}
+	Let $A$ be a simplicial abelian group. Then there is a group isomorphism
+	$$ A_n \iso \Hom{\sAb}{\Z^\ast[\Delta[n]]}{A}, $$
+	which is natural in $A$ and $[n]$.
+\end{lemma}
+\begin{proof}
+	By using the (non-abelian) Yoneda lemma and the fact that $\Z^\ast$ is a left-adjoint, we already have a natural bijection. The only thing that we need to check is that this bijections preserves the group structure. Recall that the bijection from the (non-abelian) Yoneda lemma is given by:
+	$$ \phi(f) = f_n(\id) \in X_n \text{ for } f: \Delta[n] \to X. $$
 
-\todo{sAb: note use of Yoneda lemma (also abelian)}
+	Now let $A$ be a simplicial abelian group and $f, g: \Z^\ast\Delta[n] \to A$ maps. Then we compute:
+	$$ \phi(f) + \phi(g) = f_n(\id) + g_n(\id) = (f_n + g_n)(\id) = (f+g)_n(\id) = \phi(f+g), $$
+	where we regard $\id \in \Delta[a]$ as en element $\id \in \Z^\ast\Delta[n]$, we can do so by the unit of the adjunction. So this bijection is also a group homomorphism, hence we have an isomorphism $A_n \iso \Hom{\sAb}{\Z^\ast[\Delta[n]]}{A}$ of abelian groups.
+\end{proof}
