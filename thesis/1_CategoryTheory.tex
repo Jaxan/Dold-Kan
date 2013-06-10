@@ -80,15 +80,15 @@ Note that an isomorphism between to categories is now also defined. Two categori
 	For any two categories $\cat{C}$ and $\cat{D}$ we can form a category with functors $F: \cat{C} \to \cat{D}$ as objects and natural transformations as maps. This category is called the \emph{functor category} and is denoted by $\cat{D}^\cat{C}$.
 \end{lemma}
 \begin{proof}
-	We refer to MacLane \cite{maclane} or Awodey \cite{awodey}.
+	We refer to Mac Lane \cite{maclane} or Awodey \cite{awodey}.
 \end{proof}
 
 This now also gives a notion of isomorphisms between functors. It can be easily seen that a isomorphism between two functors is a natural transformation which is an isomorphism pointwise. Such a natural transformation is called a natural isomorphism.
 
 \subsection{Equivalence}
-Recall that an isomorphism between categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that:
+Recall that an \emph{isomorphism} between categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that:
 $$ FG = \id_\cat{D} \text{ and } \id_\cat{C} = GF. $$
-With the notion of isomorphisms between functors we can weaken this, and only require a natural isomorphism instead of equality.
+With the notion of isomorphisms between functors we can generalize this, and only require a natural isomorphism instead of equality.
 
 \begin{definition}
 	An \emph{equivalence} between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that there are natural isomorphisms:
@@ -97,31 +97,64 @@ With the notion of isomorphisms between functors we can weaken this, and only re
 \end{definition}
 
 \begin{example}
-	The category $\cat{Set_{fin}}$ of finite sets is equivalent to the category $\cat{Ord_{fin}}$ of finite ordinals. Although the former is uncountable and the latter is countable, the categories are still very alike.
+	The category $\cat{Set_{fin}}$ of finite sets is equivalent to the category $\cat{Ord_{fin}}$ of finite ordinals (with all functions). The former is uncountable and the latter is countable, hence they clearly cannot be isomorphic. However, from a categorical point of view these categories are very alike, which is precisely expressed by the equivalence.
 \end{example}
 
 \subsection{Adjunctions}
 \begin{definition}
-	An \emph{adjunction} between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$, $G: \cat{D} \to \cat{C}$ and two natural transformations:
-	$$ FG \to \id_\cat{D} \text{ and } \id_\cat{C} \to GF, $$
-	such that \todo{CT: adjunction}.
-	$F$ is called the left-adjoint and $G$ the right-adjoint.
-\end{definition}
-
-Note that the roles of $F$ and $G$ in the above definition are not symmetric. Clearly any equivalence $F: \cat{C} \simeq \cat{D}$ gives an adjunction, where $F$ is both a left and right-adjoint.
-
-Now there are different definitions of adjunctions, which are all equivalent. We will not prove that these are equivalent. A particular nice one is the following:
-
-\begin{definition}
 	An adjunction between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that there is a natural bijection:
 	$$ \Hom{\cat{D}}{FX}{Y} \iso \Hom{\cat{C}}{X}{GY} $$
 	for any $X \in \cat{D}$ and $Y \in \cat{C}$.
+	$F$ is called the left-adjoint and $G$ the right-adjoint.
 \end{definition}
 
-In this definition we clearly see why $F$ is called the left-adjoint and $G$ the right-adjoint.
+Now there are different definitions of adjunctions, which are equivalent. We will not prove that these are equivalent. One can find the proof in for example in the books of Mac Lane \cite{maclane} or Awodey \cite{awodey}. A particular nice one is the following:
+
+\begin{definition}
+	An adjunction between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$, $G: \cat{D} \to \cat{C}$ and a natural transformation, called the \emph{unit}:
+	$$ \eta : \id_\cat{C} \to GF. $$
+	Such that for any map $f: S \to G(A)$ (in $\cat{C}$), there is a unique map $\overline{f}: F(S) \to A$ (in $\cat{D}$) such that $G(\overline{f}) \circ \eta = f$. I.e.:
+\begin{center}
+	\begin{tikzpicture}
+		\matrix (m) [matrix of math nodes]{
+			S & GF(S) & F(S) \\
+			  & G(A)  & A \\
+		};
+		\path[->]
+		(m-1-1) edge node[auto] {$ \eta $} (m-1-2)
+		(m-1-2) edge node[auto] {$ G(\overline{f}) $} (m-2-2)
+		(m-1-1) edge node[auto] {$ f $} (m-2-2);
+		\path[->]
+		(m-1-3) edge node[auto] {$ \overline{f} $} (m-2-3);
+	\end{tikzpicture}
+\end{center}
+\end{definition}
+
+Note that by considering the identity map $\id : G(A) \to G(A)$ in $\cat{C}$, we get a uniquely determined map $\overline{\id}:FG(A) \to A$. This map $FG(A) \to A$ is in fact natural in $A$, this natural transformation is called the \emph{co-unit}:
+$$ \eps: FG \to \id. $$
+
+It can be shown that an equivalence $F: \cat{C} \tot{\simeq} \cat{D}$ is both a left and right-adjoint. We skecth the proof of $F$ being a left-adjoint. Clearly we already have the natural transformation $\eta: \id_\cat{C} \to GF$. To construct $\overline{f}$ from $f: S \to G(A)$ we can apply the functor $F$, to get $F(S) \to FG(A)$, using the other natural isomorphism we get $F(S) \to FG(A) \to A$. We leave the details to the reader.
+
+The first definition of adjunction is useful when dealing with maps, since it gives an bijection between the $\mathbf{Hom}$-sets. However the second definition is useful when proving a certain construction is part of an adjunction, as shown in the following example.
 
 \begin{example}
-	The free ab. group. \todo{CT: Define free abelian group}
+	\emph{(The free abelian group)} There is an obvious functor $U: \Ab \to \Set$, which sends an abelian group to its underlying set, forgetting the additional structure. It is hence called a \emph{forgetful functor}. This functor is a right-adjoint. The left-adjoint $\Z[-]: \Set \to \Ab$ is given by the \emph{free abelian group}; for a set $S$ define:
+	$$ \Z[S] = \{ \phi: S \to \Z \I \text{supp}(\phi) \text{ is finite}\}, $$
+	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given pointwise. One can think of elements of this abelian group as formal sums, namely:
+	$$ \text{for } \phi \in F(S),\, \phi = \sum_{x \in \text{supp}(\phi)}\phi(x) x, $$
+	in other words $\Z[S]$ consists of linear combinations of elements in $S$.
+
+	There is a map $i: S \to U\Z[S]$ given by:
+	$$ i(s)(t) =
+	\begin{cases}
+		1 \text{ if } s = t \\
+		0 \text{ otherwise}
+	\end{cases}. $$
+
+	And given any map $f: S \to U(A)$ for any abelian group $A$, we can define:
+	$$ \overline{f}(\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) \cdot f(x). $$
+
+	It is clear that $U(\overline{f}) \circ i = f$. We will leave the other details (naturality of $\eta$, $\overline{f}$ being a group homomorphism, and uniqueness w.r.t. $U(\overline{f}) \circ i = f$) to the reader.
 \end{example}
 
 \subsection{Yoneda}
