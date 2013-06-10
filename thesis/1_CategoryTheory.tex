@@ -3,6 +3,7 @@
 Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, let us begin by recalling some basic category theory. The reader who is already familiar with these concepts, is invited to skip this section. We will introduce the notions of categories, functors, isomorphisms, natural transformations, equivalences, adjunctions and the Yoneda lemma.
 
 \subsection{Categories}
+\todo{CT: Where to start...?}
 \begin{definition}
 	A \emph{category} $\cat{C}$ consists of a collection of \emph{objects}, and for each two objects $A$ and $B$ in $\cat{C}$ there is a set of \emph{maps}  from $A$ to $B$, notated as $\Hom{\cat{C}}{A}{B}$, such that:
 	\begin{itemize}
@@ -85,6 +86,7 @@ Note that an isomorphism between to categories is now also defined. Two categori
 
 This now also gives a notion of isomorphisms between functors. It can be easily seen that a isomorphism between two functors is a natural transformation which is an isomorphism pointwise. Such a natural transformation is called a natural isomorphism.
 
+\todo{CT: Hom-functor}
 \subsection{Equivalence}
 Recall that an \emph{isomorphism} between categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that:
 $$ FG = \id_\cat{D} \text{ and } \id_\cat{C} = GF. $$
@@ -133,7 +135,7 @@ Now there are different definitions of adjunctions, which are equivalent. We wil
 Note that by considering the identity map $\id : G(A) \to G(A)$ in $\cat{C}$, we get a uniquely determined map $\overline{\id}:FG(A) \to A$. This map $FG(A) \to A$ is in fact natural in $A$, this natural transformation is called the \emph{co-unit}:
 $$ \eps: FG \to \id. $$
 
-It can be shown that an equivalence $F: \cat{C} \tot{\simeq} \cat{D}$ is both a left and right-adjoint. We skecth the proof of $F$ being a left-adjoint. Clearly we already have the natural transformation $\eta: \id_\cat{C} \to GF$. To construct $\overline{f}$ from $f: S \to G(A)$ we can apply the functor $F$, to get $F(S) \to FG(A)$, using the other natural isomorphism we get $F(S) \to FG(A) \to A$. We leave the details to the reader.
+It can be shown that an equivalence $F: \cat{C} \tot{\simeq} \cat{D}$ is both a left and right-adjoint. We sketch the proof of $F$ being a left-adjoint. Clearly we already have the natural transformation $\eta: \id_\cat{C} \to GF$. To construct $\overline{f}$ from $f: S \to G(A)$ we can apply the functor $F$, to get $F(S) \to FG(A)$, using the other natural isomorphism we get $F(S) \to FG(A) \to A$. We leave the details to the reader.
 
 The first definition of adjunction is useful when dealing with maps, since it gives an bijection between the $\mathbf{Hom}$-sets. However the second definition is useful when proving a certain construction is part of an adjunction, as shown in the following example.
 
@@ -158,7 +160,6 @@ The first definition of adjunction is useful when dealing with maps, since it gi
 \end{example}
 
 \subsection{Yoneda}
-\todo{CT: Hom-functor}
 So far we have only encountered definitions from category theory. However there is a very important lemma by Yoneda. This lemma gives a nice way to construct certain natural transformations.
 
 \begin{definition}
@@ -172,5 +173,6 @@ So far we have only encountered definitions from category theory. However there 
 	$$ \mathbf{Nat}(y(C), F) \iso F(C), $$
 	which is natural in both $F$ and $C$, where $\mathbf{Nat}(G, G')$ denotes the set of natural transformation between $G$ and $G'$, in other words $\mathbf{Nat} = \mathbf{Hom}_{\Set^{\cat{C}^{op}}}$.
 \end{lemma}
+\todo{CT: Prove Yoneda? I guess not...}
 
 We will use this lemma when we discuss simplicial abelian groups.
