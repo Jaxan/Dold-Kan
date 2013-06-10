@@ -1,4 +1,4 @@
-\documentclass[11pt]{amsproc}
+\documentclass[titlepage, 11pt]{amsproc}
 
 % a la fullpage
 \usepackage{geometry}
@@ -8,6 +8,9 @@
 % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage[parfill]{parskip}
 \setlength{\marginparwidth}{2cm}
+
+% toc/refs clickable
+\usepackage{hyperref}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -26,7 +29,40 @@
 \author{Joshua Moerman}
 
 \begin{document}
-\maketitle
+\begin{titlepage}
+\centering
+\vspace{10cm}
+
+\includegraphics[scale=0.2]{ru}\\
+\textsc{Radboud University Nijmegen}
+\vspace{3cm}
+
+{\huge \bfseries Dold-Kan Correspondence}\\
+Bachelor Thesis Mathematics
+\vspace{3cm}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+Joshua Moerman\\
+3009408
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Moritz Groth
+\end{flushright}
+\end{minipage}
+
+\vfill
+\today
+
+\end{titlepage}
+
+\section*{Contents}
+\renewcommand\contentsname{}
+\tableofcontents
 
 \section*{Introduction}
 In this thesis we will look at a correspondence which was discovered by A. Dold \cite{dold} and D. Kan \cite{kan} independently, hence it is called the \emph{Dold-Kan correspondence}. Abstractly it is the following equivalence of categories:
