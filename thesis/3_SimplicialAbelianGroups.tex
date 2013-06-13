@@ -11,23 +11,36 @@ Before defining \emph{simplicial abelian groups}, we will first discuss the more
 There are two special kinds of maps in $\DELTA$, the so called \emph{face} and \emph{degeneracy} maps. The $i$-th face maps $\delta_i$ is the unique injective monotone increasing function which \emph{omits} $i$. More precisely it is defined for all $n \in \Np$ as (note that we do not explicitly denote $n$ in this notation):
 $$ \delta_i: [n-1] \to [n], k \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n. $$
 
-The $i$-th degeneracy map $\sigma_i$ is the unique surjective monotone increasing function which hits $i$ twice. More precisely it is defined for all $n \in \N$ as:
+The $i$-th degeneracy map $\sigma_i$ is the unique surjective monotone increasing function which \emph{hits $i$ twice}. More precisely it is defined for all $n \in \N$ as:
 $$ \sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n. $$
 
 The nice things about these maps is that every map in $\DELTA$ can be decomposed to a composition of these maps. So in a sense, these are all the maps we need to consider.
 
-\begin{lemma}
+\begin{lemma}\emph{(Epi-mono factorization)}
 	\label{le:epimono}
 	Let $\eta : [m] \to [n]$ be a map in $\DELTA$. Then $\eta$ can be uniquely decomposed as:
 	$$ \eta = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}, $$
 	such that $0 \leq j_b < \cdots < j_1 < m$ and $0 \leq i_1 < \cdots < i_a \leq n$.
 \end{lemma}
+This is called the epi-mono factorization, because it factors any map $\eta$ into a surjective part ($\sigma_{j_b} \cdots \sigma_{j_1}$) and an injective part ($\delta_{i_a} \cdots \delta_{i_1}$). In a diagram:
+
+{\centering\begin{tikzpicture}
+	\matrix (m) [row sep=1em, column sep=3em, matrix of math nodes]{
+		% Note: [] have a meaning in tikz, so I wrapped them in \left \right
+		\left[m\right] &     & \left[n\right] \\
+		    & \left[k\right] &     \\
+	};
+	\path[->] (m-1-1) edge node[auto] {$ \eta $} (m-1-3);
+	\path[->>] (m-1-1) edge node[below left] {$ \sigma_{j_b} \cdots \sigma_{j_1} $} (m-2-2);
+	\path[right hook->] (m-2-2) edge node[below right] {$ \delta_{i_a} \cdots \delta_{i_1} $} (m-1-3);
+\end{tikzpicture}\par}
+
 \begin{proof}
 	We start with the existence. Consider the set $S = \{ k \in [m-1] \I \eta(k) = \eta(k+1) \}$. These are precisely the elements which are hit twice, now let $S = \{ j_1, \ldots, j_{|S|} \}$ with $0 \leq j_{|S|} < \cdots < j_1 < m$. This gives rise to a surjection $\sigma = \sigma_{j_b} \cdots \sigma_{j_1}: [m] \epi [m-|S|]$.
 
 	Similarly consider $T = \{ k \in [m - |S|] \I k \not \in \eta[m] \}$. These are precisely the elements which are omitted, now let $T = \{ i_1, \ldots, i_{|T|} \}$ with $0 \leq i_1 < \cdots < i_{|T|} \leq n$. This gives an injection $\delta = \delta_{i_a} \cdots \delta_{i_1} : [m - |S|] \mono [n]$. Now we see that $\eta = \delta\sigma$.
 
-	Now for uniqueness, \todo{sAb: uniqueuness epi-mono}
+	Now for uniqueness, suppose also $\eta = \delta_{i'_{a'}} \cdots \delta_{i'_1} \sigma_{j'_{b'}} \cdots \sigma_{j'_1}$ such that $0 \leq j'_{b'} < \cdots < j'_1 < m$ and $0 \leq i'_1 < \cdots < i'_{a'} \leq n$. It is immediately clear that $b = b'$ must hold by counting the elements which are hit twice, and therefore also $a = a'$. Note that $\eta(j'_k) = \eta(j'_{k+1})$, because the sequences are ordered in the same way, this means $j_k = j'_k$ for all $k$. Similarly $i_k$ = $i'_k$ for all $k$.
 \end{proof}
 
 We can now picture the category $\DELTA$ as in figure~\ref{fig:delta_cat}. Note that the face and degeneracy maps are not unrelated. We will make the exact relations precise later.
@@ -77,7 +90,7 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain relatio
 	\end{align}
 \end{lemma}
 \begin{proof}
-	By writing out the definitions given above. \todo{sAb: this is a bit rude, maybe write out some of it...}
+	By writing out the definitions given above. \todo{sAb: Is this rude?}
 \end{proof}
 
 Because a simplicial set $X$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ X(\delta_i)X(\delta_j) = X(\delta_{j-1})X(\delta_i) $ for $ i < j$. This can be used for an explicit definition of simplicial sets. In this definition a simplicial set $X$ consists of a collection sets $X_n$ together with the face and degeneracy maps. More precisely:
@@ -103,13 +116,16 @@ Note that because of the third equation, the degeracy maps $s_i$ are injective. 
 \end{definition}
 \begin{lemma}
 	\label{le:non-degenerate}
-	We can write any $x \in X_n$ uniquely as $x = \beta^\ast y$ for some surjective map $\beta : [n] \epi [m]$ and $y \in X_m$ non-degenerate.
+	We can write any $x \in X_n$ uniquely as $x = \beta^\ast y$ with $\beta : [n] \epi [m]$ a surjective map and $y \in X_m$ non-degenerate.
 \end{lemma}
 \begin{proof}
-	We will proof the existence with inducion over $n$. For $n=0$ the statement is trivial, since all elements in $X_0$ are non-degenerate. Assume the statement is proven for $n$. Let $x \in X_{n+1}$. Clearly if $x$ itself is non-degenerate, we can write $x = \id^\ast x$. Otherwise it is of the form $x = s_i x'$ for some $x' \in X_n$ and $i$. The induction hypothesis tells us that we can write $x' = \beta^\ast y$ for some surjection $\beta: [n] \epi [m]$ and $y \in X_m$ non-degenerate. So $x = s_i \beta^\ast y = (\beta \sigma_i)^\ast y$.
+	We will proof the existence with induction over $n$. For $n=0$ the statement is trivial, since all elements in $X_0$ are non-degenerate. Assume the statement is proven for $n$. Let $x \in X_{n+1}$. Clearly if $x$ itself is non-degenerate, we can write $x = \id^\ast x$. Otherwise it is of the form $x = s_i x'$ for some $x' \in X_n$ and $i$. The induction hypothesis tells us that we can write $x' = \beta^\ast y$ for some surjection $\beta: [n] \epi [m]$ and $y \in X_m$ non-degenerate. So $x = s_i \beta^\ast y = (\beta \sigma_i)^\ast y$.
 
-	For uniqueness, assume $x = \beta^\ast y = \gamma^\ast z$ with $\beta : [n] \epi [m]$, $\gamma: [n] \epi [m']$ and $y \in X_m, z \in X_{m'}$ non-degenerate. Because $\beta$ is surjective there is an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and hence $y = \alpha^\ast \gamma^\ast z = (\gamma\alpha)^\ast z$. By lemma~\ref{le:epimono} we can write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, using that $y$ is non-degenerate we know that $\gamma\alpha$ is injective. So we have $\gamma\alpha: [m] \mono [m']$. Because of symmetry (of $y$ and $z$) we also have some map $[m'] \mono[m]$, so $m = m'$. So $\gamma\alpha$ is also surjective, hence the identity function, thus $y = z$.
-	\todo{sAb: $\gamma = \beta$}
+	For uniqueness, assume $x = \beta^\ast y = \gamma^\ast z$ with $\beta : [n] \epi [m]$, $\gamma: [n] \epi [m']$ and $y \in X_m, z \in X_{m'}$ non-degenerate. Because $\beta$ is surjective there is an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and hence $y = \alpha^\ast \gamma^\ast z = (\gamma\alpha)^\ast z$. By the epi-mon factorization (Lemma~\ref{le:epimono}) we can write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, using that $y$ is non-degenerate we know that $\gamma\alpha$ is injective. So we have $\gamma\alpha: [m] \mono [m']$. Because of symmetry (of $y$ and $z$) we also have some map $[m'] \mono[m]$, so $m = m'$. So $\gamma\alpha$ is also surjective, hence the identity function, thus $y = z$.
+
+	Now assume $x = \beta^\ast y = \gamma^\ast y$ with $\gamma, \beta : [n] \epi [m]$ such that $\beta \neq \gamma$, and $y \in X_m$ non-degenerate. Then we can find an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and $\gamma\alpha \neq \id$. With the epi-mono factorization write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, then by functoriality of $X$:
+	$$ y = \alpha^\ast \beta^\ast y = \alpha^\ast \gamma^\ast y = s_{j_1} \cdots s_{j_b} d_{i_1} \cdots d_{i_a} y. $$
+	Note that $y$ was non-degenerate, so $s_{j_1} \cdots s_{j_b} = \id$, hence $d_{i_1} \cdots d_{i_a} = \id$. So $\gamma\alpha = \id$, which gives a contradiction. So $\beta$ is unique.
 \end{proof}
 
 \subsection{The standard $n$-simplex}
@@ -232,8 +248,10 @@ So we can regard $n$-simplices in $X$ as maps from $\Delta[n]$ to $X$. This also
 	which is natural in $A$ and $[n]$.
 \end{lemma}
 \begin{proof}
-	By using the (non-abelian) Yoneda lemma and the fact that $\Z^\ast$ is a left-adjoint, we already have a natural bijection. The only thing that we need to check is that this bijections preserves the group structure. Recall that the bijection from the (non-abelian) Yoneda lemma is given by:
-	$$ \phi(f) = f_n(\id) \in X_n \text{ for } f: \Delta[n] \to X. $$
+	By using the (non-abelian) Yoneda lemma and the fact that $\Z^\ast$ is a left-adjoint, we already have a natural bijection:
+	$$ A_n \iso \Hom{\sSet}{\Delta[n]}{A} \iso \Hom{\sAb}{\Z^\ast[\Delta[n]]}{A}. $$
+	The only thing that we need to check is that this bijection preserves the group structure. Recall that this bijection from $\Hom{\sAb}{\Z^\ast[\Delta[n]]}{A}$ to $A_n$ is given by (where $\id = \id_{[n]}$ is a generator in $\Z^\ast[\Delta[n]]$):
+	$$ \phi(f) = f_n(\id) \in X_n \quad\text{ for } f: \Delta[n] \to X. $$
 
 	Now let $A$ be a simplicial abelian group and $f, g: \Z^\ast\Delta[n] \to A$ maps. Then we compute:
 	$$ \phi(f) + \phi(g) = f_n(\id) + g_n(\id) = (f_n + g_n)(\id) = (f+g)_n(\id) = \phi(f+g), $$
