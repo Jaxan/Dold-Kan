@@ -43,9 +43,9 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 \begin{definition}
 	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
-		\item $Z_n(C) = \ker(\del_n: C_n \to C_{n-1}) \nsubgrp C_n$, and
-		\item $Z_0(C) = C_0$, and
-		\item $B_n(C) = \im(\del_{n+1}: C_{n+1} \to C_n) \nsubgrp C_n$.
+		\item the subgroup of \emph{$n$-cycles}: $Z_n(C) = \ker(\del_n: C_n \to C_{n-1}) \nsubgrp C_n$, and
+		\item the subgourp of \emph{$0$-cycles}: $Z_0(C) = C_0$, and
+		\item the subgroup of \emph{$n$-boundaries}: $B_n(C) = \im(\del_{n+1}: C_{n+1} \to C_n) \nsubgrp C_n$.
 	\end{itemize}
 \end{definition}
 \begin{lemma}
@@ -127,12 +127,12 @@ In particular $\Delta^0$ is simply a point, $\Delta^1$ a line and $\Delta^2$ a t
 Given a space $X$, we will be interested in continuous maps $\sigma : \Delta^n \to X$, such a map is called a $n$-simplex. Note that if we have a $(n+1)$-simplex $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get a $n$-simplex $\sigma \circ \delta^i : \Delta^n \to X$, as shown in figure~\ref{fig:diagram_d} for $n=1$.
 
 \begin{figure}[h!]
-	\includegraphics[scale=1.2]{singular_set}
+	\includegraphics{singular_set}
 	\caption{The $2$-simplex $\sigma$ can be made into a $1$-simplex $\sigma \circ \delta^1$}
 	\label{fig:diagram_d}
 \end{figure}
 
-From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$, gives one of the boundaries of $\sigma$. If we were able to add these different boundaries ($\sigma \circ \delta^i$, for every $i$), then we could assign to $\sigma$ its complete boundary at once. The free abelian group will enable us to do so. This gives the following definition.
+From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$, gives one of the boundaries of $\sigma$. If we were able to add these different boundaries ($\sigma \circ \delta^i$, for every $i$), then we could assign to $\sigma$ its complete boundary at once. The free abelian group will enable us to do so. However we should note that the topological $n$-simplex is in some way oriented or ordered, which is preserved by the face maps.
 
 \begin{definition}
 	For a topological space $X$ we define the \emph{$n$-th singular chain group} $C_n(X)$ as follows.
@@ -141,16 +141,33 @@ From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \d
 	$$ \del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}.$$
 \end{definition}
 
-This might seem a bit complicated, but we can picture this in an intuitive way, as in figure~\ref{fig:singular_chaincomplex}. We see that the boundary operators really give the boundary of an $n$-simplex. To see that this indeed is a chain complex we have to proof that the composition of two such operators is the zero map.
+The elements in $C_n(X)$ are called \emph{$n$-chains} and are formal sums of \emph{$n$-simplices}. Since these groups are free, we can define any group homomorphism by defining it on the generators, the $n$-simplices. The boundary operator is depicted in figure~\ref{fig:singular_chaincomplex}. In this picture we see that the boundary of a $1$-simplex is simply its end-point minus the starting-point. We see that the boundary of a $2$-simplex is an alternating sum of three $1$-simplices. The alternating sum ensures that the end-points and starting-points of the resulting $1$-chain will cancel out when applying $\del$ again. So in the degrees 1 and 2 we see that $\del$ is nicely behaved. We will now claim that this construction indeed gives a chain complex, without proof.
 \begin{figure}[h!]
 	\includegraphics[scale=1.2]{singular_chaincomplex}
-	\caption{The boundary of a 2-simplex, and a boundary of a 1-simple}
+	\caption{The boundary of a 2-simplex, and a boundary of a 1-simplex}
 	\label{fig:singular_chaincomplex}
 \end{figure}
 
 The above construction gives us a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this). Composing with the functor $H_n: \Ch{\Ab} \to \Ab$, we get a functor:
 $$ H^\text{sing}_n : \Top \to \Ab, $$
-which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^\text{sing}_n(X)$ \todo{CC: singular homology pictures (from presentation)}. A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopic equivalent spaces have isomorphic homology groups. So from a homotopy perspective this construction is nice. In the remainder of this section we will give the homology groups of some basic spaces. It is hard to calculate these results from the definition above, so generally one proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. So we simply give these results.
+which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^\text{sing}_n(X)$. With figure~\ref{fig:singular_homology} we indicate what $H^\text{sing}_1$ measures. In the first space $X$ we see a $1$-cycle which is also a boundary, because we can define a map $\tau: \Delta^2 \to X$ such that $\del(\tau) = \sigma_1-\sigma_2+\sigma_3$, hence we conclude that $0 = [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X)$. So this $1$-cycle is not interesting in homology. In the space $X'$ however there is a hole, which prevents a $2$-simplex like $\tau$ te exist, hence $0 \neq [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X')$. This example shows that in some sense this functor is capable of detecting holes in a space.
+
+\begin{figure}[h!]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{singular_homology1}
+  \caption{The $1$-cycle is in fact a boundary.}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{singular_homology2}
+  \caption{The hole in $X'$ prevents the $1$-cycle to be a boundary.}
+\end{subfigure}
+\caption{Two different spaces in which we consider a $1$-chain $\sigma_1-\sigma_2+\sigma_3$, this $1$-chain is in fact a $1$-cycle, because the end-points and starting-points cancel out.}
+\label{fig:singular_homology}
+\end{figure}
+
+A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopic equivalent spaces have isomorphic homology groups. So from a homotopy perspective this construction is nice. In the remainder of this section we will give the homology groups of some basic spaces. It is hard to calculate these results from the definition above, so generally one proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. So we simply give these results.
 
 \begin{example}
 The following two examples show that the homology groups are reasonable.

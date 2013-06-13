@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.0603482"
-     inkscape:cx="106.44214"
-     inkscape:cy="13.366917"
+     inkscape:cx="132.58296"
+     inkscape:cy="26.437325"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -38,7 +38,7 @@
      inkscape:window-height="976"
      inkscape:window-x="1280"
      inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata4292">
     <rdf:RDF>
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -318,5 +318,29 @@
          style="fill:#000000;fill-opacity:1;stroke:none"
          inkscape:connector-curvature="0" />
     </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 52.608393,92.651867 c 0.789535,0.485868 2.202127,2.922199 4.247882,2.614081 -1.221461,1.57696 -2.975755,2.289042 -4.247882,3.267602"
+       id="path3392"
+       inkscape:connector-curvature="0"
+       transform="translate(256.10568,68.357553)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 53.915434,47.558959 c 0.841349,0.841349 3.70471,0.635363 2.940841,2.940842 -1.668476,1.526615 -1.613898,1.815635 -2.614081,2.940841"
+       id="path3394"
+       inkscape:connector-curvature="0"
+       transform="translate(256.10568,68.357553)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40.191505,36.449112 c 0.155505,-0.10367 2.357157,-3.114572 3.921122,-2.614082 1.128807,1.269899 0.435477,2.830601 0.653521,4.247883"
+       id="path3396"
+       inkscape:connector-curvature="0"
+       transform="translate(256.10568,68.357553)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 70.906964,30.894188 c 0,1.198121 0,2.396242 0,3.594363 -1.849197,0.980339 -3.615114,-0.903779 -3.921122,-0.980281"
+       id="path3400"
+       inkscape:connector-curvature="0"
+       transform="translate(256.10568,68.357553)" />
   </g>
 </svg>
