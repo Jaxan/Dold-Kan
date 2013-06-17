@@ -18,13 +18,35 @@ When dealing with homotopy in a topological space $X$ we always need a base-poin
 	We will call $y$ the \emph{homotopy} and notate $y: x \sim x'$.
 \end{definition}
 
-Of course we would like $\sim$ to be an equivalence relation, however this is not true for all simplicial sets. For example there is in general no reason for symmetry, existence of a $1$-simplex $y$ from $x$ to $x'$ does not give us a $1$-simplex $y'$ from $x'$ to $x$. One can give an precise condition on when it is a equivalence relation, the so called Kan-condition. In our case of abelien groups, however, we can prove this directly.
+Of course we would like $\sim$ to be an equivalence relation, however this is not true for all simplicial sets. For example there is in general no reason for symmetry, existence of a $1$-simplex $y$ from $x$ to $x'$ does not give us a $1$-simplex $y'$ from $x'$ to $x$. One can give an precise condition on when it is a equivalence relation, the so called \emph{Kan-condition}. In our case of simplicial abelien groups, however, we can prove directly that $\sim$ is an equivalence relation.
 
-\todo{Htp: Discuss/picturize Kan-condition?}
+In figure~\ref{fig:simplicial_htp} it is shown why the definition of homotopy makes sense for $n=1$. Two homotopic $1$-simplices from $Z_n(X)$ are depicted in two ways. The first way only shows the structure we have, indicating what the boundaries are (as described by the face maps). In the second figure we collapsed all occurences of $0$ into a single point. This way of drawing a homotopy should remind the reader of homotopy (between paths) in a topological space.
+
+\begin{figure}[h!]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics{simplicial_htp1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics{simplicial_htp2}
+\end{subfigure}
+\caption{In the figure on the left two homotopic $1$ simplices $x, x' \in Z_n(X)$ are shown. The fact that $d_2(y) = \ast$ is depicted by crossing out the bottom line. The right image shows exactly the same structure if we would draw the $0$-simplex $0$ only once (and hence also collapse the degenerate $1$-simplex $d_2y$).}
+\label{fig:simplicial_htp}
+\end{figure}
 
 \begin{lemma}
 	The relation $\sim$ as defined above is an equivalence relation on $Z_n(X)$. Furthermore it is compatible with addition.
 \end{lemma}
+
+Before proving this, one should have a look at figure~\ref{fig:simplicial_eqrel}. In this figure we show what we want to proof in degree $n=0$ (i.e. the simplices of interest are points, and the homotopies are paths).
+
+\begin{figure}[h!]
+\includegraphics{simplicial_eqrel}
+\caption{The three properties of an equivalence relation: reflexivity, symmetry and transitivity. The dashed lines show which homotopy we should construct.}
+\label{fig:simplicial_eqrel}
+\end{figure}
+
 \begin{proof}
 	\emph{Reflexivity}. Let $x \in Z_n(X)$, define $y = s_0 x$. By considering the simplicial identities $d_0 s_0 = \id$ and $d_1 s_0 = \id$, it follows that $d_0 y = d_1 y = x$. Furthermore $d_i y = d_i s_0 x = s_0 d_{i-1} x = 0$ for all $i > 1$, because $x \in Z_n(X)$.
 
@@ -78,7 +100,7 @@ Recall construction of the singular chain complex in section~\ref{sec:Chain Comp
 $$ C_n(X) = \Z[\Hom{\cat{Top}}{\Delta^n}{X}]. $$
 Where the boundary map was given as an alternating sum. Looking more closely we see that this construction decomposes as:
 $$ C: \Top \tot{\text{Sing}} \sSet \tot{\Z^\ast} \sAb \tot{C} \Ch{\Ab}, $$
-where the last functor is the \emph{unnormalized chain complex}. All the categories involved have a notion of homotopy. In topological spaces this is the known notion where $f, g:X \to Y$ are homotopic if there exists a homotopy $H:I \times X \to Y$ with the appropriate properties. In simplicial sets (or simplicial abelian groups) we only saw the notion of homotopy groups, but there exists a more general notion of homotopy, as discussed in the overview of Friedman \cite{friedman}. And finally in chain complexes we saw homology groups, but this category also has a more general notion of chain homotopy, which can be found in any book on homological algebra such as in the book of Weibel \cite{weibel}.
+where the last functor is the \emph{unnormalized chain complex}. All the categories involved have a notion of homotopy. In topological spaces this is the known notion where $f, g:X \to Y$ are homotopic if there exists a homotopy $H:I \times X \to Y$ with the appropriate properties. In simplicial sets (or simplicial abelian groups) we only saw the notion of homotopy groups, but there exists a more general notion of homotopy, as discussed in the overview of Friedman \cite{friedman}. And finally in chain complexes we saw homology groups, but this category also has a more general notion of chain homotopy, which can be found in any book on homological algebra such as in the book of Rotman \cite{rotman}.
 
 It is known that for any simplicial abelian group both the normalized and unnormalized chain complex have the same homology groups. More precisely for any simplicial abelian group $X$ we have:
 $$ H_n(N(X)) \iso H_n(C(X)) \quad\text{for all } n \in \N. $$
