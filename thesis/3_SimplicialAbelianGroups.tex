@@ -1,28 +1,28 @@
 \section{Simplicial Abelian Groups}
 \label{sec:Simplicial Abelian Groups}
 
-Before defining \emph{simplicial abelian groups}, we will first discuss the more general notion of \emph{simplicial sets}. There are generally two definitions of simplicial sets, an abstract one and a very explicit one. We will start with the abstract one, luckily it can still be visualised in pictures, then we will derive the explicit definition. The reader who is interested in how these notions developed, should consider reading the introduction by Friedman \cite{friedman}, which also gives nice illustrations.
+Before defining \emph{simplicial abelian groups}, we will first discuss the more general notion of \emph{simplicial sets}. There are generally two definitions of simplicial sets, an abstract one and a very explicit one. We will start with the abstract one, luckily it can still be visualised in pictures, then we will derive the explicit definition. The reader who is interested in how these notions are developed, should consider reading the introduction by Friedman \cite{friedman}, which also gives nice illustrations.
 
 \subsection{Abstract definition}
 \begin{definition}
-	We define a category $\DELTA$, where the objects are the finite ordinals $[n] = \{0, \dots, n\}$ for $n \in \N$ and maps are monotone increasing functions: $\Hom{\DELTA}{[n]}{[p]} = \{ f : [n] \to [p] \I f(i) \leq f(j) \text{ for all } i < j \}$.
+	We define a category $\DELTA$, where the objects are the finite ordinals $[n] = \{0 < \dots < n\}$ for $n \in \N$ and maps are monotone functions: $\Hom{\DELTA}{[n]}{[m]} = \{ f : [n] \to [m] \I f(i) \leq f(j) \text{ for all } i < j \}$.
 \end{definition}
 
-There are two special kinds of maps in $\DELTA$, the so called \emph{face} and \emph{degeneracy} maps. The $i$-th face maps $\delta_i$ is the unique injective monotone increasing function which \emph{omits} $i$. More precisely it is defined for all $n \in \Np$ as (note that we do not explicitly denote $n$ in this notation):
-$$ \delta_i: [n-1] \to [n], k \mapsto \begin{cases} k & \text{if } k < i;\\ k+1 & \text{if } k \geq i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n. $$
+There are two special kinds of maps in $\DELTA$, the so called \emph{face} maps and \emph{degeneracy} maps. The \emph{$i$-th face maps} $\delta_i: [n-1] \to [n]$ is the unique injective monotone function which \emph{omits} $i$. More precisely, it is defined for all $n \in \Np$ as (note that we do not explicitly denote $n$ in this notation)
+$$ \delta_i: [n-1] \to [n], k \mapsto \begin{cases} k & \text{if } k < i,\\ k+1 & \text{if } k \geq i, \end{cases} \hspace{1.0cm} 0 \leq i \leq n. $$
 
-The $i$-th degeneracy map $\sigma_i$ is the unique surjective monotone increasing function which \emph{hits $i$ twice}. More precisely it is defined for all $n \in \N$ as:
-$$ \sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i;\\ k-1 & \text{if } k > i. \end{cases} \hspace{0.5cm} 0 \leq i \leq n. $$
+The \emph{$i$-th degeneracy map} $\sigma_i: [n+1] \to [n]$ is the unique surjective monotone function which \emph{hits $i$ twice}. More precisely it is defined for all $n \in \N$ as:
+$$ \sigma_i: [n+1] \to [n], k \mapsto \begin{cases} k & \text{if } k \leq i,\\ k-1 & \text{if } k > i, \end{cases} \hspace{1.0cm} 0 \leq i \leq n. $$
 
-The nice things about these maps is that every map in $\DELTA$ can be decomposed to a composition of these maps. So in a sense, these are all the maps we need to consider.
+The nice things about these maps is that every map in $\DELTA$ can be decomposed to a composition of such maps. So in a sense, these are all the maps we need to consider.
 
 \begin{lemma}\emph{(Epi-mono factorization)}
 	\label{le:epimono}
-	Let $\eta : [m] \to [n]$ be a map in $\DELTA$. Then $\eta$ can be uniquely decomposed as:
+	Let $\eta : [m] \to [n]$ be a map in $\DELTA$. Then $\eta$ can be uniquely decomposed as
 	$$ \eta = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}, $$
 	such that $0 \leq j_b < \cdots < j_1 < m$ and $0 \leq i_1 < \cdots < i_a \leq n$.
 \end{lemma}
-This is called the epi-mono factorization, because it factors any map $\eta$ into a surjective part ($\sigma_{j_b} \cdots \sigma_{j_1}$) and an injective part ($\delta_{i_a} \cdots \delta_{i_1}$). In a diagram:
+This is called the \emph{epi-mono factorization}, because it factors any map $\eta$ into a surjective part ($\sigma_{j_b} \cdots \sigma_{j_1}$) and an injective part ($\delta_{i_a} \cdots \delta_{i_1}$). In a diagram:
 
 {\centering\begin{tikzpicture}
 	\matrix (m) [row sep=1em, column sep=3em, matrix of math nodes]{
@@ -43,15 +43,15 @@ This is called the epi-mono factorization, because it factors any map $\eta$ int
 	Now for uniqueness, suppose also $\eta = \delta_{i'_{a'}} \cdots \delta_{i'_1} \sigma_{j'_{b'}} \cdots \sigma_{j'_1}$ such that $0 \leq j'_{b'} < \cdots < j'_1 < m$ and $0 \leq i'_1 < \cdots < i'_{a'} \leq n$. It is immediately clear that $b = b'$ must hold by counting the elements which are hit twice, and therefore also $a = a'$. Note that $\eta(j'_k) = \eta(j'_{k+1})$, because the sequences are ordered in the same way, this means $j_k = j'_k$ for all $k$. Similarly $i_k$ = $i'_k$ for all $k$.
 \end{proof}
 
-We can now picture the category $\DELTA$ as in figure~\ref{fig:delta_cat}. Note that the face and degeneracy maps are not unrelated. We will make the exact relations precise later.
+We can now depict the category $\DELTA$ as in Figure~\ref{fig:delta_cat}. Note that the face and degeneracy maps are not unrelated. We will make the exact relations precise later.
 
 \begin{figure}[h!]
 	\includegraphics{delta_cat}
-	\caption{The category $\DELTA$ with the face and degeneracy maps.}
+	\caption{The category $\DELTA$ with face and degeneracy maps.}
 	\label{fig:delta_cat}
 \end{figure}
 
-Although this is a very abstract definition, a more geometric intuition can be given. In $\DELTA$ we can regard $[n]$ as an abstract version of the $n$-simplex $\Delta^n$. The face maps $\delta_i$ are then exactly maps which point out how we can embed $[n]$ in $[n+1]$. This is shown in figure~\ref{fig:delta_cat_geom}. This picutre shows the images of the face maps, for example the image of $\delta_3$ from $[2]$ to $[3]$ is the set $\{0,1,2\}$, which is the bottom face of the tetrahedron. The degeneracy maps are harder to visualize, one can think of them as ``collapsing'' maps, where two points are identified with each other. For example, this collapses a triangle into a line.
+Although this is a very abstract definition, a more geometric intuition can be given. In $\DELTA$ we can regard $[n]$ as an abstract version of the $n$-simplex $\Delta^n$. The face maps $\delta_i$ are then exactly maps which point out how we can embed $[n-1]$ in $[n]$. This is visualized in Figure~\ref{fig:delta_cat_geom}. This picture shows the images of the face maps, for example the image of $\delta_3$ from $[2]$ to $[3]$ is the set $\{0,1,2\}$, which corresponds to the bottom face of the tetrahedron. The degeneracy maps are harder to visualize, one can think of them as ``collapsing'' maps, where two points are identified with each other. For example, this collapses a triangle into a line.
 
 \begin{figure}
 	\includegraphics{delta_cat_geom}
@@ -59,15 +59,15 @@ Although this is a very abstract definition, a more geometric intuition can be g
 	\label{fig:delta_cat_geom}
 \end{figure}
 
-This category $\DELTA$ will act as a protoype for these kind of geometric structures in other categories. This leads to the following definition.
+This category $\DELTA$ will act as a prototype for these kind of geometric structures in other categories. This leads to the following definition.
 
 \begin{definition}
-	A \emph{simplicial set} $X$ is a functor:
+	A \emph{simplicial set} $X$ is a functor
 	$$X: \DELTA^{op} \to \Set.$$
 	(Or equivalently a contravariant functor $X: \DELTA \to \Set.$)
 \end{definition}
 
-So the category of all simplicial sets, $\sSet$, is the functor category $\Set^{\DELTA^{op}}$, where morphisms are natural transformations. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $X: \DELTA^{op} \to \Set$, keep in mind that these should satisfy some relations which we will discuss next. Hence we can picture a simplicial set as done in figure~\ref{fig:simplicial_set}. Comparing this to figure~\ref{fig:delta_cat} we see that the arrows are reversed, because $X$ is a contravariant functor.
+The category $\sSet$ of all simplicial sets is the functor category $\Set^{\DELTA^{op}}$, where morphisms are natural transformations. Because the face and degeneracy maps give all the maps in $\DELTA$ it is sufficient to define images of $\delta_i$ and $\sigma_i$ in order to define a functor $X: \DELTA^{op} \to \Set$, keeping in mind that these should satisfy some relations which we will discuss next. Hence we can picture a simplicial set as done in Figure~\ref{fig:simplicial_set}. Comparing this to Figure~\ref{fig:delta_cat} we see that the arrows are reversed, because $X$ is a contravariant functor.
 
 \begin{figure}
 	\includegraphics{simplicial_set}
@@ -80,72 +80,72 @@ So the category of all simplicial sets, $\sSet$, is the functor category $\Set^{
 Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain relations, these are the so called \emph{cosimplicial identities}.
 
 \begin{lemma}
-	The face and degeneracy maps in $\DELTA$ satisfy the cosimplicial identities, i.e.:
+	The face and degeneracy maps in $\DELTA$ satisfy the cosimplicial identities
 	\begin{align}
-		\delta_j\delta_i &= \delta_i\delta_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
-		\sigma_j\delta_i &= \delta_i\sigma_{j-1}  \hspace{0.5cm} \text{ if } i < j,\\
+		\delta_j\delta_i &= \delta_i\delta_{j-1},  \hspace{1.5cm} \textnormal{ if } i < j,\\
+		\sigma_j\delta_i &= \delta_i\sigma_{j-1},  \hspace{1.5cm} \textnormal{ if } i < j,\\
 		\sigma_j\delta_j &= \sigma_j\delta_{j+1} = \id,\\
-		\sigma_j\delta_i &= \delta_{i-1}\sigma_j  \hspace{0.5cm} \text{ if } i > j+1,\\
-		\sigma_j\sigma_i &= \sigma_i\sigma_{j+1}  \hspace{0.5cm} \text{ if } i \leq j.
+		\sigma_j\delta_i &= \delta_{i-1}\sigma_j,  \hspace{1.5cm} \textnormal{ if } i > j+1,\\
+		\sigma_j\sigma_i &= \sigma_i\sigma_{j+1},  \hspace{1.5cm} \textnormal{ if } i \leq j.
 	\end{align}
 \end{lemma}
 \begin{proof}
-	By writing out the definitions given above. \todo{sAb: Is this rude?}
+	This follows immediately from the definitions.
 \end{proof}
 
-Because a simplicial set $X$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example the first equation would look like: $ X(\delta_i)X(\delta_j) = X(\delta_{j-1})X(\delta_i) $ for $ i < j$. This can be used for an explicit definition of simplicial sets. In this definition a simplicial set $X$ consists of a collection sets $X_n$ together with the face and degeneracy maps. More precisely:
+Because a simplicial set $X$ is a contravariant functor, these equations (which only consist of compositions and identities) also hold in its image. For example, the first equation corresponds to $X(\delta_i)X(\delta_j) = X(\delta_{j-1})X(\delta_i)$ for $i < j$. This can be used for an explicit definition of simplicial sets. In this definition a simplicial set $X$ consists of a collection of sets $X_n$ together with face and degeneracy maps. More precisely:
 
 \begin{definition}
-	\emph{(Explicitly)} An simplicial set $X$ consists of a collection sets $X_n$ together with functions $d_i : X_n \to X_{n-1}$ and $s_i : X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that the simplicial identities hold:
+	\emph{(Explicitly)} An simplicial set $X$ consists of a collection sets $X_n$ together with functions $d_i : X_n \to X_{n-1}$ and $s_i : X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that the simplicial identities hold
 	\begin{align}
-		d_i d_j &= d_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
-		d_i s_j &= s_{j-1} d_i  \hspace{0.5cm} \text{ if } i < j,\\
+		d_i d_j &= d_{j-1} d_i,  \hspace{1.5cm} \text{ if } i < j,\\
+		d_i s_j &= s_{j-1} d_i,  \hspace{1.5cm} \text{ if } i < j,\\
 		d_j s_j &= d_{j+1} s_j = \id,\\
-		d_i s_j &= s_j d_{i-1}  \hspace{0.5cm} \text{ if } i > j+1,\\
-		s_i s_j &= s_{j+1} s_i  \hspace{0.5cm} \text{ if } i \leq j.
+		d_i s_j &= s_j d_{i-1},  \hspace{1.5cm} \text{ if } i > j+1,\\
+		s_i s_j &= s_{j+1} s_i,  \hspace{1.5cm} \text{ if } i \leq j.
 	\end{align}
 \end{definition}
 
-It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functorialty to obtain the second definition from the first. So these definitions are the same. From now on we will denote $X([n])$ by $X_n$, $X(\sigma_i)$ by $s_i$ and $X(\delta_i)$ by $d_i$, whenever we have a simplicial set $X$. For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast : X_p \to X_n$.
+It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functoriality to obtain the second definition from the first. So these definitions are the same. From now on we will denote $X([n])$ by $X_n$, $X(\sigma_i)$ by $s_i$ and $X(\delta_i)$ by $d_i$, whenever we have a simplicial set $X$. For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast : X_p \to X_n$.
 
 When using a simplicial set to construct another object, it is often handy to use this second definition, as it gives you a very concrete objects to work with. On the other hand, constructing this might be hard (as you would need to provide a lot of details), in this case we will often use the more abstract definition.
 
-Note that because of the third equation, the degeracy maps $s_i$ are injective. This means that in the set $X_{n+1}$ there are always ``copies'' of elements of $X_n$. In a way these elements are not interesting, hence we call them degenerate.
+Note that because of the third equation, the degeneracy maps $s_i$ are injective. This means that in the set $X_{n+1}$ there are always ``copies'' of elements of $X_n$. In a way these elements are not interesting, hence we call them degenerate.
 \begin{definition}
-	An element $x \in X_{n+1}$ is \emph{degenerate} if it lies in the image of $s_i : X_n \to X_{n+1}$ for some $i$. An element is called \emph{non-degenerate} if this is not the case.
+	An element $x \in X_{n+1}$ is \emph{degenerate} if it lies in the image of $s_i : X_n \to X_{n+1}$ for some $i$, otherwise it is called \emph{non-degenerate}.
 \end{definition}
 \begin{lemma}
 	\label{le:non-degenerate}
 	We can write any $x \in X_n$ uniquely as $x = \beta^\ast y$ with $\beta : [n] \epi [m]$ a surjective map and $y \in X_m$ non-degenerate.
 \end{lemma}
 \begin{proof}
-	We will proof the existence with induction over $n$. For $n=0$ the statement is trivial, since all elements in $X_0$ are non-degenerate. Assume the statement is proven for $n$. Let $x \in X_{n+1}$. Clearly if $x$ itself is non-degenerate, we can write $x = \id^\ast x$. Otherwise it is of the form $x = s_i x'$ for some $x' \in X_n$ and $i$. The induction hypothesis tells us that we can write $x' = \beta^\ast y$ for some surjection $\beta: [n] \epi [m]$ and $y \in X_m$ non-degenerate. So $x = s_i \beta^\ast y = (\beta \sigma_i)^\ast y$.
+	We will proof the existence by induction over $n$. For $n=0$ the statement is trivial, since all elements in $X_0$ are non-degenerate. Assume the statement is proven for $n$. Let $x \in X_{n+1}$. Clearly if $x$ itself is non-degenerate, we can write $x = \id^\ast x$. Otherwise it is of the form $x = s_i x'$ for some $x' \in X_n$ and $i$. The induction hypothesis tells us that we can write $x' = \beta^\ast y$ for some surjection $\beta: [n] \epi [m]$ and $y \in X_m$ non-degenerate. So $x = s_i \beta^\ast y = (\beta \sigma_i)^\ast y$.
 
 	For uniqueness, assume $x = \beta^\ast y = \gamma^\ast z$ with $\beta : [n] \epi [m]$, $\gamma: [n] \epi [m']$ and $y \in X_m, z \in X_{m'}$ non-degenerate. Because $\beta$ is surjective there is an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and hence $y = \alpha^\ast \gamma^\ast z = (\gamma\alpha)^\ast z$. By the epi-mon factorization (Lemma~\ref{le:epimono}) we can write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, using that $y$ is non-degenerate we know that $\gamma\alpha$ is injective. So we have $\gamma\alpha: [m] \mono [m']$. Because of symmetry (of $y$ and $z$) we also have some map $[m'] \mono[m]$, so $m = m'$. So $\gamma\alpha$ is also surjective, hence the identity function, thus $y = z$.
 
-	Now assume $x = \beta^\ast y = \gamma^\ast y$ with $\gamma, \beta : [n] \epi [m]$ such that $\beta \neq \gamma$, and $y \in X_m$ non-degenerate. Then we can find an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and $\gamma\alpha \neq \id$. With the epi-mono factorization write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, then by functoriality of $X$:
+	Now assume $x = \beta^\ast y = \gamma^\ast y$ with $\gamma, \beta : [n] \epi [m]$ such that $\beta \neq \gamma$, and $y \in X_m$ non-degenerate. Then we can find an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and $\gamma\alpha \neq \id$. With the epi-mono factorization write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, then by functoriality of $X$
 	$$ y = \alpha^\ast \beta^\ast y = \alpha^\ast \gamma^\ast y = s_{j_1} \cdots s_{j_b} d_{i_1} \cdots d_{i_a} y. $$
 	Note that $y$ was non-degenerate, so $s_{j_1} \cdots s_{j_b} = \id$, hence $d_{i_1} \cdots d_{i_a} = \id$. So $\gamma\alpha = \id$, which gives a contradiction. So $\beta$ is unique.
 \end{proof}
 
 \subsection{The standard $n$-simplex}
-Recall that for any category $\cat{C}$ we have the $\mathbf{Hom}$-functor: $\Hom{\cat{C}}{-}{-} : \cat{C}^{op} \times \cat{C} \to \Set$. We can fix an object $C \in \cat{C}$ and get a functor $\Hom{\cat{C}}{-}{C} : \cat{C}^{op} \to \Set$. In our case we can get the following simplicial sets in this way:
+Recall that for any category $\cat{C}$ we have the $\mathbf{Hom}$-functor $\Hom{\cat{C}}{-}{-} : \cat{C}^{op} \times \cat{C} \to \Set$. We can fix an object $C \in \cat{C}$ and get a functor $\Hom{\cat{C}}{-}{C} : \cat{C}^{op} \to \Set$. In our case we can get the following simplicial sets in this way:
 
 \begin{definition}
-	The standard $n$-simplex is given by:
+	The \emph{standard $n$-simplex} $\Delta[n] \in \sSet$ is given by
 	$$\Delta[n] = \Hom{\DELTA}{-}{[n]} : \DELTA^{op} \to \Set.$$
 \end{definition}
 
-Note that this is also the definition of the Yoneda embedding $\Delta[n] = y[n]$. In a moment we will see why the Yoneda lemma is useful to us. But we will explicitly describe two of such standaard $n$-simplices.
+Note that this is also the definition of the Yoneda embedding $\Delta[n] = y[n]$. In a moment we will see why the Yoneda lemma is useful to us. But let us first explicitly describe two of such standard $n$-simplices.
 
 \begin{example}
-	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $X$, there is only one function $\ast : X \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$. The face and degeneracy maps are now functions from $\{\ast\}$ to $\{\ast\}$. Again there is only one, namely $\id : \{\ast\} \to \{\ast\}$. This gives:
+	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $S$, there is only one function $\ast : S \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$. The face and degeneracy maps are now functions from $\{\ast\}$ to $\{\ast\}$. Again there is only one, namely $\id : \{\ast\} \to \{\ast\}$. This gives:
 	$$ \Delta[0] = \{\ast\} \to \{\ast\} \to \{\ast\} \to \cdots. $$
-	Note that the only non-degenerate simplex is the unqiue $0$-simplex.
+	Note that the only non-degenerate simplex is the unique $0$-simplex.
 \end{example}
 
 \begin{example}
-	$\Delta[1]$ is a bit more interesting, but still not too hard. We will compute the first three abelian groups $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone increasing map $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, ie.: $f: [n] \tot{\sigma_{i_0} \cdots \sigma_{i_M}} [k] \tot{\delta_{j_0} \cdots \delta_{j_N}} [m]$, where $k \leq m, n$.
+	$\Delta[1]$ is a bit more interesting, but still not too hard. We will compute the first three abelian groups $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone function $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, i.e.: $f: [n] \tot{\sigma_{i_0} \cdots \sigma_{i_M}} [k] \tot{\delta_{j_0} \cdots \delta_{j_N}} [m]$, where $k \leq m, n$.
 
 	For $\Delta[1]_0$ we have to consider maps from $[0]$ to $[1]$, we cannot first apply degeneracy maps (there is no object $[-1]$). So this leaves us with the face maps: $\Delta[1]_0 = \{\delta_0, \delta_1\}$. For $\Delta[1]_1$ we of course have the identity function and two functions $\delta_0\sigma_0, \delta_1\sigma_0$. Now $\Delta[1]_2$ are the maps from $[2]$ to $[1]$.
 
@@ -201,7 +201,7 @@ As we are interested in simplicial abelian groups, it would be nice to make thes
 	\label{fig:diagram_Z}
 \end{figure}
 \begin{lemma}
-	The functor $\Z^\ast[-] : \sSet \to \sAb$ is a left-adjoint, with $U^\ast: \sAb \to \sSet$ (the pointwise forgetful functor) as right-adjoint.
+	The functor $\Z^\ast[-] : \sSet \to \sAb$ is a left adjoint, with $U^\ast: \sAb \to \sSet$ (the pointwise forgetful functor) as right adjoint.
 \end{lemma}
 \begin{proof}
 	First we note that $U^\ast \Z^\ast [X]_n = U\Z[X_n]$ by definition, so pointwise we get (by the fact that $\Z$ and $U$ already form an adjunction):
@@ -248,7 +248,7 @@ So we can regard $n$-simplices in $X$ as maps from $\Delta[n]$ to $X$. This also
 	which is natural in $A$ and $[n]$.
 \end{lemma}
 \begin{proof}
-	By using the (non-abelian) Yoneda lemma and the fact that $\Z^\ast$ is a left-adjoint, we already have a natural bijection:
+	By using the (non-abelian) Yoneda lemma and the fact that $\Z^\ast$ is a left adjoint, we already have a natural bijection:
 	$$ A_n \iso \Hom{\sSet}{\Delta[n]}{A} \iso \Hom{\sAb}{\Z^\ast[\Delta[n]]}{A}. $$
 	The only thing that we need to check is that this bijection preserves the group structure. Recall that this bijection from $\Hom{\sAb}{\Z^\ast[\Delta[n]]}{A}$ to $A_n$ is given by (where $\id = \id_{[n]}$ is a generator in $\Z^\ast[\Delta[n]]$):
 	$$ \phi(f) = f_n(\id) \in X_n \quad\text{ for } f: \Delta[n] \to X. $$
