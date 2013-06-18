@@ -1,7 +1,7 @@
 \section{Chain Complexes}
 \label{sec:Chain Complexes}
 \begin{definition}
-	A \emph{(non-negative) chain complex} $C$ is a collection of abelian groups $C_n$ together with group homomorphisms $\del_n: C_n \to C_{n-1}$, which we call \emph{boundary homomorphisms}, such that $\del_n \circ \del_{n+1} = 0$ for all $n \in \Np$.
+	A \emph{(non-negative) chain complex} $C$ is a collection of abelian groups $C_n$, $n \in \N$, together with group homomorphisms $\del_n: C_n \to C_{n-1}$, which we call \emph{boundary homomorphisms}, such that $\del_n \circ \del_{n+1} = 0$ for all $n \in \Np$.
 \end{definition}
 
 Thus graphically a chain complex $C$ can be depicted by the following diagram:
@@ -44,7 +44,7 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
 		\item the subgroup of \emph{$n$-cycles}: $Z_n(C) = \ker(\del_n: C_n \to C_{n-1}) \nsubgrp C_n$, and
-		\item the subgourp of \emph{$0$-cycles}: $Z_0(C) = C_0$, and
+		\item the subgroup of \emph{$0$-cycles}: $Z_0(C) = C_0$, and
 		\item the subgroup of \emph{$n$-boundaries}: $B_n(C) = \im(\del_{n+1}: C_{n+1} \to C_n) \nsubgrp C_n$.
 	\end{itemize}
 \end{definition}
@@ -63,7 +63,7 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 	The $n$-th homology group gives a functor $H_n : \Ch{\Ab} \to \Ab$ for each $n \in \N$.
 \end{lemma}
 \begin{proof}
-	Let $f: C \to D$ be a chain map and $n \in \N$. First note that for $x \in Z_n(X)$ we have $\del^C(x) = 0$, so $\del^D(f_n(x)) = 0$, because the square on the right commutes:
+	Let $f: C \to D$ be a chain map and $n \in \N$. First note that for $x \in Z_n(C)$ we have $\del^C(x) = 0$, so $\del^D(f_n(x)) = 0$, because the square on the right commutes:
 
 	{\centering
 	\begin{tikzpicture}
@@ -81,7 +81,7 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 	So there is an induced group homomorphism $f^Z_n : Z_n(C) \to Z_n(D)$ (for $n=0$ this is trivial). Similarly there is an induced group homomorphism $f^B_n : B_n(C) \to B_n(D)$ by considering the square on the left. Now define the map $H_n(f) : x \mapsto [f_n(x)]$ for $x \in Z_n(C)$, we now know that $f_n(x)$ is also a cycle, because of $f^Z_n$. Furthermore it is well-defined on classes, because of $f^B_n$. So indeed there is an induced group homomorphism $H_n(f) : H_n(C) \to H_n(D)$.
 
 	It remains to check that $H_n$ preserves identities and compositions. By writing out the definition we see $H_n(\id)([x]) = [\id(x)] = [x] = \id[x]$, and:
-	$$ H_n(f \circ g)([x]) = [f_n(g_n(x))] = H_n(f)([g_n(x)]) = H_n(f) \circ H_n(g) ([x]). $$
+	$$ H_n(g \circ f)([x]) = [g_n(f_n(x))] = H_n(g)([f_n(x)]) = H_n(g) \circ H_n(f) ([x]). $$
 \end{proof}
 
 \subsection{A note on abelian categories}
@@ -113,44 +113,48 @@ Of course given two preadditive categories $\cat{C}$ and $\cat{D}$, not every fu
 In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. We will form a chain complex from a topological space $X$. In this section we will not be very precise, as it will only act as a motivation. However the intuition might be very useful later on, and so pictures are provided to give meaning to this construction.
 
 \begin{definition}
-	The topological space $\Delta^n$ is called the \emph{topological $n$-simplex} and is defined as:
-	$$ \Delta^n = \{(x_0, x_1, \ldots, x_n) \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \}.$$
-	The topology on $\Delta^n$ is the subspace topology.
+	The \emph{topological $n$-simplex} $\Delta^n$, $n \in \N$, is the set
+	$$ \Delta^n = \{(x_0, x_1, \ldots, x_n) \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \} \subseteq \R^{n+1} $$
+	endowed with the subspace topology.
 \end{definition}
 
-In particular $\Delta^0$ is simply a point, $\Delta^1$ a line and $\Delta^2$ a triangle. There are nice inclusions $\Delta^n \mono \Delta^{n+1}$ which we need. For any $n \in \N$ we define:
+In particular $\Delta^0$ is simply a point, $\Delta^1$ a line and $\Delta^2$ a solid triangle. There are nice inclusions $\Delta^n \mono \Delta^{n+1}$ which we need. For any $n \in \N$ we define:
 \begin{definition}
-	For $i \in \{0, \ldots, n+1\}$ the $i$-th face map $\delta^i : \Delta^n \mono \Delta^{n+1}$ is defined as:
-	$$ \delta^i (x_0, \ldots, x_n) = (x_0, \ldots, x_{i}, 0, x_{i+1}, \ldots, x_n) \text{ for all } x \in \Delta^n.$$
+	For $i \in \{0, \ldots, n+1\}$ the $i$-th face map $\delta^i : \Delta^n \mono \Delta^{n+1}$ is defined as
+	$$ \delta^i (x_0, \ldots, x_n) = (x_0, \ldots, x_{i-1}, 0, x_{i}, \ldots, x_n) \text{ for all } x \in \Delta^n.$$
 \end{definition}
 
-Given a space $X$, we will be interested in continuous maps $\sigma : \Delta^n \to X$, such a map is called a $n$-simplex. Note that if we have a $(n+1)$-simplex $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get a $n$-simplex $\sigma \circ \delta^i : \Delta^n \to X$, as shown in figure~\ref{fig:diagram_d} for $n=1$.
+Given a space $X$, we will be interested in continuous maps $\sigma : \Delta^n \to X$, such a map is called a \emph{singular $n$-simplex}. Note that if we have a $(n+1)$-simplex $\sigma : \Delta^{n+1} \to X$ we can precompose with a face map to get a $n$-simplex $\sigma \circ \delta^i : \Delta^n \to X$. This is illustrated in Figure~\ref{fig:diagram_d} for $n=1$.
 
 \begin{figure}[h!]
 	\includegraphics{singular_set}
-	\caption{The $2$-simplex $\sigma$ can be made into a $1$-simplex $\sigma \circ \delta^1$}
+	\caption{The $2$-simplex $\sigma$ gives rise to a $1$-simplex $\sigma \circ \delta^1$}
 	\label{fig:diagram_d}
 \end{figure}
 
-From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$, gives one of the boundaries of $\sigma$. If we were able to add these different boundaries ($\sigma \circ \delta^i$, for every $i$), then we could assign to $\sigma$ its complete boundary at once. The free abelian group will enable us to do so. However we should note that the topological $n$-simplex is in some way oriented or ordered, which is preserved by the face maps.
+From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$ gives one of the faces of the boundary of $\sigma$. If we were able to add these different boundaries ($\sigma \circ \delta^i$, for every $i$), then we could assign to $\sigma$ its complete boundary at once. The free abelian group as defined in the previous section will enable us to do so. However we should note that the topological $n$-simplex is in some way oriented or ordered, which is preserved by the face maps.
 
 \begin{definition}
-	For a topological space $X$ we define the \emph{$n$-th singular chain group} $C_n(X)$ as follows.
-	$$ C_n(X) = \Z[\Hom{\cat{Top}}{\Delta^n}{X}] $$
-	The boundary operator $\del : C_{n+1}(X) \to C_n(X)$ is defined on generators as:
+	For a topological space $X$ we define the \emph{$n$-th singular chain group} $C_n(X)$ by
+	$$ C_n(X) = \Z[\Hom{\cat{Top}}{\Delta^n}{X}]. $$
+	The \emph{singular boundary operator} $\del : C_{n+1}(X) \to C_n(X)$ is defined on generators as
 	$$ \del(\sigma) = \sigma \circ \delta^0 - \sigma \circ \delta^1 + \ldots + (-1)^{n+1} \sigma \circ \delta^{n+1}.$$
 \end{definition}
 
-The elements in $C_n(X)$ are called \emph{$n$-chains} and are formal sums of \emph{$n$-simplices}. Since these groups are free, we can define any group homomorphism by defining it on the generators, the $n$-simplices. The boundary operator is depicted in figure~\ref{fig:singular_chaincomplex}. In this picture we see that the boundary of a $1$-simplex is simply its end-point minus the starting-point. We see that the boundary of a $2$-simplex is an alternating sum of three $1$-simplices. The alternating sum ensures that the end-points and starting-points of the resulting $1$-chain will cancel out when applying $\del$ again. So in the degrees 1 and 2 we see that $\del$ is nicely behaved. We will now claim that this construction indeed gives a chain complex, without proof.
+The elements in $C_n(X)$ are called \emph{singular $n$-chains} and are formal sums of \emph{singular $n$-simplices}. Since these groups are free, we can define any group homomorphism by defining it on the generators, the $n$-simplices.
+
+The boundary operator is depicted in Figure~\ref{fig:singular_chaincomplex}. In this picture we see that the boundary of a $1$-simplex is simply its end-point minus the starting-point. We see that the boundary of a $2$-simplex is an alternating sum of three $1$-simplices. The alternating sum ensures that the end-points and starting-points of the resulting $1$-chain will cancel out when applying $\del$ again. So in the degrees 1 and 2 we see that $\del$ is nicely behaved. We will now claim that this construction indeed gives a chain complex, without proof.
 \begin{figure}[h!]
 	\includegraphics[scale=1.2]{singular_chaincomplex}
-	\caption{The boundary of a 2-simplex, and a boundary of a 1-simplex}
+	\caption{The boundary of a 2-simplex, and the boundary of a 1-simplex}
 	\label{fig:singular_chaincomplex}
 \end{figure}
 
 The above construction gives us a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this). Composing with the functor $H_n: \Ch{\Ab} \to \Ab$, we get a functor:
 $$ H^\text{sing}_n : \Top \to \Ab, $$
-which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^\text{sing}_n(X)$. With figure~\ref{fig:singular_homology} we indicate what $H^\text{sing}_1$ measures. In the first space $X$ we see a $1$-cycle which is also a boundary, because we can define a map $\tau: \Delta^2 \to X$ such that $\del(\tau) = \sigma_1-\sigma_2+\sigma_3$, hence we conclude that $0 = [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X)$. So this $1$-cycle is not interesting in homology. In the space $X'$ however there is a hole, which prevents a $2$-simplex like $\tau$ te exist, hence $0 \neq [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X')$. This example shows that in some sense this functor is capable of detecting holes in a space.
+which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^\text{sing}_n(X)$.
+
+With Figure~\ref{fig:singular_homology} we indicate what $H^\text{sing}_1$ measures. In the first space $X$ we see a $1$-cycle $\sigma_1-\sigma_2+\sigma_3$ which is also a boundary, because we can define a map $\tau: \Delta^2 \to X$ such that $\del(\tau) = \sigma_1-\sigma_2+\sigma_3$, hence we conclude that $0 = [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X)$. So this $1$-cycle is not interesting in homology. In the space $X'$ however there is a hole, which prevents a $2$-simplex like $\tau$ te exist, hence $0 \neq [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X')$. This example shows that in some sense this functor is capable of detecting holes in a space.
 
 \begin{figure}[h!]
 \begin{subfigure}{.5\textwidth}
@@ -167,24 +171,26 @@ which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^\text{
 \label{fig:singular_homology}
 \end{figure}
 
-A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopic equivalent spaces have isomorphic homology groups. So from a homotopy perspective this construction is nice. In the remainder of this section we will give the homology groups of some basic spaces. It is hard to calculate these results from the definition above, so generally one proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. So we simply give these results.
+A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopy equivalent spaces have isomorphic homology groups. So from a homotopy perspective this construction is nice.
+
+In the remainder of this section we will give the homology groups of some basic spaces. It is hard to calculate these results from the definition above, so generally one proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. So we simply give these results.
 
 \begin{example}
-	Let $\ast$ be the one-point space, its homology is given by:
+	The homology of the one-point space $\ast$ is given by:
 	$$ H^\text{sing}_n(\ast) \iso
 	\begin{cases}
-		\Z \text{ if } n = 0 \\
-		0 \text { otherwise}
+		\Z \quad\text{if } n = 0 \\
+		0  \quad\text{otherwise}
 	\end{cases}. $$
 \end{example}
 \begin{example}
-	Let $S^k$ denote the $k$-sphere (for example $S^1$ is the circle). Its homology, for $n \in \Np$ is:
+	Let $S^k$ denote the $k$-sphere (for example $S^1$ is the circle). Its homologyis given by:
 	$$ H^\text{sing}_n(S^k) \iso
 	\begin{cases}
-		\Z \text{ if } n = 0 \text { or } n = k \\
-		0 \text { otherwise}
+		\Z \quad\text{if } n = 0 \text { or } n = k \\
+		0  \quad\text{otherwise}
 	\end{cases}. $$
-	For $S^0$ (which consists of only two points) the first homology group is isomorphic to $\Z \oplus \Z$, and all other homology groups are trivial.
+	For $S^0$ (which consists of only two points) the homology group $H_0(S^0)$ is isomorphic to $\Z \oplus \Z$, and all other homology groups are trivial.
 \end{example}
 
-We can use the latter example to proof a fact about $\R^n$ quite easily. Note that $\R^n - \{0\}$ is homotopic equivalent to $S^n$, so their homology groups are the same. As a consequence $\R^n - \{0\}$ has the same homology groups as $\R^m - \{0\}$, only if $n=m$. Now if $\R^n$ is homeomorphic to $\R^m$, then also $\R^n - \{0\} \iso \R^m - \{0\}$, so this only happens if $n=m$.
+We can use the latter example to prove a fact about $\R^n$ quite easily ($n > 0$). Note that $\R^n - \{0\}$ is homotopic equivalent to $S^{n-1}$, so their homology groups are the same. As a consequence $\R^n - \{0\}$ has the same homology groups as $\R^m - \{0\}$, only if $n=m$. Now if $\R^n$ is homeomorphic to $\R^m$, then also $\R^n - \{0\} \iso \R^m - \{0\}$, so this only happens if $n=m$. This result is called the \emph{invariance of dimension}.
