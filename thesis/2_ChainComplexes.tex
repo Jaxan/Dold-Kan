@@ -1,7 +1,7 @@
 \section{Chain Complexes}
 \label{sec:Chain Complexes}
 \begin{definition}
-	A \emph{(non-negative) chain complex} $C$ is a collection of abelian groups $C_n$, $n \in \N$, together with group homomorphisms $\del_n: C_n \to C_{n-1}$, which we call \emph{boundary homomorphisms}, such that $\del_n \circ \del_{n+1} = 0$ for all $n \in \Np$.
+	A \emph{(non-negative) chain complex of abelian groups} $C$ is a collection of abelian groups $C_n$, $n \in \N$, together with group homomorphisms $\del_n: C_n \to C_{n-1}$, which we call \emph{boundary homomorphisms}, such that $\del_n \circ \del_{n+1} = 0$ for all $n \in \Np$.
 \end{definition}
 
 Thus graphically a chain complex $C$ can be depicted by the following diagram:
@@ -35,7 +35,7 @@ In order to organize these chain complexes in a category, we should define what 
 Note that if we have two such chain maps $f:C \to D$ and $g:D \to E$, then the level-wise composition will give us a chain map $g \circ f: C \to D$. Also taking the identity function in each degree, gives us a chain map $\id : C \to C$. In fact, this will form a category, we will leave the details (the identity law and associativity) to the reader.
 
 \begin{definition}
-	$\Ch{\Ab}$ is the category of chain complexes with chain maps.
+	$\Ch{\Ab}$ is the category of chain complexes of abelian groups with chain maps.
 \end{definition}
 
 Note that we will often drop the indices of the boundary morphisms, since it is often clear in which degree we are working. The boundary operators give rise to certain subgroups, because all groups are abelian, subgroups are normal subgroups.
@@ -55,9 +55,13 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 \begin{proof}
 	It follows from $\del_n \circ \del_{n+1} = 0$ that $\im(\del: C_{n+1} \to C_n)$ is a subset of $\ker(\del: C_n \to C_{n-1})$. Those are exactly the abelian groups $B_n(C)$ and $Z_n(C)$, so $ B_n(C) \nsubgrp Z_n(C) $.
 \end{proof}
+
+In general there is no inclusion in the other direction. This defect can be measured by a quotient and gives rise to the following definition. A motivation for this concept will be provided in section~\ref{sec:singular}.
+
 \begin{definition}
 	Given a chain complex $C$ we define the \emph{$n$-th homology group} $H_n(C)$ for each $n \in \N$ as:
 	$$ H_n(C) = Z_n(C) / B_n(C).$$
+	We will denote the class of an $n$-cycle $x \in Z_n(C)$ by $[x]$.
 \end{definition}
 \begin{lemma}
 	The $n$-th homology group gives a functor $H_n : \Ch{\Ab} \to \Ab$ for each $n \in \N$.
@@ -78,7 +82,7 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 		\path[->] (m-1-4) edge node[auto] {$ f_{n-1} $} (m-2-4);
 	\end{tikzpicture}\par}
 
-	So there is an induced group homomorphism $f^Z_n : Z_n(C) \to Z_n(D)$ (for $n=0$ this is trivial). Similarly there is an induced group homomorphism $f^B_n : B_n(C) \to B_n(D)$ by considering the square on the left. Now define the map $H_n(f) : x \mapsto [f_n(x)]$ for $x \in Z_n(C)$, we now know that $f_n(x)$ is also a cycle, because of $f^Z_n$. Furthermore it is well-defined on classes, because of $f^B_n$. So indeed there is an induced group homomorphism $H_n(f) : H_n(C) \to H_n(D)$.
+	So there is an induced group homomorphism $f^Z_n : Z_n(C) \to Z_n(D)$ (for $n=0$ this is trivial). Similarly there is an induced group homomorphism $f^B_n : B_n(C) \to B_n(D)$ by considering the square on the left. Now define the map $H_n(f) : [x] \mapsto [f_n(x)]$ for $x \in Z_n(C)$, we now know that $f_n(x)$ is also a cycle, because of $f^Z_n$. Furthermore it is well-defined on classes, because of $f^B_n$. So indeed there is an induced group homomorphism $H_n(f) : H_n(C) \to H_n(D)$.
 
 	It remains to check that $H_n$ preserves identities and compositions. By writing out the definition we see $H_n(\id)([x]) = [\id(x)] = [x] = \id[x]$, and:
 	$$ H_n(g \circ f)([x]) = [g_n(f_n(x))] = H_n(g)([f_n(x)]) = H_n(g) \circ H_n(f) ([x]). $$
@@ -109,7 +113,9 @@ Of course given two preadditive categories $\cat{C}$ and $\cat{D}$, not every fu
 	In other words the functor $F$ induces a group homomorphism: $F : \Hom{\cat{C}}{A}{B} \to \Hom{\cat{D}}{FA}{FB}$.
 \end{definition}
 
+
 \subsection{The singular chain complex}
+\label{sec:singular}
 In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. We will form a chain complex from a topological space $X$. In this section we will not be very precise, as it will only act as a motivation. However the intuition might be very useful later on, and so pictures are provided to give meaning to this construction.
 
 \begin{definition}
@@ -132,7 +138,7 @@ Given a space $X$, we will be interested in continuous maps $\sigma : \Delta^n \
 	\label{fig:diagram_d}
 \end{figure}
 
-From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$ gives one of the faces of the boundary of $\sigma$. If we were able to add these different boundaries ($\sigma \circ \delta^i$, for every $i$), then we could assign to $\sigma$ its complete boundary at once. The free abelian group as defined in the previous section will enable us to do so. However we should note that the topological $n$-simplex is in some way oriented or ordered, which is preserved by the face maps.
+From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \delta^i$ gives one of the faces of the boundary of $\sigma$. We would like to be able to formally add these different $\sigma \circ \delta^i$ in order to assign to $\sigma$ ``its complete boundary''. This is achieved by passing to free abelian groups as defined in the previous section. However we should note that the topological $n$-simplex is in some way oriented or ordered, which is preserved by the face maps.
 
 \begin{definition}
 	For a topological space $X$ we define the \emph{$n$-th singular chain group} $C_n(X)$ by
@@ -143,16 +149,18 @@ From the picture it is clear that the assignment $\sigma \mapsto \sigma \circ \d
 
 The elements in $C_n(X)$ are called \emph{singular $n$-chains} and are formal sums of \emph{singular $n$-simplices}. Since these groups are free, we can define any group homomorphism by defining it on the generators, the $n$-simplices.
 
-The boundary operator is depicted in Figure~\ref{fig:singular_chaincomplex}. In this picture we see that the boundary of a $1$-simplex is simply its end-point minus the starting-point. We see that the boundary of a $2$-simplex is an alternating sum of three $1$-simplices. The alternating sum ensures that the end-points and starting-points of the resulting $1$-chain will cancel out when applying $\del$ again. So in the degrees 1 and 2 we see that $\del$ is nicely behaved. We will now claim that this construction indeed gives a chain complex, without proof.
+Some geometric intuition for the boundary operator is provided by Figure~\ref{fig:singular_chaincomplex}. In this picture we see that the boundary of a $1$-simplex is simply its end-point minus the starting-point. We see that the boundary of a $2$-simplex is an alternating sum of three $1$-simplices. The alternating sum ensures that the end-points and starting-points of the resulting $1$-chain will cancel out when applying $\del$ again. So in the degrees 1 and 2 we see that $\del$ is nicely behaved. We will now claim that this construction indeed gives a chain complex, without proof.
 \begin{figure}[h!]
 	\includegraphics[scale=1.2]{singular_chaincomplex}
 	\caption{The boundary of a 2-simplex, and the boundary of a 1-simplex}
 	\label{fig:singular_chaincomplex}
 \end{figure}
 
-The above construction gives us a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this). Composing with the functor $H_n: \Ch{\Ab} \to \Ab$, we get a functor:
-$$ H^\text{sing}_n : \Top \to \Ab, $$
-which assigns to a space $X$ its \emph{singular $n$-th homology group} $H^\text{sing}_n(X)$.
+The above construction gives us a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this). Composing this with the functor $H_n: \Ch{\Ab} \to \Ab$ gives rise to the following definition.
+\begin{definition}
+	The \emph{singular $n$-th homology group} of a space $X$ is defined as
+	$$ H^\text{sing}_n(X) = H_n(C(X)). $$
+\end{definition}
 
 With Figure~\ref{fig:singular_homology} we indicate what $H^\text{sing}_1$ measures. In the first space $X$ we see a $1$-cycle $\sigma_1-\sigma_2+\sigma_3$ which is also a boundary, because we can define a map $\tau: \Delta^2 \to X$ such that $\del(\tau) = \sigma_1-\sigma_2+\sigma_3$, hence we conclude that $0 = [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X)$. So this $1$-cycle is not interesting in homology. In the space $X'$ however there is a hole, which prevents a $2$-simplex like $\tau$ te exist, hence $0 \neq [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X')$. This example shows that in some sense this functor is capable of detecting holes in a space.
 
@@ -183,14 +191,15 @@ In the remainder of this section we will give the homology groups of some basic 
 		0  \quad\text{otherwise}
 	\end{cases}. $$
 \end{example}
+Let $S^k = \{ x \in \R^{n+1} \I ||x|| = 1 \}$ be the $k$-sphere. For example, $S^0$ consists only of two points and $S^1$ is the usual circle.
 \begin{example}
-	Let $S^k$ denote the $k$-sphere (for example $S^1$ is the circle). Its homologyis given by:
+	The homology of $S^k$ for $k>0$ is given by
 	$$ H^\text{sing}_n(S^k) \iso
 	\begin{cases}
 		\Z \quad\text{if } n = 0 \text { or } n = k \\
 		0  \quad\text{otherwise}
 	\end{cases}. $$
-	For $S^0$ (which consists of only two points) the homology group $H_0(S^0)$ is isomorphic to $\Z \oplus \Z$, and all other homology groups are trivial.
+	For $S^0$ the homology group $H_0(S^0)$ is isomorphic to $\Z \oplus \Z$, and all other homology groups are trivial.
 \end{example}
 
 We can use the latter example to prove a fact about $\R^n$ quite easily ($n > 0$). Note that $\R^n - \{0\}$ is homotopic equivalent to $S^{n-1}$, so their homology groups are the same. As a consequence $\R^n - \{0\}$ has the same homology groups as $\R^m - \{0\}$, only if $n=m$. Now if $\R^n$ is homeomorphic to $\R^m$, then also $\R^n - \{0\} \iso \R^m - \{0\}$, so this only happens if $n=m$. This result is known as the \emph{invariance of dimension}.
