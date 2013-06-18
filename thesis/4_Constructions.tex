@@ -21,8 +21,8 @@ $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n.$$
 	In this calculation we did the following. We split the inner sum in two halves \refeqn{1} and we use the simplicial equations on the second sum \refeqn{2}. Then we do a shift of indices \refeqn{3}. By interchanging the roles of $i$ and $j$ in the second sum, we have two equal sums which cancel out. So indeed this is a chain complex.
 \end{proof}
 
-This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it an adjunction?}. And in fact we already used it in the construction of the singular chain complex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelian group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
-\todo{C: Make this more readable...}
+This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{DK: prove this? Is it an adjunction?}. And in fact we already used it in the construction of the singular chain complex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelian group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
+\todo{DK: Make this more readable...}
 
 Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degeneracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
 
@@ -157,7 +157,7 @@ Using corollary~\ref{cor:decomp} we can proof a nice categorical fact about $N$,
 
 	Secondly we have to proof $N$ is surjective on maps. Let $g : N(A) \to N(B)$, define $f : A \to B$ as:
 	$$ f(x) = \sum_\beta \beta^\ast g(x_\beta), $$
-	again we have written $x$ as $x = \sum_\beta \beta^\ast x_\beta$. Clearly $N(f) = g$. \todo{C: is this clear?}
+	again we have written $x$ as $x = \sum_\beta \beta^\ast x_\beta$. Clearly $N(f) = g$. \todo{DK: is this clear?}
 \end{proof}
 
 If we reflect a bit on why the previous functor $C$ was not a candidate for an equivalence, we see that $N$ does a better job. We see that $N$ leaves out all degenerate simplices, so it is more carefull than $C$, which included everything. In fact, corollary~\ref{cor:NandD} exactly tells us $C(X)_n = N(X)_n \oplus D(X)_n$.
@@ -212,10 +212,10 @@ because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then
 	For any chain complex $C$ we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$.
 \end{proposition}
 \begin{proof}
-	\todo{C: proposition about $K$}
+	\todo{DK: proposition about $K$}
 \end{proof}
 
-\todo{C: work out the following in more detail (especially the naturalities)}
+\todo{DK: work out the following in more detail (especially the naturalities)}
 \begin{theorem}
 	$N$ and $K$ form an equivalence.
 \end{theorem}
