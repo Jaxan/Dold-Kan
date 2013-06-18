@@ -1,7 +1,7 @@
-\section{Constructions}
+\section{The Dold-Kan correspondence}
 \label{sec:Constructions}
 
-Comparing chain complexes and simplicial abelian groups, we see a similar structure. Both objects consists of a sequence of abelian groups, with maps in between. At first sight simplicial abelian groups have more structure, because there are maps in both directions. It is not clear how to make degeneracy maps given a chain complex, in fact it is already unclear how to define more maps (the face maps) out of one (the boundary map). Constructing a chain complex from a simplicial abelian group on the other hand seems doable.
+Comparing chain complexes and simplicial abelian groups, one sees a certain similarity. Both concepts are defined as sequences of abelian groups with certain structure maps. At first sight simplicial abelian groups seem to have a richer structure. There are many face maps as opposed to only a single boundary homomorphism. Nevertheless, as we will show in this section, these two concepts give rise to equivalent categories.
 
 \subsection{Unnormalized chain complex}
 Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. For every $n>0$ we define a group homomorphism $\del_n : A_n \to A_{n-1}$:
@@ -10,7 +10,7 @@ $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n.$$
 	Using $A_n$ as the family of abelian groups and the maps $\del_n$ as boundary maps gives a chain complex.
 \end{lemma}
 \begin{proof}
-	We already have a collection of abelian groups together with maps, so the only thing to proof is $\del_n \circ \del_{n+1} = 0$. This can be done with a calculation.
+	We already have a collection of abelian groups together with maps, so the only thing to prove is $\del_n \circ \del_{n+1} = 0$. This can be done with a calculation.
 	\begin{align*}
 		\del_{n-1} \circ \del_n &= \sum_{i=0}^{n-1}  \sum_{j=0}^{n} (-1)^{i+j} d_i \circ d_j \\
 			&\eqn{1} \sum_{i=0}^{n-1} \sum_{j=0}^{i} (-1)^{i+j} d_i \circ d_j + \sum_{i=0}^{n-1} \sum_{j=i+1}^{n} (-1)^{i+j} d_i \circ d_j \\
@@ -21,10 +21,10 @@ $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n.$$
 	In this calculation we did the following. We split the inner sum in two halves \refeqn{1} and we use the simplicial equations on the second sum \refeqn{2}. Then we do a shift of indices \refeqn{3}. By interchanging the roles of $i$ and $j$ in the second sum, we have two equal sums which cancel out. So indeed this is a chain complex.
 \end{proof}
 
-This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it an adjunction?}. And in fact we already used it in the construction of the singular chaincomplex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelain group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
+This construction gives a functor $C : \sAb \to \Ch{\Ab}$\todo{C: prove this? Is it an adjunction?}. And in fact we already used it in the construction of the singular chain complex, where we defined the boundary maps as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$ (on generators). The terms $\sigma \circ d_i$ are the maps given by the $\mathbf{Hom}$-functor from $\Top$ to $\Set$, in fact this $\mathbf{Hom}$-functor can be used to get a functor $Sing : \Top \to \sSet$, applying the free abelian group pointwise give a functor $\Z^\ast : \sSet \to \sAb$, and finally using the functor $C$ gives the singular chain complex.
 \todo{C: Make this more readable...}
 
-Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degenracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
+Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degeneracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
 
 But for chain complexes it \emph{is} possible to have trivial abelian groups $C_m$, while there is a $n < m$ with $C_n$ non-trivial. Take for example the chain complex $ C = \ldots \to 0 \to 0 \to \Z $. Now if we would construct a (non-trivial) simplicial abelian group $K(C)$ from this chain complex, we now know that $K(C)_n$ is non-trivial for all $n \in \N$. This means that $C(K(C))_n$ is non-trivial for all $n \in \N$. For an equivalence we require a (natural) isomorphism: $C(K(C)) \tot{\iso} C$, this in particular means an isomorphism in each degree $n > 0$: $ 0 \neq C(K(C))_n \tot{\iso} C_n = 0 $, which is not possible. So the functor $C$, as defined as above, will not give us the equivalence we wanted, although it is a very nice functor.
 
