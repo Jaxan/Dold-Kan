@@ -139,9 +139,9 @@ It can be shown that an equivalence $F: \cat{C} \tot{\simeq} \cat{D}$ is both a 
 The first definition of adjunction is useful when dealing with maps, since it gives an bijection between the $\mathbf{Hom}$-sets. However the second definition is useful when proving a certain construction is part of an adjunction, as shown in the following example.
 
 \begin{example}
-	\emph{(The free abelian group)} There is an obvious functor $U: \Ab \to \Set$, which sends an abelian group to its underlying set, forgetting the additional structure. It is hence called a \emph{forgetful functor}. This functor is a right adjoint. The left adjoint $\Z[-]: \Set \to \Ab$ is given by the \emph{free abelian group}; for a set $S$ define
+	\emph{(Free abelian groups)} There is an obvious functor $U: \Ab \to \Set$, which sends an abelian group to its underlying set, forgetting the additional structure. It is hence called a \emph{forgetful functor}. This functor has a left adjoint $\Z[-]: \Set \to \Ab$  given by the \emph{free abelian group functor}. For a set $S$ define
 	$$ \Z[S] = \{ \phi: S \to \Z \I \text{supp}(\phi) \text{ is finite}\}, $$
-	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given pointwise. One can think of elements of this abelian group as formal sums, namely:
+	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given by pointwise addition. One can think of elements of this abelian group as formal sums, namely:
 	$$ \text{for } \phi \in F(S),\, \phi = \sum_{x \in \text{supp}(\phi)}\phi(x) x, $$
 	in other words $\Z[S]$ consists of linear combinations of elements in $S$.
 
@@ -155,7 +155,7 @@ The first definition of adjunction is useful when dealing with maps, since it gi
 	And given any map $f: S \to U(A)$ for any abelian group $A$, we can define
 	$$ \overline{f}(\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) \cdot f(x). $$
 
-	It is clear that $U(\overline{f}) \circ \eta = f$. We will leave the other details (naturality of $\eta$, $\overline{f}$ being a group homomorphism, and uniqueness w.r.t. $U(\overline{f}) \circ \eta = f$) to the reader.
+	It is clear that $U(\overline{f}) \circ \eta = f$. We will leave the other details (naturality of $\eta$, $\overline{f}$ being a group homomorphism, and uniqueness w.r.t.~$U(\overline{f}) \circ \eta = f$) to the reader.
 \end{example}
 
 \subsection{The Yoneda lemma}
@@ -167,10 +167,16 @@ So far we have only encountered definitions from category theory. However there 
 	The functor $y$ is called the \emph{Yoneda embedding}.
 \end{definition}
 
+We will denote the set of natural transformation between two functors $F, G: \cat{C} \to \cat{D}$ as
+$$ \mathbf{Nat}(F, G) = \Hom{\cat{D}^\cat{C}}{F}{G}. $$
+
 \begin{lemma}\emph{(The Yoneda lemma)}
 	Given a functor $F: \cat{C} \to \Set$ and any object $C \in \cat{C}$ there is a bijection
 	$$ \mathbf{Nat}(y(C), F) \iso F(C), $$
-	which is natural in both $F$ and $C$, where $\mathbf{Nat}(G, G')$ denotes the set of natural transformation between $G$ and $G'$, in other words $\mathbf{Nat} = \mathbf{Hom}_{\Set^{\cat{C}^{op}}}$.
+	which is natural in both $F$ and $C$.
 \end{lemma}
+
+We will not provide a proof of this lemma, but we will give the function which can be proven to be a natural bijection. Given a natural transformation $\phi \in \mathbf{Nat}(y(C), F)$, we can consider the map $\phi_C : y(C)(C) \to F(C)$. Note that the codomain already is the right set, we only have to apply $\phi_C$ to the right object. The bijection is given by
+$$ \phi \mapsto \phi_C(\id_C). $$
 
 We will use this lemma when we discuss simplicial abelian groups.

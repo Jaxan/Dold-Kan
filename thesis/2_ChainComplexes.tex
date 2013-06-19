@@ -41,6 +41,7 @@ Note that if we have two such chain maps $f:C \to D$ and $g:D \to E$, then the l
 Note that we will often drop the indices of the boundary morphisms, since it is often clear in which degree we are working. The boundary operators give rise to certain subgroups, because all groups are abelian, subgroups are normal subgroups.
 
 \begin{definition}
+	\label{def:cycles}
 	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
 		\item the subgroup of \emph{$n$-cycles}: $Z_n(C) = \ker(\del_n: C_n \to C_{n-1}) \nsubgrp C_n$, and
@@ -56,12 +57,12 @@ Note that we will often drop the indices of the boundary morphisms, since it is 
 	It follows from $\del_n \circ \del_{n+1} = 0$ that $\im(\del: C_{n+1} \to C_n)$ is a subset of $\ker(\del: C_n \to C_{n-1})$. Those are exactly the abelian groups $B_n(C)$ and $Z_n(C)$, so $ B_n(C) \nsubgrp Z_n(C) $.
 \end{proof}
 
-In general there is no inclusion in the other direction. This defect can be measured by a quotient and gives rise to the following definition. A motivation for this concept will be provided in section~\ref{sec:singular}.
+In general there is no inclusion in the other direction. This defect can be measured by a quotient and gives rise to the following definition. A motivation for this concept will be provided in Section~\ref{sec:singular}.
 
 \begin{definition}
 	Given a chain complex $C$ we define the \emph{$n$-th homology group} $H_n(C)$ for each $n \in \N$ as:
 	$$ H_n(C) = Z_n(C) / B_n(C).$$
-	We will denote the class of an $n$-cycle $x \in Z_n(C)$ by $[x]$.
+	We will denote the class of an $n$-cycle $x \in Z_n(C)$ by $[x]$ and refer to it as the \emph{homology class of $x$}.
 \end{definition}
 \begin{lemma}
 	The $n$-th homology group gives a functor $H_n : \Ch{\Ab} \to \Ab$ for each $n \in \N$.
@@ -156,9 +157,9 @@ Some geometric intuition for the boundary operator is provided by Figure~\ref{fi
 	\label{fig:singular_chaincomplex}
 \end{figure}
 
-The above construction gives us a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this). Composing this with the functor $H_n: \Ch{\Ab} \to \Ab$ gives rise to the following definition.
+The above construction defines a functor $C: \Top \to \Ch{\Ab}$ (we will not prove this) which sends a space $X$ to its \emph{singular chain complex} $C(X)$. So the terminology of Definition~\ref{def:cycles} applies to these chain complexes. Composing this with the functor $H_n: \Ch{\Ab} \to \Ab$ gives rise to the following definition.
 \begin{definition}
-	The \emph{singular $n$-th homology group} of a space $X$ is defined as
+	The \emph{$n$-th singular homology group} of a space $X$ is defined as
 	$$ H^\text{sing}_n(X) = H_n(C(X)). $$
 \end{definition}
 

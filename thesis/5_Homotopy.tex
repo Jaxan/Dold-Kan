@@ -1,18 +1,18 @@
 \section{Homotopy}
 \label{sec:Homotopy}
 
-We've already seen homology in chain complexes. We can of course now translate this notion to simplicial abelian groups, by assigning a simplicial abelian group $X$ to $H_n(N(X))$. But there is a more general notion of homotopy for simplicial sets, which is also similar to the notion of homotopy in topology. We will define the notion of homotopy groups for simplicial sets.
+We have already seen homology in chain complexes. We can of course now translate this notion to simplicial abelian groups, by assigning a simplicial abelian group $X$ to $H_n(N(X))$. But there is a more general notion of homotopy for simplicial sets, which is also similar to the notion of homotopy in topology. We will define the notion of homotopy groups for simplicial sets.
 
-When dealing with homotopy in a topological space $X$ we always need a base-point $\ast \in X$. This is also the case for homotopy in simplicial sets. We will notate the chosen base-point of a simplicial set $X$ with $\ast \in X_0$. Note that it is a $0$-simplex, but in fact the base-point is present in all sets $X_n$, because we can consider its degenerate simplices $s_0(\ldots(s_0(\ast))\ldots) \in X_n$, we will also denote these elements as $\ast$. Of course in our situation we are concerned about simplicial abelian groups, where there is an obvious choice for the base-point, namely $0$.
+When dealing with homotopy groups in a topological space $X$ we always need a base-point $\ast \in X$. This is also the case for simplicial sets. We will notate the chosen base-point of a simplicial set $X$ with $\ast \in X_0$. Note that it is a $0$-simplex, but in fact the base-point is present in all sets $X_n$, because we can consider its degenerate simplices $s_0(\ldots(s_0(\ast))\ldots) \in X_n$, we will also denote these elements as $\ast$. Of course in our situation we are concerned with simplicial abelian groups, where there is an obvious choice for the base-point given by the neutral element $0$.
 
 \subsection{Homotopy groups}
 \begin{definition}
-	Given a simplicial set $X$ with base-point $\ast$, we define $Z_n(X)$ to be the set of $n$-simplices with the base-point as boundary, i.e.:
+	Given a simplicial set $X$ with base-point $\ast$, we define $Z_n(X)$ to be the set of $n$-simplices with the base-point as boundary, i.e.
 	$$ Z_n(X) = \{ x \in X_n | d_i(x) = \ast \text{ for all } i \leq n \}. $$
-	For two $n$-simplices $x, x' \in Z_n(X)$, we define $x \sim x'$ if there exists $y \in X_{n+1}$ such that:
+	For two $n$-simplices $x, x' \in Z_n(X)$, we define $x \sim x'$ if there exists $y \in X_{n+1}$ such that
 	\begin{align}
-		d_0(y) &= x \\
-		d_1(y) &= x' \\
+		d_0(y) &= x, \\
+		d_1(y) &= x', \\
 		d_i(y) &= \ast \text{ for all } i > 1.
 	\end{align}
 	We will call $y$ the \emph{homotopy} and notate $y: x \sim x'$.
@@ -54,7 +54,7 @@ Before proving this, one should have a look at figure~\ref{fig:simplicial_eqrel}
 
 	\emph{Transitivity}. Let $x_0, x_1, x_2 \in Z_n(X)$ with $y: x_0 \sim x_1$ and $z: x_1 \sim x_2$. Define $w = y + z - s_0 x_1$. By linearity we have $d_0 w = x_0 + x_1 -x_1 = x_0$, similarly $d_1 w = x_2$. Again for $i>1$ we have $d_i w = 0$.
 
-	\emph{Addition}. Let $y: x_0 \sim x_1$ and $z: x_2 \sim x_3$. Then by linearity $y + g: x_0 + x_2 \sim x_1 + x_3$ and $-y: -x_0 \sim -x_1$.
+	\emph{Addition}. Let $y: x_0 \sim x_1$ and $z: x_2 \sim x_3$. Then by linearity $y + z: x_0 + x_2 \sim x_1 + x_3$ and $-y: -x_0 \sim -x_1$.
 \end{proof}
 
 \begin{definition}
@@ -91,17 +91,17 @@ Note that this is an abelian group, because $Z_n(X)$ is a subgroup of $X_n$, and
 \end{proof}
 
 \subsection{Topology}
-In section~\ref{sec:Constructions} we saw that we can construct a functor $G: \cat{C} \to \sSet$ if we are provided a functor the other way around. If we can define a functor $F: \DELTA \to \Top$, then for any space $X$ we have a simplicial set $\Hom{\Top}{F-}{X}: \DELTA^{op} \to \Set$. In section~\ref{sec:Chain Complexes}, we already defined the \emph{topological $n$-simplex} $\Delta^n$ and face maps $\delta^i : \Delta^n \mono \Delta^{n+1}$. We can similarly define degeneracy maps $s^i: \Delta^n \to \Delta^{n-1}$ as:
+In Section~\ref{sec:Constructions} we saw that we can construct a functor $G: \cat{C} \to \sSet$ if we are provided a functor the other way around. If we can define a functor $F: \DELTA \to \Top$, then for any space $X$ we have a simplicial set $\Hom{\Top}{F-}{X}: \DELTA^{op} \to \Set$. In Section~\ref{sec:Chain Complexes}, we already defined the \emph{topological $n$-simplex} $\Delta^n$ and face maps $\delta^i : \Delta^n \mono \Delta^{n+1}$. We can similarly define degeneracy maps $s^i: \Delta^n \to \Delta^{n-1}$ as:
 $$ s^i(x_0, \ldots, x_n) = (x_0, \ldots, x_i + x_{i+1}, \ldots, x_n) \in \Delta^{n-1}. $$
 The reader is invited to check the cosimplicial identities himself and conclude that we now have a functor $F: \DELTA \to \Top$, and hence we have a functor $S: \Top \to \sSet$ given by:
 $$ \text{Sing}(X)_n = \Hom{\Top}{\Delta^n}{X}. $$
 
-Recall construction of the singular chain complex in section~\ref{sec:Chain Complexes}:
+Recall construction of the singular chain complex in Section~\ref{sec:Chain Complexes}:
 $$ C_n(X) = \Z[\Hom{\cat{Top}}{\Delta^n}{X}]. $$
 Where the boundary map was given as an alternating sum. Looking more closely we see that this construction decomposes as:
-$$ C: \Top \tot{\text{Sing}} \sSet \tot{\Z^\ast} \sAb \tot{C} \Ch{\Ab}, $$
+$$ C: \Top \tot{\text{Sing}} \sSet \tot{\Z} \sAb \tot{M} \Ch{\Ab}, $$
 where the last functor is the \emph{unnormalized chain complex}. All the categories involved have a notion of homotopy. In topological spaces this is the known notion where $f, g:X \to Y$ are homotopic if there exists a homotopy $H:I \times X \to Y$ with the appropriate properties. In simplicial sets (or simplicial abelian groups) we only saw the notion of homotopy groups, but there exists a more general notion of homotopy, as discussed in the overview of Friedman \cite{friedman}. And finally in chain complexes we saw homology groups, but this category also has a more general notion of chain homotopy, which can be found in any book on homological algebra such as in the book of Rotman \cite{rotman}.
 
 It is known that for any simplicial abelian group both the normalized and unnormalized chain complex have the same homology groups. More precisely for any simplicial abelian group $X$ we have:
-$$ H_n(N(X)) \iso H_n(C(X)) \quad\text{for all } n \in \N. $$
+$$ H_n(N(X)) \iso H_n(M(X)) \quad\text{for all } n \in \N. $$
 This is for example proven in \cite[Theorem 4.1]{eilenberg}. So this assures that the homology groups of the singular chain complex of a space are really the homotopy groups of the simplicial abelian group which is in the background.
