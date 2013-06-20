@@ -123,7 +123,7 @@ Note that because of the third equation, the degeneracy maps $s_i$ are injective
 \begin{proof}
 	We will proof the existence by induction over $n$. For $n=0$ the statement is trivial, since all elements in $X_0$ are non-degenerate. Assume the statement is proven for $n$. Let $x \in X_{n+1}$. Clearly if $x$ itself is non-degenerate, we can write $x = \id^\ast x$. Otherwise it is of the form $x = s_i x'$ for some $x' \in X_n$ and $i$. The induction hypothesis tells us that we can write $x' = \beta^\ast y$ for some surjection $\beta: [n] \epi [m]$ and $y \in X_m$ non-degenerate. So $x = s_i \beta^\ast y = (\beta \sigma_i)^\ast y$.
 
-	For uniqueness, assume $x = \beta^\ast y = \gamma^\ast z$ with $\beta: [n] \epi [m]$, $\gamma: [n] \epi [m']$ and $y \in X_m, z \in X_{m'}$ non-degenerate. Because $\beta$ is surjective there is an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and hence $y = \alpha^\ast \gamma^\ast z = (\gamma\alpha)^\ast z$. By the epi-mon factorization (Lemma~\ref{le:epimono}) we can write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, using that $y$ is non-degenerate we know that $\gamma\alpha$ is injective. So we have $\gamma\alpha: [m] \mono [m']$. Because of symmetry (of $y$ and $z$) we also have some map $[m'] \mono[m]$, so $m = m'$. So $\gamma\alpha$ is also surjective, hence the identity function, thus $y = z$, meaning that the non-degenerate $m$-simplex is unique.
+	For uniqueness, assume $x = \beta^\ast y = \gamma^\ast z$ with $\beta: [n] \epi [m]$, $\gamma: [n] \epi [m']$ and $y \in X_m, z \in X_{m'}$ non-degenerate. Because $\beta$ is surjective there is an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and hence $y = \alpha^\ast \beta^\ast y = \alpha^\ast \gamma^\ast z = (\gamma\alpha)^\ast z$. By the epi-mon factorization (Lemma~\ref{le:epimono}) we can write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, using that $y$ is non-degenerate we know that $\gamma\alpha$ is injective. So we have $\gamma\alpha: [m] \mono [m']$. Because of symmetry (of $y$ and $z$) we also have some map $[m'] \mono[m]$, so $m = m'$. So $\gamma\alpha$ is also surjective, hence the identity function, thus $y = z$, meaning that the non-degenerate $m$-simplex $y$ is unique.
 
 	Now assume $x = \beta^\ast y = \gamma^\ast y$ with $\gamma, \beta: [n] \epi [m]$ such that $\beta \neq \gamma$, and $y \in X_m$ non-degenerate. Then we can find an $\alpha:[m]\to[n]$ such that $\beta\alpha = \id$ and $\gamma\alpha \neq \id$. With the epi-mono factorization write $\gamma\alpha = \delta_{i_a} \cdots \delta_{i_1} \sigma_{j_b} \cdots \sigma_{j_1}$, then by functoriality of $X$
 	$$ y = \alpha^\ast \beta^\ast y = \alpha^\ast \gamma^\ast y = s_{j_1} \cdots s_{j_b} d_{i_1} \cdots d_{i_a} y. $$
@@ -138,7 +138,7 @@ Recall that for any category $\cat{C}$ we have the $\mathbf{Hom}$-functor $\Hom{
 	$$\Delta[n] = \Hom{\DELTA}{-}{[n]} : \DELTA^{op} \to \Set.$$
 \end{definition}
 
-Note that $\Delta[-]: \DELTA \to \sSet$ is exactly the Yoneda embedding. In a moment we will see why the Yoneda lemma is useful to us, but let us first explicitly describe two examples of such standard simplices.
+Note that $\Delta[-]: \DELTA \to \sSet$ is exactly the Yoneda embedding. So a $m$-simplex in $\Delta[n]$ is nothing more than a monotone function $[m] \to [n]$. In a moment we will see why the Yoneda lemma is useful to us, but let us first explicitly describe two examples of such standard simplices.
 
 \begin{example}
 	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $S$, there is only one function $\ast: S \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$ and the face and degeneracy maps are necessarily the identity maps $\id: \{\ast\} \to \{\ast\}$. Thus, $\Delta[0]$ looks like
@@ -159,6 +159,8 @@ Note that $\Delta[-]: \DELTA \to \sSet$ is exactly the Yoneda embedding. In a mo
 	\end{tikzpicture}.$$
 	Note that the only non-degenerate simplex is the unique $0$-simplex.
 \end{example}
+
+We can characterize the non-degenerate simplices for the other standard $n$-simplices as well. Recall that a simplex is degenerate if it lies the image of $s_i$ for some $i$. In the simplicial set $\Delta[n]$ the degeneracy maps $s_i$ are given by precomposing with $\sigma_i$ (by definition of the $\mathbf{Hom}$-functor). Given a $m$-simplex $x \in \Delta[n]_m$, using the epi-mono factorization we can write it as $x = \delta\sigma: [m] \to [n]$, where $\delta$ is injective and $\sigma$ surjective. It is now easily seen that $x$ is degenerate if and only if $\sigma \neq \id$. In other words a $m$-simplex $x \in \Delta[n]_m$ is non-degenerate if and only if $x: [m] \to [n]$ is injective. Note that for $m>n$ no such injective monotone functions exist and for $m=n$ there is a unique one, namely $\id_{[n]}$.
 
 \begin{example}
 	$\Delta[1]$ is a bit more interesting, but still not too complicated. We will describe the first three sets $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone function $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, i.e.: $f: [n] \tot{\sigma_{i_0} \cdots \sigma_{i_M}} [k] \tot{\delta_{j_0} \cdots \delta_{j_N}} [m]$, where $k \leq m, n$.
@@ -223,24 +225,23 @@ This justifies that we may drop this extra decoration ($^\ast$) and write $\Z[-]
 \begin{lemma}
 	The functor $\Z[-]: \sSet \to \sAb$ is a left adjoint, with $U: \sAb \to \sSet$ as right adjoint.
 \end{lemma}
-\begin{proof}
-	First we note that $U\Z[X]_n = U\Z[X_n]$ by definition, so pointwise we get (by the fact that $\Z$ and $U$ already form an adjunction):
+As this is a purely categorical question (it even works for arbitrary functor categories), only a sketch of the proof is given. First note that by the fact that $\Z$ and $U$ already form an adjunction, and if we are given a natural transformation $f: X \to UA$ of simplicial sets we get the following diagram for each $n \in \N$:
 \begin{center}
-	\begin{tikzpicture}
-		\matrix (m) [matrix of math nodes]{
-			X_n & U\Z[X]_n & \Z[X_n] \\
-			    & U(A_n)   & A_n \\
-		};
-		\path[->]
-		(m-1-1) edge node[auto] {$ i $} (m-1-2)
-		(m-1-2) edge node[auto] {$ U(\overline{f}) $} (m-2-2)
-		(m-1-1) edge node[auto] {$ f $} (m-2-2);
-		\path[->]
-		(m-1-3) edge node[auto] {$ \overline{f} $} (m-2-3);
-	\end{tikzpicture}
+\begin{tikzpicture}
+	\matrix (m) [matrix of math nodes]{
+		X_n & U\Z[X]_n & \Z[X_n] \\
+		    & U(A_n)   & A_n \\
+	};
+	\path[->]
+	(m-1-1) edge node[auto] {$ \eta_{X_n} $} (m-1-2)
+	(m-1-2) edge node[auto] {$ U(\overline{f}_n) $} (m-2-2)
+	(m-1-1) edge node[auto] {$ f_n $} (m-2-2);
+	\path[->]
+	(m-1-3) edge node[auto] {$ \overline{f}_n $} (m-2-3);
+\end{tikzpicture}
 \end{center}
-	Then use naturality of $i$ (in $X_n$, thus in particular in $n$) to extend this to $i^\ast : X \to U\Z[X]$. Now if we are given a natural transformation $f: X \to UA$ of simplicial sets we can again construct $\overline{f}: \Z[X] \to A$ pointwise. The reader is invited to check the details.
-\end{proof}
+Then use naturality of $\eta$ (in $X_n$, thus in particular in $n$) to extend this to $\eta : X \to U\Z[X]$. The uniqueness of the maps $\overline{f}_n$ will assure that we get a natural transformation $\overline{f}: \Z[X] \to A$. The reader is invited to check the details.
+
 
 \begin{example}
 	We can apply this to the standard $n$-simplex $\Delta[1]$. This gives $\Delta[1]_0 \iso \Z^2$, since $\Delta[1]_0$ has two elements, and $\Z^\ast[\Delta[1]]_1 \iso \Z^3$, where the isomorphisms are taken such that
