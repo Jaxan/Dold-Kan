@@ -95,8 +95,8 @@ Of course the maps $\delta_i$ and $\sigma_i$ in $\DELTA$ satisfy certain relatio
 
 Note that these cosimplicial identities are ``purely categorical'', i.e. they only use compositions and identity maps. Because a simplicial set $X$ is a contravariant functor, dual versions of these equations hold in its image. For example, the first equation corresponds to $X(\delta_i)X(\delta_j) = X(\delta_{j-1})X(\delta_i)$ for $i < j$. This can be used for an explicit definition of simplicial sets. In this definition a simplicial set $X$ consists of a collection of sets $X_n$ together with face and degeneracy maps. More precisely:
 
-\begin{definition}
-	\emph{(Explicitly)} An simplicial set $X$ consists of a collection sets $X_n$ together with functions $d_i: X_n \to X_{n-1}$ and $s_i: X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that the simplicial identities hold
+\begin{lemma}
+	A simplicial set $X$ is equivalently specified by a collection sets $X_n$, $n \in \N$, together with functions $d_i: X_n \to X_{n-1}$ and $s_i: X_n \to X_{n+1}$ for $0 \leq i \leq n$ and $n \in \N$, such that the simplicial identities hold
 	\begin{align}
 		d_i d_j &= d_{j-1} d_i,  \hspace{1.5cm} \text{ if } i < j,\\
 		d_i s_j &= s_{j-1} d_i,  \hspace{1.5cm} \text{ if } i < j,\\
@@ -104,9 +104,11 @@ Note that these cosimplicial identities are ``purely categorical'', i.e. they on
 		d_i s_j &= s_j d_{i-1},  \hspace{1.5cm} \text{ if } i > j+1,\\
 		s_i s_j &= s_{j+1} s_i,  \hspace{1.5cm} \text{ if } i \leq j.
 	\end{align}
-\end{definition}
+\end{lemma}
 
-It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the first definition from this one. Conversely, we can apply functoriality to obtain the second definition from the first. So these definitions are the same. From now on we will denote $X([n])$ by $X_n$, $X(\sigma_i)$ by $s_i$ and $X(\delta_i)$ by $d_i$, whenever we have a simplicial set $X$. For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast: X_p \to X_n$.
+It is already indicated that a functor from $\DELTA^{op}$ to $\Set$ is determined when the images for the face and degeneracy maps in $\DELTA$ are provided. So this gives a way of restoring the definition from this specification. Conversely, we can apply functoriality to obtain this specification from the definition. We will not give the proof in more detail. From now on we will use the following notation for a simplicial set $X$:
+$$ X_n = X([n]), \quad s_i = X(\sigma_i) \quad\text{and}\quad d_i = X(\delta_i). $$
+For any other map $\beta : [n] \to [p]$ we will denote the induced map by $\beta^\ast: X_p \to X_n$.
 
 When using a simplicial set to construct another object, it is often handy to use this second definition, as it gives you a very concrete objects to work with. On the other hand, constructing this might be hard (as you would need to provide a lot of details), in this case we will often use the more abstract definition.
 

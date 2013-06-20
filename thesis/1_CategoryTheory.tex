@@ -109,12 +109,12 @@ With the notion of isomorphisms between functors we can generalize this, and onl
 	for any $X \in \cat{C}$ and $Y \in \cat{D}$. The functor $F$ is called the \emph{left adjoint} and $G$ the \emph{right adjoint}.
 \end{definition}
 
-Now there are different definitions of adjunctions, which are equivalent. We will not prove that these are equivalent. One can find the proof in for example in the books of Mac Lane \cite{maclane} or Awodey \cite{awodey}. A particular nice one is the following:
+There are different equivalent descriptions of adjunctions. A particular nice one will be recalled. For a proof of equivalence to the above definition we refer to books on category theory such as the one of Mac Lane \cite{maclane} or Awodey \cite{awodey}.
 
-\begin{definition}
-	An adjunction between two categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$, $G: \cat{D} \to \cat{C}$ and a natural transformation, called the \emph{unit}:
+\begin{lemma}
+	Given functors $F:\cat{C} \to \cat{D}$, $G: \cat{D} \to \cat{C}$ then $F$ is a left adjoint and $G$ a right adjoint if and only if there exists a natural transformation, called the \emph{unit}
 	$$ \eta : \id_\cat{C} \to GF. $$
-	Such that for any map $f: S \to G(A)$ (in $\cat{C}$), there is a unique map $\overline{f}: F(S) \to A$ (in $\cat{D}$) such that $G(\overline{f}) \circ \eta = f$. I.e.:
+	such that for any map $f: S \to G(A)$ (in $\cat{C}$), there is a unique map $\overline{f}: F(S) \to A$ (in $\cat{D}$) such that $G(\overline{f}) \circ \eta = f$. I.e.:
 \begin{center}
 	\begin{tikzpicture}
 		\matrix (m) [matrix of math nodes]{
@@ -129,7 +129,7 @@ Now there are different definitions of adjunctions, which are equivalent. We wil
 		(m-1-3) edge node[auto] {$ \overline{f} $} (m-2-3);
 	\end{tikzpicture}
 \end{center}
-\end{definition}
+\end{lemma}
 
 Note that by considering the identity map $\id : G(A) \to G(A)$ in $\cat{C}$, we get a uniquely determined map $\overline{\id}:FG(A) \to A$. This map $FG(A) \to A$ is in fact natural in $A$, this natural transformation is called the \emph{co-unit}
 $$ \eps: FG \to \id. $$
@@ -141,16 +141,19 @@ The first definition of adjunction is useful when dealing with maps, since it gi
 \begin{example}
 	\emph{(Free abelian groups)} There is an obvious functor $U: \Ab \to \Set$, which sends an abelian group to its underlying set, forgetting the additional structure. It is hence called a \emph{forgetful functor}. This functor has a left adjoint $\Z[-]: \Set \to \Ab$  given by the \emph{free abelian group functor}. For a set $S$ define
 	$$ \Z[S] = \{ \phi: S \to \Z \I \text{supp}(\phi) \text{ is finite}\}, $$
-	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given by pointwise addition. One can think of elements of this abelian group as formal sums, namely:
-	$$ \text{for } \phi \in F(S),\, \phi = \sum_{x \in \text{supp}(\phi)}\phi(x) x, $$
-	in other words $\Z[S]$ consists of linear combinations of elements in $S$.
-
-	There is a map $\eta: S \to U\Z[S]$ given by:
-	$$ \eta(s)(t) =
+	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given by pointwise addition. We can define an element $e_s \in \Z[S]$ for every element $s \in S$ as
+	$$ e_s(t) =
 	\begin{cases}
 		1 \text{ if } s = t \\
 		0 \text{ otherwise}
 	\end{cases}. $$
+
+	One can think of elements of this abelian group as formal sums, namely:
+	$$ \text{for } \phi \in F(S),\, \phi = \sum_{x \in \text{supp}(\phi)}\phi(x) e_x, $$
+	in other words $\Z[S]$ consists of linear combinations of elements in $S$. The functor $\Z[-]$ is defined on functions as follows. Let $f: S \to T$ be a function, then define
+	$$ \Z[f](\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) e_{f(x)} \quad\text{for all } \phi \in \Z[S]. $$
+	It is left for the reader to check that this indeed gives a group homomorphism and that the functor laws hold. There is a map $\eta: S \to U\Z[S]$ given by
+	$$ \eta(s) = e_s. $$
 
 	And given any map $f: S \to U(A)$ for any abelian group $A$, we can define
 	$$ \overline{f}(\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) \cdot f(x). $$
