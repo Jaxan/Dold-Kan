@@ -4,8 +4,8 @@
 Comparing chain complexes and simplicial abelian groups, one sees a certain similarity. Both concepts are defined as sequences of abelian groups with certain structure maps. At first sight simplicial abelian groups seem to have a richer structure. There are many face maps as opposed to only a single boundary homomorphism. Nevertheless, as we will show in this section, these two concepts give rise to equivalent categories.
 
 \subsection{Unnormalized chain complex}
-Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. For every $n>0$ we define a group homomorphism $\del_n : A_n \to A_{n-1}$
-$$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n.$$
+Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. For every $n>0$ we define a group homomorphism
+$$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n: A_n \to A_{n-1}.$$
 \begin{lemma}
 	Using $A_n$ as the family of abelian groups and the maps $\del_n$ as boundary maps gives a chain complex.
 \end{lemma}
@@ -21,9 +21,18 @@ $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n.$$
 	In this calculation we did the following. We split the inner sum in two halves \refeqn{1} and we use the simplicial equations on the second sum \refeqn{2}. Then we do a shift of indices \refeqn{3}. By interchanging the roles of $i$ and $j$ in the second sum, we have two equal sums which cancel out. So indeed this is a chain complex.
 \end{proof}
 
-This construction defines a functor $M : \sAb \to \Ch{\Ab}$. And in fact we already used it in the construction of the singular chain complex, where we defined the boundary maps (on generators) as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$. We will briefly come back to this in Section~\ref{sec:Homotopy}.
+Thus, associated to a simplicial abelian group $A$ we obtain a chain complex $M(A)$ with $M(A)_n = A_n$ and the boundary operator as above. This construction defines a functor
+$$ M: \sAb \to \Ch{\Ab} $$
+by assigning $M(f)_n = f_n$ for a natural transformation $f: A \to B$. It follows from a nice calculation that $M(f)$ is indeed a chain map:
+\begin{align*}
+	f_{n-1} \circ \del &= f_{n-1} \circ (d_0 - d_1 + \ldots + (-1)^n d_n) \\
+		&= f_{n-1} \circ d_0 - f_{n-1} \circ d_1 + \ldots + (-1)^n f_{n-1} \circ d_n \\
+		&\eqn{1} d_0 \circ f_n - d_1 \circ f_n + \ldots + (-1)^n d_n \circ f_n \\
+		&= (d_0 - d_1 + \ldots + (-1)^n d_n) \circ f_n = \del \circ f_n,
+\end{align*}
+where we used naturality of $f$ in step \refeqn{1}. This functor is in fact already used in the construction of the singular chain complex, where we defined the boundary maps (on generators) as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$. We will briefly come back to this in Section~\ref{sec:Homotopy}.
 
-Let us investigate whether this functor can be used for our sought equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degeneracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
+Let us investigate whether this functor $M$ can be part of an equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degeneracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
 
 But for chain complexes it \emph{is} possible to have trivial abelian groups $C_m$, while there is a $n < m$ with $C_n$ non-trivial. Take for example the chain complex
 $$ C = \ldots \to 0 \to 0 \to \Z. $$
@@ -34,10 +43,10 @@ To repair this defect we should be more careful. Given a simplicial abelian grou
 
 Given a simplicial abelian group $A$, we define abelian groups $N(A)_n$ as
 \begin{align*}
-	N(A)_n &= \bigcap_{i=1}^{n} \ker(d_i : A_n \to A_{n-1}), \quad\text{n > 0} \\
+	N(A)_n &= \bigcap_{i=1}^{n} \ker(d_i: A_n \to A_{n-1}), \quad\text{n > 0} \\
 	N(A)_0 &= A_0.
 \end{align*}
-Now define group homomorphisms $\del : N(A)_n \to N(A)_{n-1}$ as
+Now define group homomorphisms $\del: N(A)_n \to N(A)_{n-1}$ as
 $$ \del = d_0|_{N(A)_n}. $$
 \begin{lemma}
 	The function $ \del $ is well-defined. Furthermore $ \del \circ \del = 0 $.
@@ -52,10 +61,10 @@ The chain complex $N(A)$ is called the \emph{normalized chain complex} of $A$.
 \end{lemma}
 \begin{proof}
 	Given a map $f: A \to B$ of simplicial abelian groups, we consider the restrictions
-	$$ f_n |_{N(A)_n} : N(A)_n \to B_n. $$
+	$$ f_n |_{N(A)_n}: N(A)_n \to B_n. $$
 	Because $f_n$ commutes with the face maps we get
 	$$ d_i(f_n(x)) = f_{n-1}(d_i(x)) = 0, $$
-	for $i>0$ and $x \in N(A)_n$. So the restriction also restricts the codomain, i.e. $f_n |_{N(A)_n} : N(A)_n \to N(B)_n$ is well-defined. Furthermore it commutes with the boundary operator, since $f$ itself commutes with all face maps. This gives functoriality $N(f): N(A) \to N(B)$.
+	for $i>0$ and $x \in N(A)_n$. So the restriction also restricts the codomain, i.e. $f_n |_{N(A)_n}: N(A)_n \to N(B)_n$ is well-defined. Furthermore it commutes with the boundary operator, since $f$ itself commutes with all face maps. This gives functoriality $N(f): N(A) \to N(B)$.
 
 	Let $f, g: A \to B$ be two maps, then
 	$$ N(f+g) = (f+g)|_{N(A)} = f|_{N(A)} + g|_{N(A)} = N(f) + N(g). $$
@@ -125,9 +134,9 @@ We can extend the above lemmas to a more general statement.
 
 \begin{lemma}
 	\label{le:decomp3}
-	For all $x \in X_n$ we can write $x$ as:
+	For all $x \in X_n$ we can write $x$ as
 	$$ x = \sum_\beta \beta^\ast (x_\beta), $$
-	for certain $x_\beta \in N(X)_p$ and $\beta : [n] \epi [p]$.
+	for certain $x_\beta \in N(X)_p$, where $\beta$ ranges over all surjective functions $\beta : [n] \epi [p]$.
 \end{lemma}
 \begin{proof}
 	We will proof this using induction on $n$. For $n=0$ the statement is clear because $N(X)_0 = X_0$.
@@ -136,7 +145,7 @@ We can extend the above lemmas to a more general statement.
 \end{proof}
 \begin{lemma}
 	\label{le:decomp4}
-	Let $\beta : [n] \epi [m]$ and $\gamma : [n] \epi [m']$ be two maps such that $\beta \neq \gamma$. Then we have $\beta^\ast(N(X))_m \cap \gamma^\ast(N(X))_{m'} = 0$.
+	Let $\beta: [n] \epi [m]$ and $\gamma : [n] \epi [m']$ be two maps such that $\beta \neq \gamma$. Then we have $\beta^\ast(N(X))_m \cap \gamma^\ast(N(X))_{m'} = 0$.
 \end{lemma}
 \begin{proof}
 	Note that $N(X)_i$ only contains non-degenerate $i$-simplices (and $0$). For $x \in \beta^\ast(N(X))_p \cap \gamma^\ast(N(X))_q$ we have $x = \beta^\ast y = \gamma^\ast y'$, where $y$ and $y'$ are non-degenerate. By Lemma~\ref{le:non-degenerate} we know that every $n$-simplex is \emph{uniquely} determined by a non-degenerate simplex and a surjective map. For $x \neq 0$ this gives a contradiction.
@@ -157,8 +166,8 @@ And by considering $X_n$ as a whole we get:
 
 Using Corollary~\ref{cor:decomp} we can prove a nice categorical fact about $N$, which we will use later on.
 \begin{lemma}
-	The functor $N$ is fully faithful, i.e.:
-	$$ N : \Hom{\sAb}{A}{B} \iso \Hom{\Ch{\Ab}}{N(A)}{N(B)} \quad A, B \in \sAb. $$
+	The functor $N$ is fully faithful, i.e.
+	$$ N: \Hom{\sAb}{A}{B} \iso \Hom{\Ch{\Ab}}{N(A)}{N(B)} \quad A, B \in \sAb. $$
 \end{lemma}
 \begin{proof}
 	First we prove that $N$ is injective on maps. Let $f: A \to B$ and assume $N(f) = 0$, for $x \in A_n$ we know $x = \sum_\beta \beta^\ast x_\beta$, so
@@ -170,7 +179,7 @@ Using Corollary~\ref{cor:decomp} we can prove a nice categorical fact about $N$,
 	\end{align*}
 	where we used naturality of $f$ in the second step, and the fact that $x_\beta \in N(A)$ in the last step. We now see that $f(x) = 0$ for all $x$, hence $f = 0$. So indeed $N$ is injective on maps.
 
-	Secondly we have to prove $N$ is surjective on maps. Let $g : N(A) \to N(B)$, define $f : A \to B$ as
+	Secondly we have to prove $N$ is surjective on maps. Let $g: N(A) \to N(B)$, define $f: A \to B$ as
 	$$ f(x) = \sum_\beta \beta^\ast g(x_\beta), $$
 	again we have written $x$ as $x = \sum_\beta \beta^\ast x_\beta$. Clearly $N(f) = g$.
 \end{proof}
@@ -178,17 +187,17 @@ Using Corollary~\ref{cor:decomp} we can prove a nice categorical fact about $N$,
 If we reflect a bit on why the functor $M$ was not a candidate for an equivalence, we see that $N$ does a better job. We see that $N$ leaves out all degenerate simplices, so it is more carefully chosen than $M$, which included everything. In fact, Corollary~\ref{cor:NandD} exactly tells us $M(X)_n = N(X)_n \oplus D_n(X)$.
 
 \subsection{From $\Ch{\Ab}$ to $\sAb$}
-For the other way around we actually get a functor for free, via abstract nonsense. Let $F : \sAb \to A$ be any functor, where $A$ is an abelian category. We are after a functor $G : A \to \sAb$, this means that if we are given $C \in A$, we are looking for a functor $G(C) : \DELTA^{op} \to \Ab$. Fixing $C$ in the second argument of the $\mathbf{Hom}$-functor gives: $\Hom{A}{-}{C} : A^{op} \to \Ab$, because $A$ is an abelian category. We see that the codomain of this functor already looks good, now if we have some functor from $\DELTA^{op}$ to $A^{op}$, we can precompose, to obtain a functor from $\DELTA^{op}$ to $\Ab$.
+For the other way around we actually get a functor for free, via abstract nonsense. Let $F: \sAb \to A$ be any functor, where $A$ is an abelian category. We are after a functor $G: A \to \sAb$, this means that if we are given $C \in A$, we are looking for a functor $G(C): \DELTA^{op} \to \Ab$. Fixing $C$ in the second argument of the $\mathbf{Hom}$-functor gives: $\Hom{A}{-}{C}: A^{op} \to \Ab$, because $A$ is an abelian category. We see that the codomain of this functor already looks good, now if we have some functor from $\DELTA^{op}$ to $A^{op}$, we can precompose, to obtain a functor from $\DELTA^{op}$ to $\Ab$.
 
-Now recall that we have a family of simplicial sets $\Delta[n]$, which are given by the functor $\Delta : \DELTA \to \sSet$. We can apply the free abelian group pointwise, which gives a functor $\Z^{\ast} : \sSet \to \sAb$. And finally we have our functor $F : \sAb \to A$. Composing these gives:
-$$ F \Z^{\ast} \Delta : \DELTA \to A. $$
+Now recall that we have a family of simplicial sets $\Delta[n]$, which are given by the functor $\Delta: \DELTA \to \sSet$. We can apply the free abelian group pointwise, which gives a functor $\Z^{\ast} : \sSet \to \sAb$. And finally we have our functor $F: \sAb \to A$. Composing these gives:
+$$ F \Z^{\ast} \Delta: \DELTA \to A. $$
 We can formally regard this functor as a functor from $\DELTA^{op}$ to $A^{op}$. Now combining this with the $\mathbf{Hom}$-functor gives:
-$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{C} : \DELTA^{op} \to \Ab. $$
+$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{C}: \DELTA^{op} \to \Ab. $$
 Now this is a functor, because it is a composition of functors. Furthermore it is also functorial in the second argument, giving a functor
-$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{-} : A \to \sAb $$
+$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{-}: A \to \sAb $$
 where we are supposed to fill in the second argument first, leaving us with a simplicial abelian group.
 
-Now we know that $\Ch{\Ab}$ is an abelian group and we have actually two functors $C, N : \sAb \to \Ch{\Ab}$, so we now have functors from $\Ch{\Ab} \to \sAb$. Of course we will be interested in the one using $N$. So we define the functor:
+Now we know that $\Ch{\Ab}$ is an abelian group and we have actually two functors $M, N : \sAb \to \Ch{\Ab}$, so we now have functors from $\Ch{\Ab} \to \sAb$. Of course we will be interested in the one using $N$. So we define the functor:
 $$ K(C) = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[-]}{C} \in \sAb. $$
 This definition is very abstract, but luckily we can also give a more explicit definition. By writing it out for low dimensions we see:
 
@@ -205,7 +214,7 @@ $$ K(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
 \Bigg\} \iso C_0, $$
-because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0 : \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see:
+because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see:
 
 $$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]

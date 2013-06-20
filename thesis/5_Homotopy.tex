@@ -3,7 +3,7 @@
 
 We have already seen homology in chain complexes. We can of course now translate this notion to simplicial abelian groups, by assigning a simplicial abelian group $X$ to $H_n(N(X))$. But there is a more general notion of homotopy for simplicial sets, which is also similar to the notion of homotopy in topology. We will define the notion of homotopy groups for simplicial sets.
 
-When dealing with homotopy groups in a topological space $X$ we always need a base-point $\ast \in X$. This is also the case for simplicial sets. We will notate the chosen base-point of a simplicial set $X$ with $\ast \in X_0$. Note that it is a $0$-simplex, but in fact the base-point is present in all sets $X_n$, because we can consider its degenerate simplices $s_0(\ldots(s_0(\ast))\ldots) \in X_n$, we will also denote these elements as $\ast$. Of course in our situation we are concerned with simplicial abelian groups, where there is an obvious choice for the base-point given by the neutral element $0$.
+When dealing with homotopy groups in a topological space $X$ we always need a base-point $\ast \in X$. This is also the case for simplicial sets. We will notate the chosen base-point of a simplicial set $X$ with $\ast \in X_0$. More formally, a \emph{pointed simplicial set} $(X, \ast)$ is a simplicial set $X$ together with a $0$-simplex $\ast \in X_0$. By the Yoneda lemma this $0$-simplex corresponds to a map $\Delta[0] \to X$, and any simplex in the image will be denoted by $\ast$. Another way of saying this is that we denote the degenerate simplices $s_0(\ldots(s_0(\ast))\ldots) \in X_n$ as $\ast$. Of course in our situation we are concerned with simplicial abelian groups, where there is an obvious choice for the base-point given by the neutral element $0$.
 
 \subsection{Homotopy groups}
 \begin{definition}
@@ -58,7 +58,7 @@ Before proving this, one should have a look at figure~\ref{fig:simplicial_eqrel}
 \end{proof}
 
 \begin{definition}
-	Given a simplicial abelian group $X$, we define the $n$-th homotopy group as:
+	Given a simplicial abelian group $X$, we define the $n$-th homotopy group as
 	$$ \pi_n(X) = Z_n(X) / \sim. $$
 \end{definition}
 
@@ -83,7 +83,7 @@ Note that this is an abelian group, because $Z_n(X)$ is a subgroup of $X_n$, and
 \end{proof}
 
 \begin{corollary}
-	For a chain complex $C$ we have $H_n(C) \iso \pi_n(K(C))$
+	For a chain complex $C$ we have $H_n(C) \iso \pi_n(K(C))$.
 \end{corollary}
 \begin{proof}
 	By the established equivalence we have for any chain complex $C$:
@@ -91,9 +91,13 @@ Note that this is an abelian group, because $Z_n(X)$ is a subgroup of $X_n$, and
 \end{proof}
 
 \subsection{Topology}
-In Section~\ref{sec:Constructions} we saw that we can construct a functor $G: \cat{C} \to \sSet$ if we are provided a functor the other way around. If we can define a functor $F: \DELTA \to \Top$, then for any space $X$ we have a simplicial set $\Hom{\Top}{F-}{X}: \DELTA^{op} \to \Set$. In Section~\ref{sec:Chain Complexes}, we already defined the \emph{topological $n$-simplex} $\Delta^n$ and face maps $\delta^i : \Delta^n \mono \Delta^{n+1}$. We can similarly define degeneracy maps $s^i: \Delta^n \to \Delta^{n-1}$ as:
-$$ s^i(x_0, \ldots, x_n) = (x_0, \ldots, x_i + x_{i+1}, \ldots, x_n) \in \Delta^{n-1}. $$
-The reader is invited to check the cosimplicial identities himself and conclude that we now have a functor $F: \DELTA \to \Top$, and hence we have a functor $S: \Top \to \sSet$ given by:
+In Section~\ref{sec:Chain Complexes}, we already defined the topological $n$-simplex $\Delta^n \in \Top$. We will now relate these spaces to the standard $n$-simplices $\Delta[n] \in \sSet$. We will define a functor $\Delta^-: \DELTA \to \Top$ as follows
+\begin{gather*}
+	\Delta^-([n]) = \Delta^n = \{(x_0, x_1, \ldots, x_n) \in \R^{n+1} \I x_i \geq 0 \text{ and } x_0 + \ldots + x_n = 1 \}, \\
+	\Delta^-(\delta_i) (x_0, \ldots, x_n) = (x_0, \ldots, x_{i-1}, 0, x_{i}, \ldots, x_n), \\
+	\Delta^-(\sigma_i) (x_0, \ldots, x_n) = (x_0, \ldots, x_{i} + x_{i+1}, \ldots, x_n).
+\end{gather*}
+The definition of $\Delta^-(\delta_i)$ was already defined in Section~\ref{sec:Chain Complexes} as the face maps $\delta^i: \Delta^n \to \Delta^{n+1}$. So in addition we defined degeneracy maps. The reader is invited to check the cosimplicial identities himself and conclude that we now have a functor $\Delta^-: \DELTA \to \Top$. By composing this with the $\mathbf{Hom}$-functor we obtain a functor $S: \Top \to \sSet$ given by
 $$ \text{Sing}(X)_n = \Hom{\Top}{\Delta^n}{X}. $$
 
 Recall construction of the singular chain complex in Section~\ref{sec:Chain Complexes}:
