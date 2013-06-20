@@ -186,22 +186,53 @@ Using Corollary~\ref{cor:decomp} we can prove a nice categorical fact about $N$,
 
 If we reflect a bit on why the functor $M$ was not a candidate for an equivalence, we see that $N$ does a better job. We see that $N$ leaves out all degenerate simplices, so it is more carefully chosen than $M$, which included everything. In fact, Corollary~\ref{cor:NandD} exactly tells us $M(X)_n = N(X)_n \oplus D_n(X)$.
 
+
 \subsection{From $\Ch{\Ab}$ to $\sAb$}
-For the other way around we actually get a functor for free, via abstract nonsense. Let $F: \sAb \to A$ be any functor, where $A$ is an abelian category. We are after a functor $G: A \to \sAb$, this means that if we are given $C \in A$, we are looking for a functor $G(C): \DELTA^{op} \to \Ab$. Fixing $C$ in the second argument of the $\mathbf{Hom}$-functor gives: $\Hom{A}{-}{C}: A^{op} \to \Ab$, because $A$ is an abelian category. We see that the codomain of this functor already looks good, now if we have some functor from $\DELTA^{op}$ to $A^{op}$, we can precompose, to obtain a functor from $\DELTA^{op}$ to $\Ab$.
+\begin{definition}
+	For a chain complex $C$ define the abelian groups
+	$$ K(C)_n = \bigoplus_{\beta} C_p^\beta, $$
+	where $\beta$ ranges over all surjections $\beta: [n] \epi [p]$ and $C_p^\beta = C_p$ ($\beta$ only acts as a decoration).
+\end{definition}
+For a chain complex $C$ we will turn the groups $K(C)_n$ into a simplicial abelian group by defining $K$ on functions. Let $\alpha: [m] \to [n]$ be a function in $\DELTA$, we will define $K(\alpha): K(C)_n \to K(C)_m$ by defining it on each summand $C_p^\beta$. Fix a summand $C_p^\beta$, by using the epi-mono factorization we know $\beta\alpha = \delta\sigma$ for some injection $\delta$ and some surjection $\sigma$. In the case $\delta = \id$, we make the following identification
+$$ C_p^\beta \tot{=} C_p^\sigma \subset K(C)_m. $$
+In the case $\delta = \delta_0$ we use the boundary operator as follows:
+$$ C_p^\beta \tot{\del} C_{p-1} \tot{=} C_{p-1}^\sigma \subseteq K(C)_m. $$
+In all the other cases we define the map $C_p^\beta \to K(C)_m$ to be the zero map. We now have defined a map on each of the summands which gives a map $K(\alpha): K(C)_n \to K(C)_m$.
+\todo{DK: functoriality of $K(C)$, functoriality of $K$}
 
-Now recall that we have a family of simplicial sets $\Delta[n]$, which are given by the functor $\Delta: \DELTA \to \sSet$. We can apply the free abelian group pointwise, which gives a functor $\Z^{\ast} : \sSet \to \sAb$. And finally we have our functor $F: \sAb \to A$. Composing these gives:
-$$ F \Z^{\ast} \Delta: \DELTA \to A. $$
-We can formally regard this functor as a functor from $\DELTA^{op}$ to $A^{op}$. Now combining this with the $\mathbf{Hom}$-functor gives:
-$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{C}: \DELTA^{op} \to \Ab. $$
-Now this is a functor, because it is a composition of functors. Furthermore it is also functorial in the second argument, giving a functor
-$$ \Hom{A}{F \Z^{\ast} \Delta (-)}{-}: A \to \sAb $$
-where we are supposed to fill in the second argument first, leaving us with a simplicial abelian group.
+\todo{DK: work out the following in more detail (especially the naturalities)}
+\begin{theorem}
+	$N$ and $K$ form an equivalence.
+\end{theorem}
+\begin{proof}
+	Let $X$ be a simplicial abelian group. Consider $X_n$, by the additive Yoneda lemma this is naturally isomorphic to $\Z^\ast[\Delta[n]] \to X$, which is by the fully faithfulness and additivity of $N$ naturally isomorphic to $N\Z^\ast[\Delta[n]] \to NX$. The latter is exactly the definition of $KNX$. So, by naturality in $n$, we have established $X \iso KNX$. Hence, by naturality in $X$, we have $\id \iso KN$.
 
-Now we know that $\Ch{\Ab}$ is an abelian group and we have actually two functors $M, N : \sAb \to \Ch{\Ab}$, so we now have functors from $\Ch{\Ab} \to \sAb$. Of course we will be interested in the one using $N$. So we define the functor:
-$$ K(C) = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[-]}{C} \in \sAb. $$
-This definition is very abstract, but luckily we can also give a more explicit definition. By writing it out for low dimensions we see:
+	By the previous proposition we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$. For the summands $C_p$ with $p < n$, we clearly see that $C_p \subset D_n(K(C))$, so $N$ gets rid of these. Then the only summand left is $C_n$ (with the surjection $\id : [n] \epi [n]$). So we see $NKC_n \iso C_n$, furthermore the boundary map is preserved. Hence $NKC \iso C$. And this was natural in $C$, so we get $NK \iso \id$.
 
-$$ K(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
+	We now have established two natural isomorphisms $\id_\sAb \iso KN$ and $NK \iso \id_\Ch{\Ab}$. Hence we have an equivalence $\Ch{\Ab} \simeq \sAb$.
+\end{proof}
+
+One might not be content with the explicit description of the functor $K$. There is a more abstract way of constructing a functor $\Ch{\Ab} \to \sAb$ from a functor $\sAb \to \Ch{\Ab}$. We will briefly discuss this and show how the functor $K$ would be derived from $N$ by this abstract construction, with two examples it will be illustrated why the two descriptions are the same.
+
+Let $A$ be an additive category and $F: \sAb \to A$ an additive functor. We want to construct a functor $G: A \to \sAb$ which is right adjoint to $F$. For each $a \in A$ we have to specify $G(a): \DELTA^{op} \to \Ab$. Assume we already specified this, such that $G$ is the right adjoint, then by the additive Yoneda lemma we know
+\begin{align*}
+	G(a)_n &\iso \Hom{\sAb}{\Z[\Delta[n]]}{G(a)} \\
+		&\iso \Hom{A}{F\Z[\Delta[n]]}{a}.
+\end{align*}
+This in fact can be used as the definition of $G$:
+$$ G(a)_n = \Hom{A}{F\Z[\Delta[n]]}{a}. $$
+To check that indeed $G(a) \in \sAb$ we only have to remind ourselves that we only composed two functors, namely
+\begin{gather*}
+	\DELTA \tot{\Delta[-]} \sSet \tot{\Z} \sAb \tot{F} A \quad\text{and} \\
+	\Hom{A}{-}{a}: A^{op} \to \Ab
+\end{gather*}
+giving us $\Hom{A}{F\Z[\Delta[-]]}{a}: \DELTA^{op} \to \Ab$. Similarly $G$ itself is a functor, because it is defined using the $\mathbf{Hom}$-functor.
+
+Many functors to $\sAb$ can be shown to have this description.\footnote{And also many functors to $\sSet$ are of this form if we leave out all additivity requirements.} In our case we could have defined our functor $K$ as
+$$ K'(C) = \Hom{\Ch{\Ab}}{N\Z[\Delta[-]]}{C}. $$
+We will not show that this functor $K'$ is isomorphic to our functor $K$ defined earlier, however we will indicate that it makes sense by writing out explicit calculations for $K'(C)_0$ and $K'(C)_1$.
+
+$$ K'(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
 		\cdots  & 0 & 0 & \Z  \\
@@ -213,7 +244,7 @@ $$ K(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 	
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
-\Bigg\} \iso C_0, $$
+\Bigg\} \iso C_0 = K(C)_0, $$
 because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see:
 
 $$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
@@ -228,25 +259,7 @@ $$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 	
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
-\Bigg\} \iso C_1 \oplus C_0, $$
+\Bigg\} \iso C_1 \oplus C_0 = K(C)_1, $$
 
-because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then we are forced to choose $f_0(x, x) = \del(f_1(x))$ for all $x \in \Z$, so we are left with choosing an element $c \in C_0$ for defining $f(1,-1) = c$. Adding this gives $C_1 \oplus C_0$. This pattern can be continued and gives the following result:
+because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then we are forced to choose $f_0(x, x) = \del(f_1(x))$ for all $x \in \Z$, so we are left with choosing an element $c \in C_0$ for defining $f(1,-1) = c$. Adding this gives $C_1 \oplus C_0$.
 
-\begin{proposition}
-	For any chain complex $C$ we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$.
-\end{proposition}
-\begin{proof}
-	\todo{DK: proposition about $K$}
-\end{proof}
-
-\todo{DK: work out the following in more detail (especially the naturalities)}
-\begin{theorem}
-	$N$ and $K$ form an equivalence.
-\end{theorem}
-\begin{proof}
-	Let $X$ be a simplicial abelian group. Consider $X_n$, by the abelian Yoneda lemma this is naturally isomorphic to $\Z^\ast[\Delta[n]] \to X$, which is by the fully faithfulness and additivity of $N$ naturally isomorphic to $N\Z^\ast[\Delta[n]] \to NX$. The latter is exactly the definition of $KNX$. So, by naturality in $n$, we have established $X \iso KNX$. Hence, by naturality in $X$, we have $\id \iso KN$.
-
-	By the previous proposition we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$. For the summands $C_p$ with $p < n$, we clearly see that $C_p \subset D_n(K(C))$, so $N$ gets rid of these. Then the only summand left is $C_n$ (with the surjection $\id : [n] \epi [n]$). So we see $NKC_n \iso C_n$, furthermore the boundary map is preserved. Hence $NKC \iso C$. And this was natural in $C$, so we get $NK \iso \id$.
-
-	We now have established two natural isomorphisms $\id_\sAb \iso KN$ and $NK \iso \id_\Ch{\Ab}$. Hence we have an equivalence $\Ch{\Ab} \simeq \sAb$.
-\end{proof}
