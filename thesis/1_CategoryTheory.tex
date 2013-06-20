@@ -2,34 +2,19 @@
 \label{sec:Category Theory}
 Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, let us begin by recalling some basic category theory. The reader who is already familiar with these concepts, is invited to skip this section. We will introduce the notions of categories, functors, isomorphisms, natural transformations, equivalences, adjunctions and the Yoneda lemma.
 
+We will briefly define categories an functors to fix the notation. We will not provide many examples or intuition in these concepts. For a more elaborated exposition one should have a read in \cite{awodey} or \cite{maclane}. The more complicated definitions will be discussed in a bit more detail.
+
 \subsection{Categories}
-\todo{CT: Where to start...?}
 \begin{definition}
-	A \emph{category} $\cat{C}$ consists of a collection of \emph{objects}, and for each two objects $A$ and $B$ in $\cat{C}$ there is a set of \emph{maps}  from $A$ to $B$, notated as $\Hom{\cat{C}}{A}{B}$, such that
+	A \emph{category} $\cat{C}$ consists of a collection of \emph{objects}, a set of \emph{maps} $\Hom{\cat{C}}{A}{B}$ for each two objects $A, B \in \cat{C}$ and a binary operator named \emph{composition} $-\circ-:\Hom{\cat{C}}{B}{C} \times \Hom{\cat{C}}{A}{B}$ such that
 	\begin{itemize}
-		\item \emph{(Identity)}
-			$\id_A \in \Hom{\cat{C}}{A}{A}$ for all $A$ in $\cat{C}$,
-		\item \emph{(Composition)}
-			for any $f \in \Hom{\cat{C}}{A}{B}$ and $g \in \Hom{\cat{C}}{B}{C}$ we have $g \circ f \in \Hom{\cat{C}}{A}{C}$,
-		\item \emph{(Associativity)}
-			$h \circ (g \circ f) = (h \circ g) \circ f$, and
-		\item \emph{(Identity law)}
-			$\id_B \circ f = f = f \circ \id_A$ for all $f \in \Hom{\cat{C}}{A}{B}$.
+		\item $\circ$ is associative, i.e. $h \circ (g \circ f) = (h \circ g) \circ f$ and
+		\item there exists an neutral element $\id_A \in \Hom{\cat{C}}{A}{A}$ for all $A$ in $\cat{C}$, i.e.
+		$$ \id_B \circ f = f = f \circ \id_A. $$
 	\end{itemize}
 \end{definition}
 
-Note that the collection of objects may be a proper class instead of a set, however we will notate $A \in \cat{C}$ if $A$ is an object of $\cat{C}$. And instead of writing $f \in \Hom{\cat{C}}{A}{B}$, we write $f: A \to B$.
-
-As the notation suggests maps should be thought of as functions. Which is also the case in many categories, as objects are often sets with an additional structure and maps are functions ``preserving that structure''.
-
-\begin{example}
-	The category $\Set$ has as its objects sets, and as maps it has ordinary functions. Of course we then have the identity function $\id_X(x) = x$ and composition as usual.
-\end{example}
-\begin{example}
-	The category $\Ab$ has as objects abelian groups, and the maps between two objects are exactly the group homomorphisms. We know that the identity function is indeed a group homomorphism, and composing two group homomorpisms, gives indeed a new group homomorphism.
-\end{example}
-
-In fact many mathematical structures can be organized in a category, there is a category $\cat{Ring}$ of rings and ring homomorphisms, $\cat{Vect}$ for $\R$-vector spaces and $\R$-linear maps, $\cat{Set_{fin}}$ of finite sets, $\Top$ of topological spaces and continuous functions, etc. Of course we would also like to express relations between categories. For example every abelian group is also a set, and a group homomorphism is also a function. This idea can be formalized by the notion of a functor.
+Instead of writing $f \in \Hom{\cat{C}}{A}{B}$ we write $f: A \to B$, as many categories have functions as maps. There is a category $\Set$ of sets with functions, a category $\Ab$ of abelian groups with group homomorphisms, a category $\Top$ of topological spaces and continuous maps, and many more.
 
 \begin{definition}
 	A \emph{functor} $F$ from a category $\cat{C}$ and to a category $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that
@@ -40,7 +25,8 @@ In fact many mathematical structures can be organized in a category, there is a 
 	\end{itemize}
 	We normally do not write the index of $F_0$ or $F_1$, instead we write $F$ for both functions.
 \end{definition}
-\todo{CT: contravariant functor}
+
+For a category $\cat{C}$ we denote the \emph{opposite} category by $\cat{C}^{op}$. The opposite category consists of the same objects, but the maps and composition are reversed. A \emph{contravariant functor} $F$ from $\cat{C}$ to $\cat{D}$ is a functor $F: \cat{C}^{op} \to \cat{D}$.
 
 Note that the composition of two functors is again a functor, and that we always have an identity functor, sending each object to itself and each map to itself. This gives rise to a category $\cat{Cat}$ of \emph{small} categories. Note that we need some kind of \emph{smallness} to avoid set-theoretical issues, because we require the collection of maps between objects to be a set, whereas the collection of objects is not necessarily a set. However we will not be interested in these set-theoretic issues, and hence skip the definition of small.
 
@@ -77,16 +63,14 @@ Note that an isomorphism between to categories is now also defined. Two categori
 	commutes for any map $f: c \to c'$ and any objects $c, c' \in \cat{C}$.
 \end{definition}
 
-\begin{lemma}
-	For any two categories $\cat{C}$ and $\cat{D}$ we can form a category with functors $F: \cat{C} \to \cat{D}$ as objects and natural transformations as maps. This category is called the \emph{functor category} and is denoted by $\cat{D}^\cat{C}$.
-\end{lemma}
-\begin{proof}
-	We refer to Mac Lane \cite{maclane} or Awodey \cite{awodey}.
-\end{proof}
+For any two categories $\cat{C}$ and $\cat{D}$ we can form a category with functors $F: \cat{C} \to \cat{D}$ as objects and natural transformations as maps. This category is called the \emph{functor category} and is denoted by $\cat{D}^\cat{C}$.
 
 This now also gives a notion of isomorphisms between functors. It can be easily seen that an isomorphism between two functors is a natural transformation which is an isomorphism pointwise. Such a natural transformation is called a \emph{natural isomorphism}.
 
-\todo{CT: Hom-functor}
+For any category $\cat{C}$ we can define the $\mathbf{Hom}$-functor. It assigns to two objects in $\cat{C}$ the set of maps between them, i.e.
+$$ \Hom{\cat{C}}{-}{-}: \cat{C}^{op} \times \cat{C} \to \Set. $$
+We will show that it indeed gives a functor in the first argument, a similar proof works for the second argument. Let $f: A' \to A$ be a map in $\cat{C}$ and $g \in \Hom{\cat{C}}{A}{B}$, then $g \circ f \in \Hom{\cat{C}}{A'}{B}$. Hence the assignment $g \mapsto g \circ f$ is a map from $\Hom{\cat{C}}{A}{B}$ to $\Hom{\cat{C}}{A'}{B}$. Note that the direction of the map if reversed. Using associativity and identity it is easily checked that this assignment is functorial.
+
 \subsection{Equivalence}
 Recall that an \emph{isomorphism} between categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that
 $$ FG = \id_\cat{D} \quad\text{and}\quad \id_\cat{C} = GF. $$

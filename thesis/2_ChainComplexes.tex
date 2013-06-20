@@ -165,7 +165,7 @@ The above construction defines a functor $C: \Top \to \Ch{\Ab}$ (we will not pro
 
 With Figure~\ref{fig:singular_homology} we indicate what $H^\text{sing}_1$ measures. In the first space $X$ we see a $1$-cycle $\sigma_1-\sigma_2+\sigma_3$ which is also a boundary, because we can define a map $\tau: \Delta^2 \to X$ such that $\del(\tau) = \sigma_1-\sigma_2+\sigma_3$, hence we conclude that $0 = [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X)$. So this $1$-cycle is not interesting in homology. In the space $X'$ however there is a hole, which prevents a $2$-simplex like $\tau$ te exist, hence $0 \neq [\sigma_1-\sigma_2+\sigma_3] \in H^\text{sing}_1(X')$. This example shows that in some sense this functor is capable of detecting holes in a space.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.4\linewidth]{singular_homology1}
@@ -180,9 +180,9 @@ With Figure~\ref{fig:singular_homology} we indicate what $H^\text{sing}_1$ measu
 \label{fig:singular_homology}
 \end{figure}
 
-A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopy equivalent spaces have isomorphic homology groups. So from a homotopy perspective this construction is nice.
+A direct consequence of being a functor is that homeomorphic spaces have isomorphic singular homology groups. There is even a stronger statement which tells us that homotopy equivalent spaces have isomorphic homology groups. So if one is interested in homotopy of a space, then homology already gives some information.
 
-In the remainder of this section we will give the homology groups of some basic spaces. It is hard to calculate these results from the definition above, so generally one proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. So we simply give these results.
+In the remainder of this section we will give the homology groups of some basic spaces. For most spaces it is hard to calculate the homology groups from the definitions above. One generally proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. The first example can be calculated from the definitions above, however the proof is not included as the example is only included as a motivation.
 
 \begin{example}
 	The homology of the one-point space $\ast$ is given by:

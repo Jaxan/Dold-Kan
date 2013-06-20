@@ -11,6 +11,7 @@
 
 % toc/refs clickable
 \usepackage{hyperref}
+\usepackage{float}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -70,13 +71,12 @@ Moritz Groth
 \tableofcontents
 
 \section*{Introduction}
-In this thesis we will look at a correspondence which was discovered by A.~Dold \cite{dold} and D.~Kan \cite{kan} independently, hence it is called the \emph{Dold-Kan correspondence}. Abstractly it is the following equivalence of categories:
-$$ \Ch{\Ab} \simeq \sAb $$
-It is interesting because objects on the left hand side are considered to be algebraic of nature, whereas objects on the right are more topological. Objects of either of these categories have important invariants. A more refined statement of this equivalence tells us that there is an isomorphism between homology groups (on the left hand side) and homotopy groups (on the right hand side). A bit more precise:
-$$ \pi_n(A) \iso H_n(N(A)) \text{ for all } n \in \N $$
-where $N: \sAb \to \Ch{\Ab}$ is one half of the equivalence.
+In this thesis we will study the Dold-Kan correspondence, a celebrated result which belongs to the field of homological algebra or simplicial homotopy theory. Abstractly, one version of the theorem states that there is an equivalence of categories
+$$ K: \Ch{\Ab} \simeq \sAb :N, $$
+where $\Ch{\Ab}$ is the category of chain complexes and $\sAb$ is the category of simplicial abelian groups. This theorem was discovered by A.~Dold \cite{dold} and D.~Kan \cite{kan} independently in 1957. Objects of either of these categories have important invariants. A more refined statement of this equivalence tells us that there is an natural isomorphism between homology groups of chain complexes and homotopy groups of simplicial abelian groups. A bit more precise:
+$$ \pi_n(A) \iso H_n(N(A)) \text{ for all } n \in \N. $$
 
-In the first section some definitions from category theory are given, because we will need them later on. Then in the second section we will discuss the first category involved in the correspondence, $\Ch{\Ab}$, the category of chain complexes. The third section then continues with the second category involved, $\sAb$, especially for this section we will need category theory. Then we will look at the correspondence itself.
+In the first section some definitions from category theory are recalled, which are especially important in Sections~\ref{sec:Simplicial Abelian Groups} and \ref{sec:Constructions}. In Section~\ref{sec:Chain Complexes} we will discuss the category of chain complexes and in the end of this section a motivation from algebraic topology will be given for these objects. Section~\ref{sec:Simplicial Abelian Groups} then continues with the second category involved, $\sAb$. This section start with a slightly more general notion and it will be illustrated to have a geometrical meaning. In Section~\ref{sec:Constructions} the correspondence will be defined and proven. In the last section (Section~\ref{sec:Homotopy}) the refined statement will be proven and in the end some more general notes about topology and homotopy will be given, justifying once more the beauty of this correspondence.
 
 \newpage
 \input{../thesis/1_CategoryTheory}
