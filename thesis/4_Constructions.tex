@@ -21,7 +21,7 @@ $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n: A_n \to A_{n-1}.$$
 	In this calculation we did the following. We split the inner sum in two halves \refeqn{1} and we use the simplicial equations on the second sum \refeqn{2}. Then we do a shift of indices \refeqn{3}. By interchanging the roles of $i$ and $j$ in the second sum, we have two equal sums which cancel out. So indeed this is a chain complex.
 \end{proof}
 
-Thus, associated to a simplicial abelian group $A$ we obtain a chain complex $M(A)$ with $M(A)_n = A_n$ and the boundary operator as above. This construction defines a functor
+Thus, associated to a simplicial abelian group $A$ we obtain a chain complex $M(A)$ with $M(A)_n = A_n$ and the boundary operator as above. Following the book \cite{goerss} we will call the chain complex $M(X)$ the \emph{Moore complex} or \emph{unnormalized chain complex} of $X$. This construction defines a functor
 $$ M: \sAb \to \Ch{\Ab} $$
 by assigning $M(f)_n = f_n$ for a natural transformation $f: A \to B$. It follows from a nice calculation that $M(f)$ is indeed a chain map:
 \begin{align*}
@@ -230,8 +230,7 @@ giving us $\Hom{A}{F\Z[\Delta[-]]}{a}: \DELTA^{op} \to \Ab$. Similarly $G$ itsel
 
 Many functors to $\sAb$ can be shown to have this description.\footnote{And also many functors to $\sSet$ are of this form if we leave out all additivity requirements.} In our case we could have defined our functor $K$ as
 $$ K'(C) = \Hom{\Ch{\Ab}}{N\Z[\Delta[-]]}{C}. $$
-We will not show that this functor $K'$ is isomorphic to our functor $K$ defined earlier, however we will indicate that it makes sense by writing out explicit calculations for $K'(C)_0$ and $K'(C)_1$.
-
+We will not show that this functor $K'$ is isomorphic to our functor $K$ defined earlier, however we will indicate that it makes sense by writing out explicit calculations for $K'(C)_0$ and $K'(C)_1$. First we see that
 $$ K'(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
@@ -245,9 +244,8 @@ $$ K'(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
 \Bigg\} \iso C_0 = K(C)_0, $$
-because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see:
-
-$$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
+because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see
+$$ K'(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
 		\cdots  & 0 & \Z & \Z^2  \\
@@ -260,6 +258,5 @@ $$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
 \Bigg\} \iso C_1 \oplus C_0 = K(C)_1, $$
-
 because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then we are forced to choose $f_0(x, x) = \del(f_1(x))$ for all $x \in \Z$, so we are left with choosing an element $c \in C_0$ for defining $f(1,-1) = c$. Adding this gives $C_1 \oplus C_0$.
 
