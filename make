@@ -9,6 +9,10 @@ Presentation)	pdflatex "../presentation/presentation.tex" || exit 1
 		pdflatex "../presentation/presentation.tex" || exit 1
 		mv presentation.pdf ../
 		;;
+Presentation2)	pdflatex "../presentation2/presentation.tex" || exit 1
+		pdflatex "../presentation2/presentation.tex" || exit 1
+		mv presentation.pdf ../
+		;;
 Symbols)	pdflatex "../thesis/symbols.tex" || exit 1
 		pdflatex "../thesis/symbols.tex" || exit 1
 		scp symbols.pdf moerman@stitch.science.ru.nl:~/symbols.pdf
