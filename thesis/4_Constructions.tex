@@ -222,7 +222,7 @@ Furthermore the degeneracy maps $s_i: K(C)_{n-1} \to K(C)_n$ are given by precom
 \begin{proof}
 	If $f \in D_n(K(C))$ we have $f = \sum_{i=0}^n s_i(f^{(i)})$ for some maps $f^{(i)}: N\Z[\Delta[n-1]] \to C$. Since $N\Z[\Delta[n-1]]_r = 0$ as there are no injections $[r] \mono [n-1]$, we have $f^{(i)}_r = 0$ for all $r > n-1$.
 
-	For the other direction let $f: N\Z[\Delta[n]] \to C$ and $f_r = 0$ forall $r \geq n$. Define $f_m^{(i)}(\eta) = f_m(\delta_i \eta)$ for $\eta: [m] \mono [n]$. This gives a chain map $f^{(i)}: N\Z[\Delta[n-1]] \to C$ by a simple calculation:
+	For the other direction let $f: N\Z[\Delta[n]] \to C$ be a chain map and $f_r = 0$ forall $r \geq n$. Define $f_m^{(i)}(\eta) = f_m(\delta_i \eta)$ for $\eta: [m] \mono [n]$. This gives a chain map $f^{(i)}: N\Z[\Delta[n-1]] \to C$ by a simple calculation:
 	$$ \del(f_m^{(i)}(\eta)) = \del(f_m(\delta_i \eta)) \eqn{1} f_{m-1}(\del(\delta_i \eta)) \eqn{2} f_{m-1}(\delta_i \eta \delta_0) \eqn{2} f_{m-1}^{(i)}(\del(\eta)), $$
 	where we used that $f$ is a chain map at \refeqn{1} and the definition of the boundary map of $N(-)$ \emph{and} the definition of face maps in $\Delta[-]$ at \refeqn{2}.
 
@@ -274,7 +274,7 @@ One might not be content with the abstract description of the functor $K$. In th
 	where $\beta$ ranges over all surjections $\beta: [n] \epi [p]$ and $C_p^\beta = C_p$ ($\beta$ only acts as a decoration).
 \end{definition}
 
-Before we provide the face and degeneracy maps, one should see a nice symmetry with Corollary~\ref{cor:nondegN}. One can also prove the equivalence with this definition. The first isomorphism will be harder to prove, whereas the second isomorphism is almost for free, as we get the characterization given by Lemma\ref{le:degen_k} almost by definition.
+Before we provide the face and degeneracy maps, one should see a nice symmetry with Corollary~\ref{cor:nondegN}. One can also prove the equivalence with this definition. The first isomorphism will be harder to prove, whereas the second isomorphism is easier, as we get the characterization given by Lemma~\ref{le:degen_k} almost by definition.
 
 For a chain complex $C$ we will turn the groups $K'(C)_n$ into a simplicial abelian group by defining $K'$ on functions. Let $\alpha: [m] \to [n]$ be a function in $\DELTA$, we will define $K'(\alpha): K(C)_n \to K(C)_m$ by defining it on each summand $C_p^\beta$. Fix a summand $C_p^\beta$, by using the epi-mono factorization we know $\beta\alpha = \delta\sigma$ for some injection $\delta$ and some surjection $\sigma$. In the case $\delta = \id$, we make the following identification
 $$ C_p^\beta \tot{=} C_p^\sigma \subset K'(C)_m. $$
