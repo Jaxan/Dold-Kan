@@ -161,11 +161,13 @@ Again the former lemma of these two lemmas proves the existence of a decompositi
 And by considering $X_n$ as a whole we get:
 
 \begin{corollary}
+	\label{cor:nondegN}
 	$X_n = \bigoplus_{[n] \epi [p]} N(X)_p$.
 \end{corollary}
 
 Using Corollary~\ref{cor:decomp} we can prove a nice categorical fact about $N$, which we will use later on.
 \begin{lemma}
+	\label{le:fullyfaithful}
 	The functor $N$ is fully faithful, i.e.
 	$$ N: \Hom{\sAb}{A}{B} \iso \Hom{\Ch{\Ab}}{N(A)}{N(B)} \quad A, B \in \sAb. $$
 \end{lemma}
@@ -188,31 +190,7 @@ If we reflect a bit on why the functor $M$ was not a candidate for an equivalenc
 
 
 \subsection{From $\Ch{\Ab}$ to $\sAb$}
-\begin{definition}
-	For a chain complex $C$ define the abelian groups
-	$$ K(C)_n = \bigoplus_{\beta} C_p^\beta, $$
-	where $\beta$ ranges over all surjections $\beta: [n] \epi [p]$ and $C_p^\beta = C_p$ ($\beta$ only acts as a decoration).
-\end{definition}
-For a chain complex $C$ we will turn the groups $K(C)_n$ into a simplicial abelian group by defining $K$ on functions. Let $\alpha: [m] \to [n]$ be a function in $\DELTA$, we will define $K(\alpha): K(C)_n \to K(C)_m$ by defining it on each summand $C_p^\beta$. Fix a summand $C_p^\beta$, by using the epi-mono factorization we know $\beta\alpha = \delta\sigma$ for some injection $\delta$ and some surjection $\sigma$. In the case $\delta = \id$, we make the following identification
-$$ C_p^\beta \tot{=} C_p^\sigma \subset K(C)_m. $$
-In the case $\delta = \delta_0$ we use the boundary operator as follows:
-$$ C_p^\beta \tot{\del} C_{p-1} \tot{=} C_{p-1}^\sigma \subseteq K(C)_m. $$
-In all the other cases we define the map $C_p^\beta \to K(C)_m$ to be the zero map. We now have defined a map on each of the summands which gives a map $K(\alpha): K(C)_n \to K(C)_m$.
-\todo{DK: functoriality of $K(C)$, functoriality of $K$}
-
-\todo{DK: work out the following in more detail (especially the naturalities)}
-\begin{theorem}
-	$N$ and $K$ form an equivalence.
-\end{theorem}
-\begin{proof}
-	Let $X$ be a simplicial abelian group. Consider $X_n$, by the additive Yoneda lemma this is naturally isomorphic to $\Z^\ast[\Delta[n]] \to X$, which is by the fully faithfulness and additivity of $N$ naturally isomorphic to $N\Z^\ast[\Delta[n]] \to NX$. The latter is exactly the definition of $KNX$. So, by naturality in $n$, we have established $X \iso KNX$. Hence, by naturality in $X$, we have $\id \iso KN$.
-
-	By the previous proposition we have $K(C)_n \iso \bigoplus_{[n] \epi [p]} C_p$. For the summands $C_p$ with $p < n$, we clearly see that $C_p \subset D_n(K(C))$, so $N$ gets rid of these. Then the only summand left is $C_n$ (with the surjection $\id : [n] \epi [n]$). So we see $NKC_n \iso C_n$, furthermore the boundary map is preserved. Hence $NKC \iso C$. And this was natural in $C$, so we get $NK \iso \id$.
-
-	We now have established two natural isomorphisms $\id_\sAb \iso KN$ and $NK \iso \id_\Ch{\Ab}$. Hence we have an equivalence $\Ch{\Ab} \simeq \sAb$.
-\end{proof}
-
-One might not be content with the explicit description of the functor $K$. There is a more abstract way of constructing a functor $\Ch{\Ab} \to \sAb$ from a functor $\sAb \to \Ch{\Ab}$. We will briefly discuss this and show how the functor $K$ would be derived from $N$ by this abstract construction, with two examples it will be illustrated why the two descriptions are the same.
+In this subsection we will construct a functor from chain complexes to simplicial abelian groups. We will do this in a fairly abstract way. There is, however, also an explicit description of this functor which will be given after proving the main equivalence.
 
 Let $A$ be an additive category and $F: \sAb \to A$ an additive functor. We want to construct a functor $G: A \to \sAb$ which is right adjoint to $F$. For each $a \in A$ we have to specify $G(a): \DELTA^{op} \to \Ab$. Assume we already specified this, such that $G$ is the right adjoint, then by the additive Yoneda lemma we know
 \begin{align*}
@@ -228,10 +206,84 @@ To check that indeed $G(a) \in \sAb$ we only have to remind ourselves that we on
 \end{gather*}
 giving us $\Hom{A}{F\Z[\Delta[-]]}{a}: \DELTA^{op} \to \Ab$. Similarly $G$ itself is a functor, because it is defined using the $\mathbf{Hom}$-functor.
 
-Many functors to $\sAb$ can be shown to have this description.\footnote{And also many functors to $\sSet$ are of this form if we leave out all additivity requirements.} In our case we could have defined our functor $K$ as
-$$ K'(C) = \Hom{\Ch{\Ab}}{N\Z[\Delta[-]]}{C}. $$
-We will not show that this functor $K'$ is isomorphic to our functor $K$ defined earlier, however we will indicate that it makes sense by writing out explicit calculations for $K'(C)_0$ and $K'(C)_1$. First we see that
-$$ K'(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
+Many functors to $\sAb$ can be shown to have this description.\footnote{And also many functors to $\sSet$ are of this form if we leave out all additivity requirements.} In our case we can define a functor $K$ as
+\begin{gather*}
+	K: \Ch{\Ab} \to \sAb \\
+	K(C) = \Hom{\Ch{\Ab}}{N\Z[\Delta[-]]}{C}.
+\end{gather*}
+
+This is a very abstract definition so we will first discuss what a chain map $N\Z[\Delta[n]] \to C$ looks like. Recall that the non-degenerate $m$-simplices of $\Delta[n]$ are exactly injective maps $\eta: [m] \mono [n]$ for all $m$. So $N\Z[\Delta[n]]$ consists of linear combinations of those non-degenerate simplices, as $N$ precisely gives us the non-degenerate elements. Note that $N\Z[\Delta[n]]_m$ are free groups, since $\Z[\Delta[n]]_m$ are free. In other words, when defining a chain map $N\Z[\Delta[n]] \to C$ it is sufficient to define it on the generators, i.e. on the injections $\eta: [m] \mono [n]$. This fact is used throughout the following proofs.
+
+Furthermore the degeneracy maps $s_i: K(C)_{n-1} \to K(C)_n$ are given by precomposition of the induced map $\sigma_{i\ast}: N\Z[\Delta[n]] \to N\Z[\Delta[n-1]]$ which in their turn are given by postcomposition. More precisely this gives $s_i(f)_m(\eta) = f_m(\sigma_i \eta)$ for any $f \in K(C)_{n-1}$ and $\eta: [m] \mono [n]$. We will now have a closer look at the degenerate elements of $K(C)$.
+\begin{lemma}
+	\label{le:degen_k}
+	Let $f: N\Z[\Delta[n]] \to C$ be a chain map then $f \in D_n(K(C))$ if and only if $f_r = 0$ forall $r \geq n$.
+\end{lemma}
+\begin{proof}
+	If $f \in D_n(K(C))$ we have $f = \sum_{i=0}^n s_i(f^{(i)})$ for some maps $f^{(i)}: N\Z[\Delta[n-1]] \to C$. Since $N\Z[\Delta[n-1]]_r = 0$ as there are no injections $[r] \mono [n-1]$, we have $f^{(i)}_r = 0$ for all $r > n-1$.
+
+	For the other direction let $f: N\Z[\Delta[n]] \to C$ and $f_r = 0$ forall $r \geq n$. Define $f_m^{(i)}(\eta) = f_m(\delta_i \eta)$ for $\eta: [m] \mono [n]$. This gives a chain map $f^{(i)}: N\Z[\Delta[n-1]] \to C$ by a simple calculation:
+	$$ \del(f_m^{(i)}(\eta)) = \del(f_m(\delta_i \eta)) \eqn{1} f_{m-1}(\del(\delta_i \eta)) \eqn{2} f_{m-1}(\delta_i \eta \delta_0) \eqn{2} f_{m-1}^{(i)}(\del(\eta)), $$
+	where we used that $f$ is a chain map at \refeqn{1} and the definition of the boundary map of $N(-)$ \emph{and} the definition of face maps in $\Delta[-]$ at \refeqn{2}.
+
+	Now let $\eta: [m] \mono [n]$ and $\eta \neq \id$ (we already know $f(\id_{[n]})=0$ by assumption) then by the epi-mono factorization we have $\eta = \delta_{i_a} \cdots \delta_{i_1}$ with $a>0$, so
+	$$ f_m(\eta) = f_m(\delta_{i_a} \cdots \delta_{i_1}) \eqn{1} f_m^{(i_a)}(\delta_{i_{a-1}} \cdots \delta_{i_1}) \eqn{2} f_m^{(i_a)}(\sigma_{i_a} \delta_{i_a} \delta_{i_a} \cdots \delta_{i_1}) \eqn{3} s_{i_a}(f^{(i_a)})_m(\eta), $$
+	where we used the definition of $f_m^{(i_a)}$ at \refeqn{1}, one of the simplicial identities at \refeqn{2} and the definition of degeneracy maps at \refeqn{3} as discussed earlier.
+
+	By the fact that injections are generators this gives $f_m = \sum_{i=0}^n s_i(f^{(i)})_m$ for all $m$, i.e. $f = \sum_{i=0}^n s_i(f^{(i)})$. Hence $f \in D_n(K(C))$.
+\end{proof}
+
+We now have enough lemmas to prove the main equivalence quite easily. The most important lemma for the isomorphism $X \iso KNX$ will be the lemma stating that $N$ is fully faithful. For the other isomorphism we will use the above lemma to characterize the degenerated simplices in $K(C)$.
+
+\begin{theorem}
+	$N$ and $K$ form an equivalence.
+\end{theorem}
+\begin{proof}
+	Let $X$ be a simplicial abelian group. Then we have the following natural isomorphisms of abelian groups:
+	\begin{align*}
+		X_n &\ison{1} \Hom{}{\Z[\Delta[n]]}{X} \\
+			&\ison{2} \Hom{}{N\Z[\Delta[n]]}{NX} \\
+			&\eqn{3} KN(X)_n
+	\end{align*}
+	Where we used the additive Yoneda lemma at \refeqn{1} (Lemma~\ref{le:yoneda_add}), then we use the fully faithfulness of $N$ at \refeqn{2} (Lemma~\ref{le:fullyfaithful}) and at \refeqn{3} we simply use the definition of $K$. Using naturality in $n$ we have established $X \iso KNX$ and by naturality in $X$ we have $\id \iso KN$, proving the first part of the equivalence.
+
+	For the second part we will explicitly define an isomorphism as
+	\begin{gather*}
+		\phi_n: NK(C)_n \to C_n \\
+		f \mapsto f_n(\id_{[n]}).
+	\end{gather*}
+	Note that this is well defined by the fact that $\id_{[n]}$ is a non-degenerate simplex. \todo{DK: Chain map + Naturality}. We will first show that $\phi_n$ is surjective. Let $x \in C_n$ define a chain map as
+	\begin{align*}
+		g_r(y) &= 0 \qquad \text{for } r \neq n, n-1\\
+		g_n(\id_{[n]}) &= x \\
+		g_{n-1}(\delta_i) &= \begin{cases}
+			\del(x) \quad\text{if } i = 0 \\
+			0 \quad\text{otherwise}
+		\end{cases} \\
+	\end{align*}
+	Clearly $\phi_n(g) = x$ by definition and $g$ is a chain map as we defined it to commute with the boundary map. For proving injectivity consider $g \in \ker(\phi_n)$ then for trivial reasons we have $f_r = 0$ for all $r > n$ and $f_n(\id_{[n]}) = 0$ gives $f_n = 0$. Applying Lemma~\ref{le:degen_k} gives us $f \in D_n(K(C))$, but $f \in N(K(C))_n$. So by using Corollary~\ref{cor:NandD} we get $f = 0$. Thus $\phi_n$ is an isomorphism, which gives us $NK(C) \iso C$.
+
+	We now have established two natural isomorphisms $\id_\sAb \iso KN$ and $NK \iso \id_\Ch{\Ab}$. Hence we have an equivalence $\Ch{\Ab} \simeq \sAb$.
+\end{proof}
+
+One might not be content with the abstract description of the functor $K$. In the remainder of this section a more explicit description will be given, and it will be indicated why the two descriptions coincide.
+
+\begin{definition}
+	For a chain complex $C$ define the abelian groups
+	$$ K'(C)_n = \bigoplus_{\beta} C_p^\beta, $$
+	where $\beta$ ranges over all surjections $\beta: [n] \epi [p]$ and $C_p^\beta = C_p$ ($\beta$ only acts as a decoration).
+\end{definition}
+
+Before we provide the face and degeneracy maps, one should see a nice symmetry with Corollary~\ref{cor:nondegN}. One can also prove the equivalence with this definition. The first isomorphism will be harder to prove, whereas the second isomorphism is almost for free, as we get the characterization given by Lemma\ref{le:degen_k} almost by definition.
+
+For a chain complex $C$ we will turn the groups $K'(C)_n$ into a simplicial abelian group by defining $K'$ on functions. Let $\alpha: [m] \to [n]$ be a function in $\DELTA$, we will define $K'(\alpha): K(C)_n \to K(C)_m$ by defining it on each summand $C_p^\beta$. Fix a summand $C_p^\beta$, by using the epi-mono factorization we know $\beta\alpha = \delta\sigma$ for some injection $\delta$ and some surjection $\sigma$. In the case $\delta = \id$, we make the following identification
+$$ C_p^\beta \tot{=} C_p^\sigma \subset K'(C)_m. $$
+In the case $\delta = \delta_0$ we use the boundary operator as follows:
+$$ C_p^\beta \tot{\del} C_{p-1} \tot{=} C_{p-1}^\sigma \subseteq K'(C)_m. $$
+In all the other cases we define the map $C_p^\beta \to K'(C)_m$ to be the zero map. We now have defined a map on each of the summands which gives a map $K'(\alpha): K'(C)_n \to K'(C)_m$.
+
+We will not show that this functor $K'$ is isomorphic to our functor $K$ defined earlier, however we will indicate that it makes sense by writing out explicit calculations for $K(C)_0$ and $K(C)_1$. First we see that
+$$ K(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
 		\cdots  & 0 & 0 & \Z  \\
@@ -243,9 +295,9 @@ $$ K'(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 	
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
-\Bigg\} \iso C_0 = K(C)_0, $$
+\Bigg\} \iso C_0 = K'(C)_0, $$
 because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see
-$$ K'(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
+$$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
 		\cdots  & 0 & \Z & \Z^2  \\
@@ -257,6 +309,6 @@ $$ K'(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 	
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
-\Bigg\} \iso C_1 \oplus C_0 = K(C)_1, $$
+\Bigg\} \iso C_1 \oplus C_0 = K'(C)_1, $$
 because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then we are forced to choose $f_0(x, x) = \del(f_1(x))$ for all $x \in \Z$, so we are left with choosing an element $c \in C_0$ for defining $f(1,-1) = c$. Adding this gives $C_1 \oplus C_0$.
 
