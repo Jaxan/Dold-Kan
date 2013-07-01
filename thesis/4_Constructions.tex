@@ -251,14 +251,19 @@ We now have enough lemmas to prove the main equivalence quite easily. The most i
 		\phi_n: NK(C)_n \to C_n \\
 		f \mapsto f_n(\id_{[n]}).
 	\end{gather*}
-	Note that this is well defined by the fact that $\id_{[n]}$ is a non-degenerate simplex. \todo{DK: Chain map + Naturality}. We will first show that $\phi_n$ is surjective. Let $x \in C_n$ define a chain map as
+	Note that this is well defined by the fact that $\id_{[n]}$ is a non-degenerate simplex. This defines a natural chain map, because
+	$$ \phi(\del(f)) = \del(f)_{n-1}(\id) \eqn{1} (f_{n-1} \circ \del)(\id) \eqn{2} (\del \circ f_n)(\id) = \del(\phi(f)), $$
+	where we used the definition of $\del$ at \refeqn{1} and the fact that $f$ is a chain map at \refeqn{2}. Naturality follows easily by calculating
+	$$ \phi(NK(g)(f)) = \phi(g \circ f) = g_n(f_n(\id)) = g_n(\phi(f)). $$
+
+	We will first show that $\phi_n$ is surjective. Let $x \in C_n$ define a chain map as
 	\begin{align*}
 		g_r(y) &= 0 \qquad \text{for } r \neq n, n-1\\
 		g_n(\id_{[n]}) &= x \\
 		g_{n-1}(\delta_i) &= \begin{cases}
 			\del(x) \quad\text{if } i = 0 \\
 			0 \quad\text{otherwise}
-		\end{cases} \\
+		\end{cases}
 	\end{align*}
 	Clearly $\phi_n(g) = x$ by definition and $g$ is a chain map as we defined it to commute with the boundary operators. For proving injectivity consider $g \in \ker(\phi_n)$ then for trivial reasons we have $f_r = 0$ for all $r > n$ and $f_n(\id_{[n]}) = 0$ gives $f_n = 0$. Applying Lemma~\ref{le:degen_k} gives us $f \in D_n(K(C))$, but $f \in N(K(C))_n$. So by using Corollary~\ref{cor:NandD} we get $f = 0$. Thus $\phi_n$ is an isomorphism, which gives us $NK(C) \iso C$.
 

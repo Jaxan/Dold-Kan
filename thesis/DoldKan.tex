@@ -66,6 +66,11 @@ Moritz Groth
 
 \end{titlepage}
 
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\newpage
 \section*{Contents}
 \renewcommand\contentsname{}
 \tableofcontents
@@ -94,7 +99,14 @@ In the first section some definitions from category theory are recalled, which a
 \input{../thesis/5_Homotopy}
 
 \newpage
-\listoftodos
+\section*{Conclusion}
+In this thesis we have seen two interesting mathematical structures. On one hand there are simplicial sets and simplicial abelian groups which are defined in a abstract and categorical way. The definition was quite short and elegant, nevertheless the objects have a very rich geometrical structure. On the other hand there are chain complexes which have a very simple definition, which are at first sight completely algebraic.
+
+A proof was given of the equivalence of these structures. In this proof we had to take a close look at degenerated simplices in simplicial abelian groups. Some abstract machinery from category theory, like the Yoneda lemma, allowed us to easily construct the needed isomorphisms.
+
+The category of simplicial sets is the abstract framework for doing homotopy theory. Using free abelian groups allowed us to linearize this, resulting in the category of simplicial abelian groups. The Dold-Kan correspondence assures us that there is no loss of information when passing to chain complexes. This makes the category of chain complexes and homological algebra very suitable for doing homotopy theory in a linearized fashion.
+
+\newpage
 
 \nocite{*}
 \bibliographystyle{alpha}
