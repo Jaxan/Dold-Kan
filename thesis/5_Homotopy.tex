@@ -18,7 +18,7 @@ When dealing with homotopy groups in a topological space $X$ we always need a ba
 	We will call $y$ the \emph{homotopy} and notate $y: x \sim x'$.
 \end{definition}
 
-Of course we would like $\sim$ to be an equivalence relation, however this is not true for all simplicial sets. For example there is in general no reason for symmetry, existence of a $1$-simplex $y$ from $x$ to $x'$ does not give us a $1$-simplex $y'$ from $x'$ to $x$. One can give an precise condition on when it is a equivalence relation, the so called \emph{Kan-condition}. In our case of simplicial abelian groups, however, we can prove directly that $\sim$ is an equivalence relation.
+Of course we would like $\sim$ to be an equivalence relation, however this is not true for all simplicial sets. For example there is in general no reason for symmetry, existence of a homotopy from $x$ to $x'$ does not give us a homotopy from $x'$ to $x$. One can give an precise condition on when it is a equivalence relation, the so called \emph{Kan-condition}. In our case of simplicial abelian groups, however, we can prove directly that $\sim$ is an equivalence relation.
 
 In figure~\ref{fig:simplicial_htp} it is shown why the definition of homotopy makes sense for $n=1$. Two homotopic $1$-simplices from $Z_n(X)$ are depicted in two ways. The first way only shows the structure we have, indicating what the boundaries are (as described by the face maps). In the second figure we collapsed all occurrences of $0$ into a single point. This way of drawing a homotopy should remind the reader of homotopy (between paths) in a topological space.
 
@@ -36,7 +36,7 @@ In figure~\ref{fig:simplicial_htp} it is shown why the definition of homotopy ma
 \end{figure}
 
 \begin{lemma}
-	The relation $\sim$ as defined above is an equivalence relation on $Z_n(X)$. Furthermore it is compatible with addition.
+	For any simplicial abelian group $X$, the relation $\sim$ as defined above is an equivalence relation on $Z_n(X)$. Furthermore it is compatible with addition.
 \end{lemma}
 
 Before proving this, one should have a look at figure~\ref{fig:simplicial_eqrel}. In this figure we show what we want to proof in degree $n=0$ (i.e. the simplices of interest are points, and the homotopies are paths).
@@ -59,7 +59,7 @@ Before proving this, one should have a look at figure~\ref{fig:simplicial_eqrel}
 
 \begin{definition}
 	Given a simplicial abelian group $X$, we define the $n$-th homotopy group as
-	$$ \pi_n(X) = Z_n(X) / \sim. $$
+	$$ \pi_n(X) = Z_n(X) /_\sim. $$
 \end{definition}
 
 Note that this is an abelian group, because $Z_n(X)$ is a subgroup of $X_n$, and $\sim$ also defines a subgroup. It is relatively straight forward to prove that this definition coincides with the $n$-th homology group of the associated normalized chain complex.
@@ -79,7 +79,7 @@ Note that this is an abelian group, because $Z_n(X)$ is a subgroup of $X_n$, and
 			&= \{ d_0 y \I y \in X_{n+1}, d_i(y) = 0 \text{ for all } i > 0 \} \\
 			&= \{ x \in N(X)_n \I x \sim 0 \}
 	\end{align*}
-	So we see that $\pi_n(X) = Z_n(X) / \sim = \ker(\del) / \im(\del) = H_n(N(X))$.
+	So we see that $\pi_n(X) = Z_n(X) /_\sim = \ker(\del) / \im(\del) = H_n(N(X))$.
 \end{proof}
 
 \begin{corollary}
@@ -97,7 +97,7 @@ In Section~\ref{sec:Chain Complexes}, we already defined the topological $n$-sim
 	\Delta^-(\delta_i) (x_0, \ldots, x_n) = (x_0, \ldots, x_{i-1}, 0, x_{i}, \ldots, x_n), \\
 	\Delta^-(\sigma_i) (x_0, \ldots, x_n) = (x_0, \ldots, x_{i} + x_{i+1}, \ldots, x_n).
 \end{gather*}
-The definition of $\Delta^-(\delta_i)$ was already defined in Section~\ref{sec:Chain Complexes} as the face maps $\delta^i: \Delta^n \to \Delta^{n+1}$. So in addition we defined degeneracy maps. The reader is invited to check the cosimplicial identities himself and conclude that we now have a functor $\Delta^-: \DELTA \to \Top$. By composing this with the $\mathbf{Hom}$-functor we obtain a functor $S: \Top \to \sSet$ given by
+The definition of $\Delta^-(\delta_i)$ was already defined in Section~\ref{sec:Chain Complexes} as the face maps $\delta^i: \Delta^n \to \Delta^{n+1}$. So in addition we defined degeneracy maps. The reader is invited to check the cosimplicial identities himself and conclude that we have a functor $\Delta^-: \DELTA \to \Top$. By composing this with the $\mathbf{Hom}$-functor we obtain a functor $S: \Top \to \sSet$ given by
 $$ \text{Sing}(X)_n = \Hom{\Top}{\Delta^n}{X}. $$
 
 Recall construction of the singular chain complex in Section~\ref{sec:Chain Complexes}:

@@ -19,7 +19,7 @@ We will briefly define categories and functors to fix the notation. We will not 
 Instead of writing $f \in \Hom{\cat{C}}{A}{B}$ we write $f: A \to B$, as many categories have functions as maps. For brevity we sometimes write $gf$ instead of $g \circ f$. We will need the category $\Set$ of sets with functions, the category $\Ab$ of abelian groups with group homomorphisms and the category $\Top$ of topological spaces and continuous maps.
 
 \begin{definition}
-	A \emph{functor} $F$ from a category $\cat{C}$ and to a category $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that
+	A \emph{functor} $F$ from a category $\cat{C}$ to a category $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that
 	\begin{itemize}
 		\item for $f: A \to B$, we have $F_1(f): F_0(A) \to F_0(B)$,
 		\item $F_1(\id_A) = \id_{F_0(A)}$ and
@@ -71,7 +71,7 @@ This now also gives a notion of isomorphisms between functors. It can be easily 
 
 For any category $\cat{C}$ we can define the $\mathbf{Hom}$-functor. It assigns to two objects in $\cat{C}$ the set of maps between them, i.e.
 $$ \Hom{\cat{C}}{-}{-}: \cat{C}^{op} \times \cat{C} \to \Set. $$
-We will show that it indeed gives a functor in the first argument, a similar proof works for the second argument. Let $f: A' \to A$ be a map in $\cat{C}$ and $g \in \Hom{\cat{C}}{A}{B}$, then $g \circ f \in \Hom{\cat{C}}{A'}{B}$. Hence the assignment $g \mapsto g \circ f$ is a map from $\Hom{\cat{C}}{A}{B}$ to $\Hom{\cat{C}}{A'}{B}$. Note that the direction of the map if reversed. Using associativity and identity it is easily checked that this assignment is functorial.
+We will show that it indeed defines a functor in the first argument, a similar proof works for the second argument. Let $f: A' \to A$ be a map in $\cat{C}$ and $g \in \Hom{\cat{C}}{A}{B}$, then $g \circ f \in \Hom{\cat{C}}{A'}{B}$. Hence the assignment $g \mapsto g \circ f$ is a map from $\Hom{\cat{C}}{A}{B}$ to $\Hom{\cat{C}}{A'}{B}$. Note that the direction of the map if reversed. Using associativity and identity it is easily checked that this assignment is functorial.
 
 \subsection{Equivalence}
 Recall that an \emph{isomorphism} between categories $\cat{C}$ and $\cat{D}$ consists of two functors $F:\cat{C} \to \cat{D}$ and $G: \cat{D} \to \cat{C}$ such that
@@ -138,10 +138,10 @@ The first definition of adjunction is useful when dealing with maps, since it gi
 	It is left for the reader to check that this indeed gives a group homomorphism and that the functor laws hold. There is a map $\eta: S \to U\Z[S]$ given by
 	$$ \eta(s) = e_s. $$
 	And given any map $f: S \to U(A)$ for any abelian group $A$, we can define
-	$$ \overline{f}(\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) \cdot f(x). $$
+	$$ \overline{f}(\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) \cdot e_{f(x)}. $$
 	It is clear that $U(\overline{f}) \circ \eta = f$. We will leave the other details (naturality of $\eta$, $\overline{f}$ being a group homomorphism, and uniqueness w.r.t.~$U(\overline{f}) \circ \eta = f$) to the reader.
 
-	By the other description of adjunctions we have $\Hom{\Ab}{\Z[S]}{T} \iso \Hom{\Set}{S}{U(T)}$, which exactly tells us that we can define a group homomorphism from $\Z[S]$ to $T$ by only specifying it on the generators $e_s, s \in S$. This fact is used throughout the thesis.
+	By the other description of adjunctions we have $\Hom{\Ab}{\Z[S]}{A} \iso \Hom{\Set}{S}{U(A)}$, which exactly tells us that we can define a group homomorphism from $\Z[S]$ to $A$ by only specifying it on the generators $e_s, s \in S$. This fact is used throughout this thesis.
 \end{example}
 
 \subsection{The Yoneda lemma}

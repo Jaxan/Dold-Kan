@@ -18,7 +18,7 @@ There are many variants to this notion. For example, there are also unbounded ch
 
 In order to organize these chain complexes in a category, we should define what the maps are. The diagram above already gives an idea for this.
 \begin{definition}
-	Let $C$ and $D$ be chain complexes, with boundary operators $\del^C_n$ and $\del^D_n$ respectively. A \emph{chain map} $f: C \to D$ consists of a family of maps $f_n: C_n \to D_n$, such that they commute with the boundary operators: $f_n \circ \del^C_{n+1} = \del^D_{n+1} \circ f_{n+1}$ for all $n \in \N$, i.e. the following diagram commutes:
+	Let $C$ and $D$ be chain complexes, with boundary operators $\del^C_n$ and $\del^D_n$ respectively. A \emph{chain map} $f: C \to D$ consists of a family of group homomorphisms $f_n: C_n \to D_n$, such that they commute with the boundary operators: $f_n \circ \del^C_{n+1} = \del^D_{n+1} \circ f_{n+1}$ for all $n \in \N$, i.e. the following diagram commutes:
 	\begin{center}
 	\begin{tikzpicture}
 		\matrix (m) [matrix of math nodes]{
@@ -90,7 +90,7 @@ In general there is no inclusion in the other direction. This defect can be meas
 \end{proof}
 
 \subsection{A note on abelian categories}
-The category $\Ch{\Ab}$ in fact is an \emph{abelian category}. We will only need a very specific property of this fact later on, and hence we will only prove this single fact. For the precise definition of an abelian category we refer to the book of Rotman about homological algebra \cite[Chapter~5.5]{rotman}. The notion of an abelian category is interesting if one wants to consider chain complexes over other objects than abelian groups, because $\Ch{\cat{C}}$ will be an abelian category whenever $\cat{C}$ is abelian.\footnote{However, this generality might not be so interesting from a categorical standpoint, as there is a fully faithful (exact) functor $F: \cat{C} \to \Ab$ for any (small) abelian category $\cat{C}$, called the \emph{Mitchell embedding} \cite{rotman}. This gives a way to proof categorical statements in $\cat{C}$ by proving the statement in $\Ab$.} The property we want to use later on is the following.
+The category $\Ch{\Ab}$ in fact is an \emph{abelian category}. We will only need a very specific property of this fact later on, and hence we will only prove this single fact. For the precise definition of an abelian category we refer to the book of Rotman about homological algebra \cite[Chapter~5.5]{rotman}. The notion of an abelian category is interesting if one wants to consider chain complexes over other objects than abelian groups, because $\Ch{\cat{C}}$ will be an abelian category whenever $\cat{C}$ is an abelian category.\footnote{However, this generality might not be so interesting from a categorical standpoint, as there is a fully faithful (exact) functor $F: \cat{C} \to \Ab$ for any (small) abelian category $\cat{C}$, called the \emph{Mitchell embedding} \cite{rotman}. This gives a way to proof categorical statements in $\cat{C}$ by proving the statement in $\Ab$.} The property we want to use later on is the following.
 \begin{definition}
 	A category $\cat{C}$ is \emph{preadditive} if the set of maps between two objects is an abelian group, such that composition is bilinear. In other words: the $\mathbf{Hom}$-functor has as its codomain $\Ab$:
 	$$ \Hom{\cat{C}}{-}{-} : \cat{C}^{op} \times \cat{C} \to \Ab. $$
@@ -203,4 +203,4 @@ Let $S^k = \{ x \in \R^{n+1} \I ||x|| = 1 \}$ be the $k$-sphere. For example, $S
 	For $S^0$ the homology group $H_0(S^0)$ is isomorphic to $\Z \oplus \Z$, and all other homology groups are trivial.
 \end{example}
 
-We can use the latter example to prove a fact about $\R^n$ quite easily ($n > 0$). Note that $\R^n - \{0\}$ is homotopic equivalent to $S^{n-1}$, so their homology groups are the same. As a consequence $\R^n - \{0\}$ has the same homology groups as $\R^m - \{0\}$, only if $n=m$. Now if $\R^n$ is homeomorphic to $\R^m$, then also $\R^n - \{0\} \iso \R^m - \{0\}$, so this only happens if $n=m$. This result is known as the \emph{invariance of dimension}.
+We can use the latter example to prove a fact about $\R^n$ quite easily ($n > 0$). Note that $\R^n - \{0\}$ is homotopy equivalent to $S^{n-1}$, so their homology groups are the same. As a consequence $\R^n - \{0\}$ has the same homology groups as $\R^m - \{0\}$, only if $n=m$. Now if $\R^n$ is homeomorphic to $\R^m$, then also $\R^n - \{0\} \iso \R^m - \{0\}$, so this only happens if $n=m$. This result is known as the \emph{invariance of dimension}.

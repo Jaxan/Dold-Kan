@@ -38,11 +38,11 @@ If we want $M$ to be essentially surjective, there should exist a simplicial abe
 
 
 \subsection{Normalized chain complex}
-To repair this defect we should be more careful. Given a simplicial abelian group, simply taking the same collection for our chain complex will not work (as shown above). Instead we are after some ``smaller'' abelian groups, and in some cases the abelian groups should completely vanish (as in the example above).
+To repair this defect we should be more careful. Given a simplicial abelian group, simply taking the same collection for our chain complex will not work. Instead we are after some ``smaller'' abelian groups, and in some cases the abelian groups should completely vanish (as in the example above).
 
 Given a simplicial abelian group $A$, we define abelian groups $N(A)_n$ as
 \begin{align*}
-	N(A)_n &= \bigcap_{i=1}^{n} \ker(d_i: A_n \to A_{n-1}), \quad\text{n > 0} \\
+	N(A)_n &= \bigcap_{i=1}^{n} \ker(d_i: A_n \to A_{n-1}), \quad n > 0 \\
 	N(A)_0 &= A_0.
 \end{align*}
 Now define group homomorphisms $\del: N(A)_n \to N(A)_{n-1}$ as
@@ -56,18 +56,17 @@ $$ \del = d_0|_{N(A)_n}. $$
 
 The chain complex $N(A)$ is called the \emph{normalized chain complex} of $A$.
 \begin{lemma}
-	The above construction gives a functor $N: \sAb \to \Ch{\Ab}$. Furthermore $N$ is additive.
+	The above construction defines a functor $N: \sAb \to \Ch{\Ab}$. Furthermore $N$ is additive.
 \end{lemma}
 \begin{proof}
 	Given a map $f: A \to B$ of simplicial abelian groups, we consider the restrictions
 	$$ f_n |_{N(A)_n}: N(A)_n \to B_n. $$
 	Because $f_n$ commutes with the face maps we get
 	$$ d_i(f_n(x)) = f_{n-1}(d_i(x)) = 0, $$
-	for $i>0$ and $x \in N(A)_n$. So the restriction also restricts the codomain, i.e. $f_n |_{N(A)_n}: N(A)_n \to N(B)_n$ is well-defined. Furthermore it commutes with the boundary operators, since $f$ itself commutes with all face maps. This gives functoriality $N(f): N(A) \to N(B)$.
+	for $i>0$ and $x \in N(A)_n$. So the restriction also restricts the codomain, in other words $f_n |_{N(A)_n}: N(A)_n \to N(B)_n$ is well-defined. Furthermore it commutes with the boundary operators, since $f$ itself commutes with all face maps. This gives functoriality $N(f): N(A) \to N(B)$.
 
-	Let $f, g: A \to B$ be two maps, then
+	Let $f, g: A \to B$ be two maps, then we prove additivity by
 	$$ N(f+g) = (f+g)|_{N(A)} = f|_{N(A)} + g|_{N(A)} = N(f) + N(g). $$
-	By recalling that in both categories addition of maps was defined pointwise, we have additivity of $N$.
 \end{proof}
 
 \begin{example}
@@ -89,10 +88,10 @@ The chain complex $N(A)$ is called the \emph{normalized chain complex} of $A$.
 	\end{tikzpicture}.$$
 	where all face and degeneracy maps are identity maps. Clearly the kernel of $\id$ is the trivial group. So $N(\Z[\Delta[0]])_i = 0$ for all $i > 0$. In degree zero we are left with $N(\Z[\Delta[0]])_0 = \Z$. So we can depict the normalized chain complex by
 	$$ N(\Z[\Delta[0]]) = \cdots \to 0 \to 0 \to \Z. $$
-	So in this example we see that the normalized chain complex is really better behaved than the unnormalized chain complex given by $M(\Z[\Delta[0]]$.
+	So in this example we see that the normalized chain complex is really better behaved than the unnormalized chain complex given by $M(\Z[\Delta[0]])$.
 \end{example}
 
-To see what $N$ exactly does there are some useful lemmas. These lemmas can also be found in \cite[Chapter~VIII~1-2]{lamotke}, but in this thesis more detail is provided. Some corollaries are provided to give some intuition, or so summarize the lemmas, these results can also be found in \cite[Chapter~8.2-4]{weibel}. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$. For these lemmas we will need the subgroups $D_n(X) \subset X_n$ of degenerate simplices, defined as:
+To see what $N$ exactly does there are some useful lemmas. These lemmas can also be found in \cite[Chapter~VIII~1-2]{lamotke}, but in this thesis more detail is provided. Some corollaries are provided to give some intuition, or so summarize the lemmas, these results can also be found in \cite[Chapter~8.2-4]{weibel}. For the following lemmas let $X \in \sAb$ be an arbitrary simplicial abelian group and $n \in \N$. For these lemmas we will need the subgroups $D_n(X) \subseteq X_n$ of degenerate simplices, defined as:
 $$ D_n(X) = \sum_{i=0}^n s_i(X_{n-1}). $$
 
 \begin{lemma}
@@ -112,7 +111,7 @@ $$ D_n(X) = \sum_{i=0}^n s_i(X_{n-1}). $$
 	$$ x = b + c = b - s_{k-1} d_k b + s_{k-1} d_k b + c = b' + c',$$
 	with $b' \in P_n^{k-1}$ and $c' \in D_n(X)$.
 
-	Doing this inductively gives us $x = b + c$, with $b \in P_n^0 = N(X)_n$ and $c \in D_n(X)$, which is what we had to prove.
+	Doing this inductively gives us $x = b + c$, with $b \in P_n^0 = N(X)_n$ and $c \in D_n(X)$.
 \end{proof}
 \begin{lemma}
 	\label{le:decomp2}
@@ -219,7 +218,7 @@ Furthermore the degeneracy maps $s_i: K(C)_{n-1} \to K(C)_n$ are given by precom
 	Let $f: N\Z[\Delta[n]] \to C$ be a chain map then $f \in D_n(K(C))$ if and only if $f_r = 0$ forall $r \geq n$.
 \end{lemma}
 \begin{proof}
-	If $f \in D_n(K(C))$ we have $f = \sum_{i=0}^n s_i(f^{(i)})$ for some maps $f^{(i)}: N\Z[\Delta[n-1]] \to C$. Since $N\Z[\Delta[n-1]]_r = 0$ as there are no injections $[r] \mono [n-1]$, we have $f^{(i)}_r = 0$ for all $r > n-1$.
+	If $f \in D_n(K(C))$ we can write $f$ as $f = \sum_{i=0}^n s_i(f^{(i)})$ for some maps $f^{(i)}: N\Z[\Delta[n-1]] \to C$. Since $N\Z[\Delta[n-1]]_r = 0$ as there are no injections $[r] \mono [n-1]$, we have $f^{(i)}_r = 0$ for all $r > n-1$.
 
 	For the other direction let $f: N\Z[\Delta[n]] \to C$ be a chain map and $f_r = 0$ forall $r \geq n$. Define $f_m^{(i)}(\eta) = f_m(\delta_i \eta)$ for $\eta: [m] \mono [n]$. This gives a chain map $f^{(i)}: N\Z[\Delta[n-1]] \to C$ by a simple calculation:
 	$$ \del(f_m^{(i)}(\eta)) = \del(f_m(\delta_i \eta)) \eqn{1} f_{m-1}(\del(\delta_i \eta)) \eqn{2} f_{m-1}(\delta_i \eta \delta_0) \eqn{2} f_{m-1}^{(i)}(\del(\eta)), $$
@@ -300,7 +299,7 @@ $$ K(C)_0 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[0]}{C} = \Bigg\{
 	\foreach \i/\j in {2/2, 3/1, 4/0} \draw[->] (m-1-\i) -- node {$f_\j$} (m-2-\i);
 \end{tikzpicture}
 \Bigg\} \iso C_0 = K'(C)_0, $$
-because for $f_1, f_2, \ldots$ there is now choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see
+because for $f_1, f_2, \ldots$ there is no choice at all, and for $f_0: \Z \to C_0$ we only have to choose an image for $1 \in \Z$. In the next dimension we see
 $$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 \begin{tikzpicture}[baseline=-0.5ex]
 	\matrix (m) [matrix of math nodes, row sep=1em, column sep=1em] { 
