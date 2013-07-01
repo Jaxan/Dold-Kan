@@ -5,7 +5,7 @@ Before defining \emph{simplicial abelian groups}, we will first discuss the more
 
 \subsection{Abstract definition}
 \begin{definition}
-	We define a category $\DELTA$, where the objects are the finite ordinals $[n] = \{0 < \dots < n\}$ for $n \in \N$ and maps are monotone functions: $\Hom{\DELTA}{[n]}{[m]} = \{ f : [n] \to [m] \I f(i) \leq f(j) \text{ for all } i < j \}$.
+	We define a category $\DELTA$, where the objects are the \emph{finite ordinals} $[n] = \{0 < \dots < n\}$ for $n \in \N$ and maps are \emph{monotone functions}: $\Hom{\DELTA}{[n]}{[m]} = \{ f : [n] \to [m] \I f(i) \leq f(j) \text{ for all } i < j \}$.
 \end{definition}
 
 The category $\DELTA$ is sometimes referred to as the \emph{category of finite ordinals} or the \emph{cosimplicial index category}. There are two special kinds of maps in $\DELTA$, the so called \emph{face} maps and \emph{degeneracy} maps. The \emph{$i$-th face maps} $\delta_i: [n-1] \to [n]$ is the unique injective monotone function which \emph{omits} $i$. More precisely, it is defined for all $n \in \Np$ as (note that we do not explicitly denote $n$ in this notation)
@@ -138,7 +138,15 @@ Recall that for any category $\cat{C}$ we have the $\mathbf{Hom}$-functor $\Hom{
 	$$\Delta[n] = \Hom{\DELTA}{-}{[n]} : \DELTA^{op} \to \Set.$$
 \end{definition}
 
-Note that $\Delta[-]: \DELTA \to \sSet$ is exactly the Yoneda embedding. So a $m$-simplex in $\Delta[n]$ is nothing more than a monotone function $[m] \to [n]$. In a moment we will see why the Yoneda lemma is useful to us, but let us first explicitly describe two examples of such standard simplices.
+Note that $\Delta[-]: \DELTA \to \sSet$ is exactly the Yoneda embedding. So a $m$-simplex in $\Delta[n]$ is nothing more than a monotone function $[m] \to [n]$. In a moment we will see why the Yoneda lemma is useful to us, but let us first describe which functions are non-degenerate. Recall that a simplex is degenerate if it lies the image of $s_i$ for some $i$. In the simplicial set $\Delta[n]$ the degeneracy maps $s_i$ are given by precomposing with $\sigma_i$ (by definition of the $\mathbf{Hom}$-functor).
+
+\begin{lemma}
+	\label{le:standard_nondeg}
+	The non-degenerate $m$-simplices in $\Delta[n]$ are precisely injective monotone functions $[m] \mono [n]$.
+\end{lemma}
+\begin{proof}
+	Given a $m$-simplex $x \in \Delta[n]_m$, using the epi-mono factorization we can write it as $x = \delta\sigma: [m] \to [n]$, where $\delta$ is injective and $\sigma$ surjective. It is now easily seen that $x$ is degenerate if and only if $\sigma \neq \id$. In other words a $m$-simplex $x \in \Delta[n]_m$ is non-degenerate if and only if $x: [m] \to [n]$ is injective. Note that for $m>n$ no such injective monotone functions exist and for $m=n$ there is a unique one, namely $\id_{[n]}$.
+\end{proof}
 
 \begin{example}
 	We will compute how $\Delta[0]$ look like. Note that $[0]$ is an one-element set, so for any set $S$, there is only one function $\ast: S \to [0]$. Hence $\Delta[0]_n = \{\ast\}$ for all $n$ and the face and degeneracy maps are necessarily the identity maps $\id: \{\ast\} \to \{\ast\}$. Thus, $\Delta[0]$ looks like
@@ -159,8 +167,6 @@ Note that $\Delta[-]: \DELTA \to \sSet$ is exactly the Yoneda embedding. So a $m
 	\end{tikzpicture}.$$
 	Note that the only non-degenerate simplex is the unique $0$-simplex.
 \end{example}
-
-We can characterize the non-degenerate simplices for the other standard $n$-simplices as well. Recall that a simplex is degenerate if it lies the image of $s_i$ for some $i$. In the simplicial set $\Delta[n]$ the degeneracy maps $s_i$ are given by precomposing with $\sigma_i$ (by definition of the $\mathbf{Hom}$-functor). Given a $m$-simplex $x \in \Delta[n]_m$, using the epi-mono factorization we can write it as $x = \delta\sigma: [m] \to [n]$, where $\delta$ is injective and $\sigma$ surjective. It is now easily seen that $x$ is degenerate if and only if $\sigma \neq \id$. In other words a $m$-simplex $x \in \Delta[n]_m$ is non-degenerate if and only if $x: [m] \to [n]$ is injective. Note that for $m>n$ no such injective monotone functions exist and for $m=n$ there is a unique one, namely $\id_{[n]}$.
 
 \begin{example}
 	$\Delta[1]$ is a bit more interesting, but still not too complicated. We will describe the first three sets $\Delta[1]_0$, $\Delta[1]_1$ and $\Delta[1]_2$. We can use the fact that any monotone function $f: [n] \to [m]$ is a composition of first applying degeneracy maps, and then face maps, i.e.: $f: [n] \tot{\sigma_{i_0} \cdots \sigma_{i_M}} [k] \tot{\delta_{j_0} \cdots \delta_{j_N}} [m]$, where $k \leq m, n$.

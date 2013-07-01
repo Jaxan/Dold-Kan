@@ -1,20 +1,22 @@
 \section{Category Theory}
 \label{sec:Category Theory}
-Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, let us begin by recalling some basic category theory. The reader who is already familiar with these concepts, is invited to skip this section. We will introduce the notions of categories, functors, isomorphisms, natural transformations, equivalences, adjunctions and the Yoneda lemma.
+Before we will introduce the two categories $\Ch{\Ab}$ and $\sAb$, let us begin by recalling some basic category theory. The reader who is already familiar with these concepts, is invited to skip this section. We will recall the notions of categories, functors, isomorphisms, natural transformations, equivalences, adjunctions and the Yoneda lemma.
 
-We will briefly define categories an functors to fix the notation. We will not provide many examples or intuition in these concepts. For a more elaborated exposition one should have a read in \cite{awodey} or \cite{maclane}. The more complicated definitions will be discussed in a bit more detail.
+We will briefly define categories and functors to fix the notation. We will not provide many examples or intuition in these concepts. For a more elaborated exposition one should have a read in \cite{awodey} or \cite{maclane}. The more complicated definitions will be discussed in a bit more detail.
 
 \subsection{Categories}
 \begin{definition}
-	A \emph{category} $\cat{C}$ consists of a collection of \emph{objects}, a set of \emph{maps} $\Hom{\cat{C}}{A}{B}$ for each two objects $A, B \in \cat{C}$ and a binary operator named \emph{composition} $-\circ-:\Hom{\cat{C}}{B}{C} \times \Hom{\cat{C}}{A}{B}$ such that
+	A \emph{category} $\cat{C}$ consists of a collection of \emph{objects}, a set of \emph{maps} $\Hom{\cat{C}}{A}{B}$ for each two objects $A, B \in \cat{C}$ and a binary operator \emph{composition} 
+	$$-\circ-:\Hom{\cat{C}}{B}{C} \times \Hom{\cat{C}}{A}{B}$$
+	such that
 	\begin{itemize}
-		\item $\circ$ is associative, i.e. $h \circ (g \circ f) = (h \circ g) \circ f$ and
+		\item composition is associative, i.e. $h \circ (g \circ f) = (h \circ g) \circ f$ and
 		\item there exists an neutral element $\id_A \in \Hom{\cat{C}}{A}{A}$ for all $A$ in $\cat{C}$, i.e.
 		$$ \id_B \circ f = f = f \circ \id_A. $$
 	\end{itemize}
 \end{definition}
 
-Instead of writing $f \in \Hom{\cat{C}}{A}{B}$ we write $f: A \to B$, as many categories have functions as maps. For brevity we sometimes write $gf$ instead of $g \circ f$. There is a category $\Set$ of sets with functions, a category $\Ab$ of abelian groups with group homomorphisms, a category $\Top$ of topological spaces and continuous maps, and many more.
+Instead of writing $f \in \Hom{\cat{C}}{A}{B}$ we write $f: A \to B$, as many categories have functions as maps. For brevity we sometimes write $gf$ instead of $g \circ f$. We will need the category $\Set$ of sets with functions, the category $\Ab$ of abelian groups with group homomorphisms and the category $\Top$ of topological spaces and continuous maps.
 
 \begin{definition}
 	A \emph{functor} $F$ from a category $\cat{C}$ and to a category $\cat{D}$ consists of a function $F_0$ from the objects of $\cat{C}$ to the objects of $\cat{D}$ and a function $F_1$ from maps in $\cat{C}$ to maps in $\cat{D}$, such that
@@ -28,7 +30,7 @@ Instead of writing $f \in \Hom{\cat{C}}{A}{B}$ we write $f: A \to B$, as many ca
 
 For a category $\cat{C}$ we denote the \emph{opposite} category by $\cat{C}^{op}$. The opposite category consists of the same objects, but the maps and composition are reversed. A \emph{contravariant functor} $F$ from $\cat{C}$ to $\cat{D}$ is a functor $F: \cat{C}^{op} \to \cat{D}$.
 
-Note that the composition of two functors is again a functor, and that we always have an identity functor, sending each object to itself and each map to itself. This gives rise to a category $\cat{Cat}$ of \emph{small} categories. Note that we need some kind of \emph{smallness} to avoid set-theoretical issues, because we require the collection of maps between objects to be a set, whereas the collection of objects is not necessarily a set. However we will not be interested in these set-theoretic issues, and hence skip the definition of small.
+Note that the composition of two functors is again a functor, and that we always have an identity functor, sending each object to itself and each map to itself. This gives rise to a category $\cat{Cat}$ of \emph{small} categories. Note that we need some kind of \emph{smallness} to avoid set-theoretical issues. However we will not be interested in these set-theoretical issues, and hence skip the definition of small.
 
 \subsection{Isomorphisms}
 Given a category $\cat{C}$ and two objects $A, B \in \cat{C}$ we would like to know when those objects are regarded as the same, according to the category. This will be the case when there is an isomorphism between the two.
@@ -41,7 +43,7 @@ Given a category $\cat{C}$ and two objects $A, B \in \cat{C}$ we would like to k
 Isomorphisms in $\Ab$ are exactly the isomorphisms which we know, i.e. the group homomorphisms which are both injective and surjective.
 For example the cyclic group $\Z_4$ and the Klein four-group $V_4$ are not isomorphic in $\Ab$, but if we regard only the sets $\Z_4$ and $V_4$, then they are (because there is a bijection). So it is good to note that whether two objects are isomorphic  really depends on the category we are working in.
 
-Note that an isomorphism between to categories is now also defined. Two categories $\cat{C}$ and $\cat{D}$ are isomorphic if there are functors $F$ and $G$ such that $ FG = \id_\cat{D}$ and $GF = \id_\cat{C}$.
+Note that an isomorphism between two categories is now also defined. Two categories $\cat{C}$ and $\cat{D}$ are isomorphic if there are functors $F$ and $G$ such that $ FG = \id_\cat{D}$ and $GF = \id_\cat{C}$.
 
 \subsection{Natural transformations}
 
@@ -125,24 +127,21 @@ The first definition of adjunction is useful when dealing with maps, since it gi
 \begin{example}
 	\emph{(Free abelian groups)} There is an obvious functor $U: \Ab \to \Set$, which sends an abelian group to its underlying set, forgetting the additional structure. It is hence called a \emph{forgetful functor}. This functor has a left adjoint $\Z[-]: \Set \to \Ab$  given by the \emph{free abelian group functor}. For a set $S$ define
 	$$ \Z[S] = \{ \phi: S \to \Z \I \text{supp}(\phi) \text{ is finite}\}, $$
-	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given by pointwise addition. We can define an element $e_s \in \Z[S]$ for every element $s \in S$ as
+	where $\text{supp}(\phi) = \{ s \in S \I \phi(s) \neq 0 \}$. The group structure on $\Z[S]$ is given by pointwise addition. We can define a generator $e_s \in \Z[S]$ for every element $s \in S$ as
 	$$ e_s(t) =
 	\begin{cases}
 		1 \text{ if } s = t \\
 		0 \text{ otherwise}
 	\end{cases}. $$
-
-	One can think of elements of this abelian group as formal sums, namely:
-	$$ \text{for } \phi \in F(S),\, \phi = \sum_{x \in \text{supp}(\phi)}\phi(x) e_x, $$
-	in other words $\Z[S]$ consists of linear combinations of elements in $S$. The functor $\Z[-]$ is defined on functions as follows. Let $f: S \to T$ be a function, then define
+	One can think of elements of this abelian group as formal sums, namely by writing $\phi \in \Z[S]$ as $\phi = \sum_{x \in \text{supp}(\phi)}\phi(x) e_x$. In other words $\Z[S]$ consists of linear combinations of elements in $S$. The functor $\Z[-]$ is defined on functions as follows. Let $f: S \to T$ be a function, then define
 	$$ \Z[f](\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) e_{f(x)} \quad\text{for all } \phi \in \Z[S]. $$
 	It is left for the reader to check that this indeed gives a group homomorphism and that the functor laws hold. There is a map $\eta: S \to U\Z[S]$ given by
 	$$ \eta(s) = e_s. $$
-
 	And given any map $f: S \to U(A)$ for any abelian group $A$, we can define
 	$$ \overline{f}(\phi) = \sum_{x \in \text{supp}(\phi)} \phi(x) \cdot f(x). $$
-
 	It is clear that $U(\overline{f}) \circ \eta = f$. We will leave the other details (naturality of $\eta$, $\overline{f}$ being a group homomorphism, and uniqueness w.r.t.~$U(\overline{f}) \circ \eta = f$) to the reader.
+
+	By the other description of adjunctions we have $\Hom{\Ab}{\Z[S]}{T} \iso \Hom{\Set}{S}{U(T)}$, which exactly tells us that we can define a group homomorphism from $\Z[S]$ to $T$ by only specifying it on the generators $e_s, s \in S$. This fact is used throughout the thesis.
 \end{example}
 
 \subsection{The Yoneda lemma}

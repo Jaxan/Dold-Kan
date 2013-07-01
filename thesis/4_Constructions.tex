@@ -1,13 +1,13 @@
 \section{The Dold-Kan correspondence}
 \label{sec:Constructions}
 
-Comparing chain complexes and simplicial abelian groups, one sees a certain similarity. Both concepts are defined as sequences of abelian groups with certain structure maps. At first sight simplicial abelian groups seem to have a richer structure. There are many face maps as opposed to only a single boundary homomorphism. Nevertheless, as we will show in this section, these two concepts give rise to equivalent categories.
+Comparing chain complexes and simplicial abelian groups, one sees a certain similarity. Both concepts are defined as sequences of abelian groups with certain structure maps. At first sight simplicial abelian groups seem to have a richer structure. There are many face maps as opposed to only a single boundary operator. Nevertheless, as we will show in this section, these two concepts give rise to equivalent categories.
 
 \subsection{Unnormalized chain complex}
 Given a simplicial abelian group $A$, we have a family of abelian groups $A_n$. For every $n>0$ we define a group homomorphism
 $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n: A_n \to A_{n-1}.$$
 \begin{lemma}
-	Using $A_n$ as the family of abelian groups and the maps $\del_n$ as boundary maps gives a chain complex.
+	Using $A_n$ as the family of abelian groups and the maps $\del_n$ as boundary operators gives a chain complex.
 \end{lemma}
 \begin{proof}
 	We already have a collection of abelian groups together with maps, so the only thing to prove is $\del_{n-1} \circ \del_n = 0$. This can be done with a calculation.
@@ -21,7 +21,7 @@ $$\del_n = d_0 - d_1 + \ldots + (-1)^n d_n: A_n \to A_{n-1}.$$
 	In this calculation we did the following. We split the inner sum in two halves \refeqn{1} and we use the simplicial equations on the second sum \refeqn{2}. Then we do a shift of indices \refeqn{3}. By interchanging the roles of $i$ and $j$ in the second sum, we have two equal sums which cancel out. So indeed this is a chain complex.
 \end{proof}
 
-Thus, associated to a simplicial abelian group $A$ we obtain a chain complex $M(A)$ with $M(A)_n = A_n$ and the boundary operator as above. Following the book \cite{goerss} we will call the chain complex $M(X)$ the \emph{Moore complex} or \emph{unnormalized chain complex} of $X$. This construction defines a functor
+Thus, associated to a simplicial abelian group $A$ we obtain a chain complex $M(A)$ with $M(A)_n = A_n$ and the boundary operators as above. Following the book \cite{goerss} we will call the chain complex $M(X)$ the \emph{Moore complex} or \emph{unnormalized chain complex} of $X$. This construction defines a functor
 $$ M: \sAb \to \Ch{\Ab} $$
 by assigning $M(f)_n = f_n$ for a natural transformation $f: A \to B$. It follows from a nice calculation that $M(f)$ is indeed a chain map:
 \begin{align*}
@@ -30,13 +30,12 @@ by assigning $M(f)_n = f_n$ for a natural transformation $f: A \to B$. It follow
 		&\eqn{1} d_0 \circ f_n - d_1 \circ f_n + \ldots + (-1)^n d_n \circ f_n \\
 		&= (d_0 - d_1 + \ldots + (-1)^n d_n) \circ f_n = \del \circ f_n,
 \end{align*}
-where we used naturality of $f$ in step \refeqn{1}. This functor is in fact already used in the construction of the singular chain complex, where we defined the boundary maps (on generators) as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$. We will briefly come back to this in Section~\ref{sec:Homotopy}.
+where we used naturality of $f$ in step \refeqn{1}. This functor is in fact already used in the construction of the singular chain complex, where we defined the boundary operators (on generators) as $\del(\sigma) = \sigma \circ d_0 - \sigma \circ d_1 + \ldots + (-1)^{n+1} \sigma \circ d_{n+1}$. We will briefly come back to this in Section~\ref{sec:Homotopy}.
 
-Let us investigate whether this functor $M$ can be part of an equivalence. For a functor from $\Ch{\Ab}$ to $\sAb$ we cannot simply take the same collection of abelian groups. This is due to the fact that the degeneracy maps should be injective. This means that for a simplicial abelian group $A$, if we know $A_n$ is non-trivial, then all $A_m$ for $m > n$ are also non-trivial.
-
-But for chain complexes it \emph{is} possible to have trivial abelian groups $C_m$, while there is a $n < m$ with $C_n$ non-trivial. Take for example the chain complex
+Let us investigate whether this functor $M$ can be part of an equivalence. If $M$ would be part of an equivalence, it would be \emph{essentially surjective}, meaning that for any chain complex $C$ there exists a simplicial abelian group $A$ such that $M(A) \iso C$. For example take the following chain complex
 $$ C = \ldots \to 0 \to 0 \to \Z. $$
-Now if we would construct a (non-trivial) simplicial abelian group $K(C)$ from this chain complex, we now know that $K(C)_n$ is non-trivial for all $n \in \N$. This means that $M(K(C))_n$ is non-trivial for all $n \in \N$. For an equivalence we require a (natural) isomorphism: $M(K(C)) \tot{\iso} C$, this in particular means an isomorphism in each degree $n > 0$: $ 0 \neq M(K(C))_n \tot{\iso} C_n = 0 $, which is not possible. So the functor $M$, as defined as above, will not give us the equivalence we wanted, although it is a very nice functor.
+If we want $M$ to be essentially surjective, there should exist a simplicial abelian group $A$ with $A_0 \iso \Z$ and $A_0 \iso 0$. Recall that the degeneracy maps are injective. This contradicts as there is no injective map $\Z \mono 0$. So it is easily seen that $M$ cannot be part of an equivalence, although it is a nice functor.
+
 
 \subsection{Normalized chain complex}
 To repair this defect we should be more careful. Given a simplicial abelian group, simply taking the same collection for our chain complex will not work (as shown above). Instead we are after some ``smaller'' abelian groups, and in some cases the abelian groups should completely vanish (as in the example above).
@@ -64,7 +63,7 @@ The chain complex $N(A)$ is called the \emph{normalized chain complex} of $A$.
 	$$ f_n |_{N(A)_n}: N(A)_n \to B_n. $$
 	Because $f_n$ commutes with the face maps we get
 	$$ d_i(f_n(x)) = f_{n-1}(d_i(x)) = 0, $$
-	for $i>0$ and $x \in N(A)_n$. So the restriction also restricts the codomain, i.e. $f_n |_{N(A)_n}: N(A)_n \to N(B)_n$ is well-defined. Furthermore it commutes with the boundary operator, since $f$ itself commutes with all face maps. This gives functoriality $N(f): N(A) \to N(B)$.
+	for $i>0$ and $x \in N(A)_n$. So the restriction also restricts the codomain, i.e. $f_n |_{N(A)_n}: N(A)_n \to N(B)_n$ is well-defined. Furthermore it commutes with the boundary operators, since $f$ itself commutes with all face maps. This gives functoriality $N(f): N(A) \to N(B)$.
 
 	Let $f, g: A \to B$ be two maps, then
 	$$ N(f+g) = (f+g)|_{N(A)} = f|_{N(A)} + g|_{N(A)} = N(f) + N(g). $$
@@ -212,7 +211,7 @@ Many functors to $\sAb$ can be shown to have this description.\footnote{And also
 	K(C) = \Hom{\Ch{\Ab}}{N\Z[\Delta[-]]}{C}.
 \end{gather*}
 
-This is a very abstract definition so we will first discuss what a chain map $N\Z[\Delta[n]] \to C$ looks like. Recall that the non-degenerate $m$-simplices of $\Delta[n]$ are exactly injective maps $\eta: [m] \mono [n]$ for all $m$. So $N\Z[\Delta[n]]$ consists of linear combinations of those non-degenerate simplices, as $N$ precisely gives us the non-degenerate elements. Note that $N\Z[\Delta[n]]_m$ are free groups, since $\Z[\Delta[n]]_m$ are free. In other words, when defining a chain map $N\Z[\Delta[n]] \to C$ it is sufficient to define it on the generators, i.e. on the injections $\eta: [m] \mono [n]$. This fact is used throughout the following proofs.
+This is a very abstract definition so we will first discuss what a chain map $N\Z[\Delta[n]] \to C$ looks like. Recall that the non-degenerate $m$-simplices of $\Delta[n]$ are exactly injective maps $\eta: [m] \mono [n]$ (Lemma~\ref{le:standard_nondeg}). So $N\Z[\Delta[n]]$ consists of linear combinations of those non-degenerate simplices, as $N$ precisely gives us the non-degenerate elements. Note that $N\Z[\Delta[n]]_m$ are free groups, since $\Z[\Delta[n]]_m$ are free. In other words, when defining a chain map $N\Z[\Delta[n]] \to C$ it is sufficient to define it on the generators, i.e. on the injections $\eta: [m] \mono [n]$. This fact is used throughout the following proofs.
 
 Furthermore the degeneracy maps $s_i: K(C)_{n-1} \to K(C)_n$ are given by precomposition of the induced map $\sigma_{i\ast}: N\Z[\Delta[n]] \to N\Z[\Delta[n-1]]$ which in their turn are given by postcomposition. More precisely this gives $s_i(f)_m(\eta) = f_m(\sigma_i \eta)$ for any $f \in K(C)_{n-1}$ and $\eta: [m] \mono [n]$. We will now have a closer look at the degenerate elements of $K(C)$.
 \begin{lemma}
@@ -224,7 +223,7 @@ Furthermore the degeneracy maps $s_i: K(C)_{n-1} \to K(C)_n$ are given by precom
 
 	For the other direction let $f: N\Z[\Delta[n]] \to C$ be a chain map and $f_r = 0$ forall $r \geq n$. Define $f_m^{(i)}(\eta) = f_m(\delta_i \eta)$ for $\eta: [m] \mono [n]$. This gives a chain map $f^{(i)}: N\Z[\Delta[n-1]] \to C$ by a simple calculation:
 	$$ \del(f_m^{(i)}(\eta)) = \del(f_m(\delta_i \eta)) \eqn{1} f_{m-1}(\del(\delta_i \eta)) \eqn{2} f_{m-1}(\delta_i \eta \delta_0) \eqn{2} f_{m-1}^{(i)}(\del(\eta)), $$
-	where we used that $f$ is a chain map at \refeqn{1} and the definition of the boundary map of $N(-)$ \emph{and} the definition of face maps in $\Delta[-]$ at \refeqn{2}.
+	where we used that $f$ is a chain map at \refeqn{1} and the definition of the boundary operator of $N(-)$ \emph{and} the definition of face maps in $\Delta[-]$ at \refeqn{2}.
 
 	Now let $\eta: [m] \mono [n]$ and $\eta \neq \id$ (we already know $f(\id_{[n]})=0$ by assumption) then by the epi-mono factorization we have $\eta = \delta_{i_a} \cdots \delta_{i_1}$ with $a>0$, so
 	$$ f_m(\eta) = f_m(\delta_{i_a} \cdots \delta_{i_1}) \eqn{1} f_m^{(i_a)}(\delta_{i_{a-1}} \cdots \delta_{i_1}) \eqn{2} f_m^{(i_a)}(\sigma_{i_a} \delta_{i_a} \delta_{i_a} \cdots \delta_{i_1}) \eqn{3} s_{i_a}(f^{(i_a)})_m(\eta), $$
@@ -261,7 +260,7 @@ We now have enough lemmas to prove the main equivalence quite easily. The most i
 			0 \quad\text{otherwise}
 		\end{cases} \\
 	\end{align*}
-	Clearly $\phi_n(g) = x$ by definition and $g$ is a chain map as we defined it to commute with the boundary map. For proving injectivity consider $g \in \ker(\phi_n)$ then for trivial reasons we have $f_r = 0$ for all $r > n$ and $f_n(\id_{[n]}) = 0$ gives $f_n = 0$. Applying Lemma~\ref{le:degen_k} gives us $f \in D_n(K(C))$, but $f \in N(K(C))_n$. So by using Corollary~\ref{cor:NandD} we get $f = 0$. Thus $\phi_n$ is an isomorphism, which gives us $NK(C) \iso C$.
+	Clearly $\phi_n(g) = x$ by definition and $g$ is a chain map as we defined it to commute with the boundary operators. For proving injectivity consider $g \in \ker(\phi_n)$ then for trivial reasons we have $f_r = 0$ for all $r > n$ and $f_n(\id_{[n]}) = 0$ gives $f_n = 0$. Applying Lemma~\ref{le:degen_k} gives us $f \in D_n(K(C))$, but $f \in N(K(C))_n$. So by using Corollary~\ref{cor:NandD} we get $f = 0$. Thus $\phi_n$ is an isomorphism, which gives us $NK(C) \iso C$.
 
 	We now have established two natural isomorphisms $\id_\sAb \iso KN$ and $NK \iso \id_\Ch{\Ab}$. Hence we have an equivalence $\Ch{\Ab} \simeq \sAb$.
 \end{proof}
@@ -311,4 +310,3 @@ $$ K(C)_1 = \Hom{\Ch{\Ab}}{N\Z^\ast\Delta[1]}{C} = \Bigg\{
 \end{tikzpicture}
 \Bigg\} \iso C_1 \oplus C_0 = K'(C)_1, $$
 because again we can choose $f_1$ anyway we want, which gives us $C_1$. But then we are forced to choose $f_0(x, x) = \del(f_1(x))$ for all $x \in \Z$, so we are left with choosing an element $c \in C_0$ for defining $f(1,-1) = c$. Adding this gives $C_1 \oplus C_0$.
-

@@ -1,7 +1,7 @@
 \section{Chain Complexes}
 \label{sec:Chain Complexes}
 \begin{definition}
-	A \emph{(non-negative) chain complex of abelian groups} $C$ is a collection of abelian groups $C_n$, $n \in \N$, together with group homomorphisms $\del_n: C_n \to C_{n-1}$, which we call \emph{boundary homomorphisms}, such that $\del_n \circ \del_{n+1} = 0$ for all $n \in \Np$.
+	A \emph{(non-negative) chain complex of abelian groups} $C$ is a collection of abelian groups $C_n$, $n \in \N$, together with group homomorphisms $\del_n: C_n \to C_{n-1}$, which we call \emph{boundary operators}, such that $\del_n \circ \del_{n+1} = 0$ for all $n \in \Np$.
 \end{definition}
 
 Thus graphically a chain complex $C$ can be depicted by the following diagram:
@@ -18,7 +18,7 @@ There are many variants to this notion. For example, there are also unbounded ch
 
 In order to organize these chain complexes in a category, we should define what the maps are. The diagram above already gives an idea for this.
 \begin{definition}
-	Let $C$ and $D$ be chain complexes, with boundary maps $\del^C_n$ and $\del^D_n$ respectively. A \emph{chain map} $f: C \to D$ consists of a family of maps $f_n: C_n \to D_n$, such that they commute with the boundary operators: $f_n \circ \del^C_{n+1} = \del^D_{n+1} \circ f_{n+1}$ for all $n \in \N$, i.e. the following diagram commutes:
+	Let $C$ and $D$ be chain complexes, with boundary operators $\del^C_n$ and $\del^D_n$ respectively. A \emph{chain map} $f: C \to D$ consists of a family of maps $f_n: C_n \to D_n$, such that they commute with the boundary operators: $f_n \circ \del^C_{n+1} = \del^D_{n+1} \circ f_{n+1}$ for all $n \in \N$, i.e. the following diagram commutes:
 	\begin{center}
 	\begin{tikzpicture}
 		\matrix (m) [matrix of math nodes]{
@@ -38,13 +38,13 @@ Note that if we have two such chain maps $f:C \to D$ and $g:D \to E$, then the l
 	$\Ch{\Ab}$ is the category of chain complexes of abelian groups with chain maps.
 \end{definition}
 
-Note that we will often drop the indices of the boundary morphisms, since it is often clear in which degree we are working. The boundary operators give rise to certain subgroups, because all groups are abelian, subgroups are normal subgroups.
+Note that we will often drop the indices of the boundary operators, since it is often clear in which degree we are working. The boundary operators give rise to certain subgroups, because all groups are abelian, subgroups are normal subgroups.
 
 \begin{definition}
 	\label{def:cycles}
 	Given a chain complex $C$ we define the following subgroups:
 	\begin{itemize}
-		\item the subgroup of \emph{$n$-cycles}: $Z_n(C) = \ker(\del_n: C_n \to C_{n-1}) \nsubgrp C_n$, and
+		\item the subgroup of \emph{$n$-cycles}: $Z_n(C) = \ker(\del_n: C_n \to C_{n-1}) \nsubgrp C_n$,
 		\item the subgroup of \emph{$0$-cycles}: $Z_0(C) = C_0$, and
 		\item the subgroup of \emph{$n$-boundaries}: $B_n(C) = \im(\del_{n+1}: C_{n+1} \to C_n) \nsubgrp C_n$.
 	\end{itemize}
@@ -104,7 +104,7 @@ Clearly the category $\Ab$ is preadditive, since we can add group homomorphisms 
 \begin{proof}
 	We can add chain maps level-wise. Given two chain maps $f, g: C \to D$, we define $f+g$ as:
 	$$ (f+g)_n = f_n + g_n, $$
-	where we use the fact that $\Ab$ is preadditive. Note that $f+g$ is also a chain map, since it commutes with the boundary operator. The bilinearity of composition follows level-wise from the fact that $\Ab$ is preadditive.
+	where we use the fact that $\Ab$ is preadditive. Note that $f+g$ is also a chain map, since it commutes with the boundary operators. The bilinearity of composition follows level-wise from the fact that $\Ab$ is preadditive.
 \end{proof}
 
 Of course given two preadditive categories $\cat{C}$ and $\cat{D}$, not every functor will preserve this extra structure.
@@ -117,7 +117,7 @@ Of course given two preadditive categories $\cat{C}$ and $\cat{D}$, not every fu
 
 \subsection{The singular chain complex}
 \label{sec:singular}
-In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. We will form a chain complex from a topological space $X$. In this section we will not be very precise, as it will only act as a motivation. However the intuition might be very useful later on, and so pictures are provided to give meaning to this construction.
+In order to see why we are interested in the construction of homology groups, we will look at an example from algebraic topology. We will see that homology gives a nice invariant for spaces. We will construct a chain complex for any topological space. In this section we will not be very precise, as it will only act as a motivation. However the intuition might be very useful later on, and so pictures are provided to give meaning to this construction.
 
 \begin{definition}
 	The \emph{topological $n$-simplex} $\Delta^n$, $n \in \N$, is the set
@@ -185,7 +185,7 @@ A direct consequence of being a functor is that homeomorphic spaces have isomorp
 In the remainder of this section we will give the homology groups of some basic spaces. For most spaces it is hard to calculate the homology groups from the definitions above. One generally proves these results by using theorems from algebraic topology or homological algebra, which are beyond the scope of this thesis. The first example can be calculated from the definitions above, however the proof is not included as the example is only included as a motivation.
 
 \begin{example}
-	The homology of the one-point space $\ast$ is given by:
+	The homology of the one-point space $\ast$ is given by
 	$$ H^\text{sing}_n(\ast) \iso
 	\begin{cases}
 		\Z \quad\text{if } n = 0 \\
